@@ -26,7 +26,7 @@ public class RoadGenerator : MonoBehaviour
     }
     private Road CreateRoadInstance()
     {
-        Road roadInstance = Instantiate(_roadPrefab, _spawnPosition, Quaternion.identity);
+        Road roadInstance = Instantiate(_roadPrefab, gameObject.transform);
         roadInstance.RoadPool = _roadPool;
         return roadInstance;
     }
@@ -48,7 +48,7 @@ public class RoadGenerator : MonoBehaviour
     public void SpawnRoadFromPool()
     {
         var roadFromPool = _roadPool.Get();
-        roadFromPool.transform.SetPositionAndRotation(_spawnPosition, Quaternion.identity);
+        roadFromPool.transform.SetPositionAndRotation(_roadFromPool.transform.forward + _spawnPosition, Quaternion.identity);
     }
     public void ReleaseLastRoad()
     {
