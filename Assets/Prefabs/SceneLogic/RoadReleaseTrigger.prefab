@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5266607443330143780}
   - component: {fileID: 2843742766390821035}
-  - component: {fileID: 6041861396430881412}
+  - component: {fileID: 7926497943415081437}
   m_Layer: 0
-  m_Name: DeactivateTrigger
+  m_Name: RoadReleaseTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2484960734318308555}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.75, z: -16.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -54,7 +54,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9.028961, y: 4.0229964, z: 1}
   m_Center: {x: -0.19710803, y: 1.5114985, z: 0}
---- !u!114 &6041861396430881412
+--- !u!114 &7926497943415081437
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,22 +63,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2484960734318308555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b669e5d25cfe65b48a5b00d524965df5, type: 3}
+  m_Script: {fileID: 11500000, guid: bb3cf0242deb0de4caac1e7e97be5fa4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TriggerArea
-  _targetTag: 1
-  OnTargetEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RoadGenerator, Assembly-CSharp
-        m_MethodName: ReleaseLastRoad
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  m_EditorClassIdentifier: Assembly-CSharp::RoadTrigger

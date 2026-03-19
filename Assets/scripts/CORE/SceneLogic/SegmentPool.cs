@@ -1,19 +1,21 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Pool;
+using Zenject;
 
-public class RoadGenerator : MonoBehaviour
+public class SegmentPool : MonoBehaviour
 {
+    [Inject] private readonly DiContainer _container;
     private IObjectPool<Road> _roadPool;
     [SerializeField] private List<Road> _roadInPoolList;
-    [SerializeField] private Road _roadPrefab;
+
+    [SerializeField] private Road[] _roadPrefabList;
+    [SerializeField] private Road _startedRoadPrefab;
     [SerializeField] private Vector3 _spawnPosition;
+    
+
     [SerializeField] private int _defaultPoolCapacity = 5;
     [SerializeField] private int _maxPoolSize = 10;
-
-    private Road _roadFromPool;
-    private Road _nextRoadToRelease;
 
     private void Awake()
     {
@@ -21,37 +23,51 @@ public class RoadGenerator : MonoBehaviour
         (CreateRoadInstance, OnGetFromPool, OnReleaseToPool, OnDestroyPooledRoad,
             collectionCheck: true, _defaultPoolCapacity, _maxPoolSize);
 
-        _nextRoadToRelease = _roadInPoolList.FirstOrDefault<Road>();
-        _nextRoadToRelease.RoadPool = _roadPool;
+        AddExistRoadToPool();
     }
+    private void AddExistRoadToPool()
+    {
+        _startedRoadPrefab.RoadPool = _roadPool;
+        EnsureExistInList(_startedRoadPrefab);
+    }
+    private void EnsureExistInList(Road road)
+    {
+        if (!_roadInPoolList.Contains(road))
+        {
+            _roadInPoolList.Add(road);
+        }
+        return;
+    }
+
     private Road CreateRoadInstance()
     {
-        Road roadInstance = Instantiate(_roadPrefab, gameObject.transform);
+        var _randomRoadPrefab = _roadPrefabList[Random.Range(0, _roadPrefabList.Length)];
+        Road roadInstance = _container.InstantiatePrefabForComponent<Road>(_randomRoadPrefab);
         roadInstance.RoadPool = _roadPool;
         return roadInstance;
     }
     private void OnGetFromPool(Road pooledRoad)
     {
-        _roadInPoolList.Add(pooledRoad);
-        _roadFromPool = pooledRoad;
+        EnsureExistInList(pooledRoad);
         pooledRoad.gameObject.SetActive(true);
     }
+    
     private void OnReleaseToPool(Road pooledRoad)
     {
-        _nextRoadToRelease = _roadFromPool;
         pooledRoad.gameObject.SetActive(false);
     }
     private void OnDestroyPooledRoad(Road pooledRoad) // If you hit maximum limit
     {
         Destroy(pooledRoad.gameObject);
     }
-    public void SpawnRoadFromPool()
+
+    public void GetRoadFromPool()
     {
         var roadFromPool = _roadPool.Get();
-        roadFromPool.transform.SetPositionAndRotation(_roadFromPool.transform.forward + _spawnPosition, Quaternion.identity);
+        roadFromPool.transform.SetPositionAndRotation(_spawnPosition, Quaternion.identity);
     }
-    public void ReleaseLastRoad()
+    public void ReleaseRoadToPool(Road road)
     {
-        _roadPool.Release(_nextRoadToRelease);
+        _roadPool.Release(road);
     }
 }
