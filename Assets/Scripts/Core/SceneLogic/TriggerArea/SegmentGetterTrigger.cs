@@ -1,16 +1,16 @@
 using UnityEngine;
 using Zenject;
 
-public class RoadGetTrigger : MonoBehaviour
+public class SegmentGetterTrigger : MonoBehaviour
 {
     private const string PLAYER_TAG = "Player";
-    [Inject] private SegmentPool _segmentPool;
+    [Inject] private SegmentGenerator _segmentPool;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag(PLAYER_TAG))
         {
-            _segmentPool.GetRoadFromPool();
+            _segmentPool.GetSegmentFromPool();
         }
     }
 }

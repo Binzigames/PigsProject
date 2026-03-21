@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1763147389213693002}
   - component: {fileID: 9111279340631294936}
   m_Layer: 0
-  m_Name: SegmentPool
+  m_Name: SegmentGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

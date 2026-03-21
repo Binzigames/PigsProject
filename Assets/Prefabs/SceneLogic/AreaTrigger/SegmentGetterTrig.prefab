@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3793571943306130287}
   - component: {fileID: 6355463223212236554}
   m_Layer: 0
-  m_Name: PathTrigger
+  m_Name: SegmentGetterTrig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,8 +52,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 13.513818, y: 6.8178577, z: 1}
-  m_Center: {x: -0.44928503, y: 2.9089293, z: 0}
+  m_Size: {x: 340.74722, y: 6.8178577, z: 1}
+  m_Center: {x: -5.3720183, y: 2.9089293, z: 0}
 --- !u!114 &6355463223212236554
 MonoBehaviour:
   m_ObjectHideFlags: 0

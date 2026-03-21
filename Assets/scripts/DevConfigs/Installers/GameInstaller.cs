@@ -1,16 +1,19 @@
-using System.Threading;
 using Zenject;
 
 public class GameInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
-        BindObjectPool();
+        BindSegments();
+        BindPlayer();
     }
     
-
-    private void BindObjectPool()
+    private void BindSegments()
     {
-        Container.Bind<SegmentPool>().FromComponentInHierarchy().AsSingle();
+        Container.Bind<SegmentGenerator>().FromComponentInHierarchy().AsSingle();
+    }
+    private void BindPlayer()
+    {
+        Container.Bind<Player>().FromComponentInHierarchy().AsSingle();
     }
 }
