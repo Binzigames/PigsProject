@@ -185,6 +185,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4525100986691258891, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
   m_PrefabInstance: {fileID: 303754389}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &513937117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 513937118}
+  m_Layer: 0
+  m_Name: SegmentSpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &513937118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513937117}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 140}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1924168767
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,6 +549,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 932301672337484149, guid: 2c62450380a9cc24eaf60ec2a2518bb1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 63.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2043522709739432375, guid: 2c62450380a9cc24eaf60ec2a2518bb1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.13584
@@ -558,9 +593,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2618988029461279544, guid: 2c62450380a9cc24eaf60ec2a2518bb1, type: 3}
+      propertyPath: _spawnZDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3128724845727305042, guid: 2c62450380a9cc24eaf60ec2a2518bb1, type: 3}
       propertyPath: m_Name
       value: SegmentManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7707350090439982823, guid: 2c62450380a9cc24eaf60ec2a2518bb1, type: 3}
+      propertyPath: _spawnPosition
+      value: 
+      objectReference: {fileID: 513937118}
+    - target: {fileID: 7707350090439982823, guid: 2c62450380a9cc24eaf60ec2a2518bb1, type: 3}
+      propertyPath: _spawnPosition.z
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -576,3 +623,4 @@ SceneRoots:
   - {fileID: 2641436850812347128}
   - {fileID: 4084811879406093626}
   - {fileID: 1879617016968430834}
+  - {fileID: 513937118}

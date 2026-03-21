@@ -9,10 +9,8 @@ public class SegmentGenerator : MonoBehaviour
     private IObjectPool<Segment> _segmentPool;
     [SerializeField] private List<Segment> _segmentPrefabList;
     [SerializeField] private List<Segment> _poolList;
-    [SerializeField] private Vector3 _spawnPosition;
-
-    private Vector3 _lastSegmentPos;
-
+    [SerializeField] private Transform _spawnPosition;
+    private int _prefabIndex = 0;
 
     [SerializeField] private int _defaultPoolCapacity = 5;
     [SerializeField] private int _maxPoolSize = 10;
@@ -27,22 +25,26 @@ public class SegmentGenerator : MonoBehaviour
         (CreateInstance, OnGetFromPool, OnReleaseToPool, OnDestroyPooled,
             collectionCheck: true, _defaultPoolCapacity, _maxPoolSize);
     
-        // _lastSegmentPos.position = _spawnPosition;
         AddPrefabsToPool();
         GetSegmentFromPool();
     }
 
     private Segment CreateInstance()
     {
-        var _randomSegmentPrefab = _segmentPrefabList[Random.Range(0, _segmentPrefabList.Count)];
-        Segment segmentInstance = _container.InstantiatePrefabForComponent<Segment>(_randomSegmentPrefab, gameObject.transform);
+        if (_prefabIndex >= _segmentPrefabList.Count)
+        {
+            _prefabIndex = 0;
+        }
+
+        var segmentPrefab = _segmentPrefabList[_prefabIndex];
+        Segment segmentInstance = _container.InstantiatePrefabForComponent<Segment>(segmentPrefab, gameObject.transform);
         segmentInstance.SegmentPool = _segmentPool;
+        _prefabIndex ++;
         return segmentInstance;
     }
     private void OnGetFromPool(Segment segment)
     {
         EnsureExistInList(segment);
-        _lastSegmentPos = segment.transform.position;
         segment.gameObject.SetActive(true);
     }
     private void OnReleaseToPool(Segment segment)
@@ -72,7 +74,7 @@ public class SegmentGenerator : MonoBehaviour
     public void GetSegmentFromPool()
     {
         var segmentFromPool = _segmentPool.Get();
-        segmentFromPool.transform.SetPositionAndRotation(_spawnPosition, Quaternion.identity);
+        segmentFromPool.transform.SetPositionAndRotation(_spawnPosition.position, Quaternion.identity);
     }
     public void ReleaseSegmentToPool(Segment segment)
     {

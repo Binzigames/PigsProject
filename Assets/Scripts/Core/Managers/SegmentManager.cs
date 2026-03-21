@@ -5,6 +5,7 @@ public class SegmentManager : MonoBehaviour
 {
     private Player _player;
     private SegmentGenerator _segmentGenerator;
+
     [SerializeField] private float _segmentsMoveSpeed;
     [SerializeField] private float _despawnZDistance;
 
@@ -43,9 +44,9 @@ public class SegmentManager : MonoBehaviour
     {
         foreach (Segment segment in _segmentGenerator.PoolList)
         {
-            var distanceToRelease = _player.transform.position.z - segment.transform.position.z;
-            Debug.Log(distanceToRelease);
-            if (segment.gameObject.activeInHierarchy && distanceToRelease >= _despawnZDistance)
+            var positionToRelease = _player.transform.position.z - segment.transform.position.z;
+            
+            if (segment.gameObject.activeInHierarchy && positionToRelease >= _despawnZDistance)
             {
                 _segmentGenerator.ReleaseSegmentToPool(segment);
             }
