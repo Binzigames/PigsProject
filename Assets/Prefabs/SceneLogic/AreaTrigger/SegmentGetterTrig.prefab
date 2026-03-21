@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4348219687982178012}
   - component: {fileID: 3793571943306130287}
-  - component: {fileID: 2435347673347935285}
+  - component: {fileID: 6355463223212236554}
   m_Layer: 0
-  m_Name: PathTrigger
-  m_TagString: WayTrigger
+  m_Name: SegmentGetterTrig
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,9 +52,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 13.513818, y: 6.8178577, z: 1}
-  m_Center: {x: -0.44928503, y: 2.9089293, z: 0}
---- !u!114 &2435347673347935285
+  m_Size: {x: 340.74722, y: 6.8178577, z: 1}
+  m_Center: {x: -5.3720183, y: 2.9089293, z: 0}
+--- !u!114 &6355463223212236554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,10 +63,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3720505197504663248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b669e5d25cfe65b48a5b00d524965df5, type: 3}
+  m_Script: {fileID: 11500000, guid: 422aad72e5fc3e147aeadeff15c684e1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  _targetTag: 0
-  OnTargetEnter:
-    m_PersistentCalls:
-      m_Calls: []
+  m_EditorClassIdentifier: Assembly-CSharp::RoadGetTrigger
