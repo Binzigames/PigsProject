@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 173912637094993440, guid: dcdaa84c5d73fb944be13dc569f46427, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 972918037cea9d243a6b8ff0b27838c3, type: 2}
     - target: {fileID: 2961166325297472573, guid: dcdaa84c5d73fb944be13dc569f46427, type: 3}
       propertyPath: m_Name
       value: Preset_2 Variant
@@ -60,6 +64,10 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 4270
       objectReference: {fileID: 0}
+    - target: {fileID: 6580672368760535416, guid: dcdaa84c5d73fb944be13dc569f46427, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 972918037cea9d243a6b8ff0b27838c3, type: 2}
     - target: {fileID: 8090310363289291340, guid: dcdaa84c5d73fb944be13dc569f46427, type: 3}
       propertyPath: m_VersionIndex
       value: 4270
@@ -109,7 +117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ac1cbfd80666841891619f3d809d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Road
-  _moveSpeed: 5
 --- !u!54 &6161431319604314062
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1990,7 +1990,7 @@
     "m_Hidden": false,
     "m_PerRendererData": false,
     "m_customAttributes": [],
-    "m_Value": 1.0,
+    "m_Value": 2.0,
     "m_FloatType": 0,
     "m_LiteralFloatMode": false,
     "m_RangeValues": {
@@ -2173,7 +2173,7 @@
     "m_ObjectId": "665c1a3198d84990b629aa541f755a62",
     "m_Datas": [],
     "m_ActiveSubTarget": {
-        "m_Id": "a19e33fbad2a40f3b97c1bb5b24fc854"
+        "m_Id": "f62668d2cd1540b48b42d4eb83afd71f"
     },
     "m_AllowMaterialOverride": false,
     "m_SurfaceType": 0,
@@ -2780,15 +2780,6 @@
     "m_ShaderOutputName": "Sampler",
     "m_StageCapability": 3,
     "m_BareResource": false
-}
-
-{
-    "m_SGVersion": 2,
-    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalUnlitSubTarget",
-    "m_ObjectId": "a19e33fbad2a40f3b97c1bb5b24fc854",
-    "m_KeepLightingVariants": false,
-    "m_DefaultDecalBlending": true,
-    "m_DefaultSSAO": true
 }
 
 {
@@ -3868,6 +3859,15 @@
         "e32": 0.0,
         "e33": 1.0
     }
+}
+
+{
+    "m_SGVersion": 2,
+    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalUnlitSubTarget",
+    "m_ObjectId": "f62668d2cd1540b48b42d4eb83afd71f",
+    "m_KeepLightingVariants": false,
+    "m_DefaultDecalBlending": true,
+    "m_DefaultSSAO": true
 }
 
 {
