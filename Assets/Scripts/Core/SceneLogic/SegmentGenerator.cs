@@ -10,7 +10,7 @@ public class SegmentGenerator : MonoBehaviour
     [SerializeField] private List<Segment> _segmentPrefabList;
     [SerializeField] private List<Segment> _poolList;
     [SerializeField] private Transform _spawnPosition;
-    private int _indexPrefabList = 0;
+    private int _indexPrefabList = -1;
 
     [SerializeField] private int _defaultPoolCapacity = 5;
     [SerializeField] private int _maxPoolSize = 10;
@@ -35,7 +35,6 @@ public class SegmentGenerator : MonoBehaviour
         
         Segment segmentInstance = _container.InstantiatePrefabForComponent<Segment>(segmentPrefab, gameObject.transform);
         segmentInstance.SegmentPool = _segmentPool;
-        _indexPrefabList ++;
         return segmentInstance;
     }
     private Segment GetNextSegmentPrefab()

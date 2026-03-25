@@ -9,7 +9,8 @@ public class ObstacleGenerator : MonoBehaviour
 
     private IObjectPool<Obstacle> _obstaclePool;
     [SerializeField] private List<Obstacle> _obstaclePrefabList;
-    private int _indexPrefabList = 0;
+    private int _indexPrefabList = -1;
+
     [SerializeField] private int _defaultPoolCapacity = 10;
     [SerializeField] private int _maxPoolSize = 15;
 
