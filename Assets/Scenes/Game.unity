@@ -177,7 +177,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4525100986691258891, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2047884097}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
 --- !u!4 &303754396 stripped
@@ -318,6 +321,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53b8fe34af5c01746b02a50ca910a2ac, type: 3}
+--- !u!1001 &841523248
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 303754396}
+    m_Modifications:
+    - target: {fileID: 510187780845094399, guid: 311ef8ee221b7e9478604f1f03d6d5ca, type: 3}
+      propertyPath: m_Name
+      value: Potuga Particle System
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514990734234538654, guid: 311ef8ee221b7e9478604f1f03d6d5ca, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.176
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514990734234538654, guid: 311ef8ee221b7e9478604f1f03d6d5ca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.60700005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514990734234538654, guid: 311ef8ee221b7e9478604f1f03d6d5ca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.378
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514990734234538654, guid: 311ef8ee221b7e9478604f1f03d6d5ca, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.102726035
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514990734234538654, guid: 311ef8ee221b7e9478604f1f03d6d5ca, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.9947097
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514990734234538654, guid: 311ef8ee221b7e9478604f1f03d6d5ca, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514990734234538654, guid: 311ef8ee221b7e9478604f1f03d6d5ca, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514990734234538654, guid: 311ef8ee221b7e9478604f1f03d6d5ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -191.79199
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514990734234538654, guid: 311ef8ee221b7e9478604f1f03d6d5ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514990734234538654, guid: 311ef8ee221b7e9478604f1f03d6d5ca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 311ef8ee221b7e9478604f1f03d6d5ca, type: 3}
 --- !u!1 &1472248946
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,6 +553,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!4 &2047884097 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1514990734234538654, guid: 311ef8ee221b7e9478604f1f03d6d5ca, type: 3}
+  m_PrefabInstance: {fileID: 841523248}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1879617016968430834
 PrefabInstance:
   m_ObjectHideFlags: 0
