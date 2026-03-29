@@ -1,25 +1,13 @@
+using Assets.Scripts.Patterns.ObjectPool;
 using UnityEngine;
 using Zenject;
 
 public class SegmentManager : MonoBehaviour
 {
-    private Player _player;
-    private SegmentGenerator _segmentGenerator;
+    [Inject] private readonly ObjectPool _objectPool;
 
     [SerializeField] private float _segmentsMoveSpeed;
-    [SerializeField] private float _despawnZDistance;
-
-    [Inject]
-    public void Construct(Player player, SegmentGenerator segmentGenerator)
-    {
-        _player = player;
-        _segmentGenerator = segmentGenerator;
-    }
-
-    private void Update()
-    {
-        ReleaseSegmentOnDistance();
-    }
+    [SerializeField] private Transform _spawnPosition;
 
     private void FixedUpdate()
     {
@@ -28,28 +16,27 @@ public class SegmentManager : MonoBehaviour
 
     private void MoveSegmentsIfActive()
     {
-        foreach (Segment segment in _segmentGenerator.PoolList)
+        foreach (var segment in _objectPool.PooledObjectList)
         {
-            if (segment.isActiveAndEnabled)
+            if (segment.activeInHierarchy)
             {
                 MoveSegment(segment);
             }
         }
     }
-    private void MoveSegment(Segment segment)
+    private void MoveSegment(GameObject segment)
     {
-        segment.gameObject.transform.position += _segmentsMoveSpeed * Time.fixedDeltaTime * Vector3.back;
+        segment.transform.position += _segmentsMoveSpeed * Time.fixedDeltaTime * Vector3.back;
     }
-    private void ReleaseSegmentOnDistance()
+
+    public void GetSegmentFromPool()
     {
-        foreach (Segment segment in _segmentGenerator.PoolList)
-        {
-            var positionToRelease = _player.transform.position.z - segment.transform.position.z;
-            
-            if (segment.gameObject.activeInHierarchy && positionToRelease >= _despawnZDistance)
-            {
-                _segmentGenerator.ReleaseSegmentToPool(segment);
-            }
-        }
+        var pooledSegment = _objectPool.GetObjectFromPool();
+        pooledSegment.transform.SetPositionAndRotation(_spawnPosition.position, Quaternion.identity);
+    }
+
+    public void ReleaseSegmentToPool(GameObject gameObject)
+    {
+        _objectPool.ReleaseObjectToPool(gameObject);
     }
 }
