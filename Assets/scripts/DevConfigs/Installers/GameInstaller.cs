@@ -1,3 +1,4 @@
+using Assets.Scripts.Patterns.ObjectPool;
 using Zenject;
 
 public class GameInstaller : MonoInstaller
@@ -11,6 +12,8 @@ public class GameInstaller : MonoInstaller
     private void BindSegments()
     {
         Container.Bind<SegmentGenerator>().FromComponentInHierarchy().AsSingle();
+        Container.Bind<SegmentManager>().FromComponentInHierarchy().AsSingle();
+        Container.Bind<ObjectPool>().FromComponentInHierarchy().AsSingle();
     }
     private void BindPlayer()
     {
