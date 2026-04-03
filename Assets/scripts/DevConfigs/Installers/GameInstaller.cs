@@ -18,5 +18,6 @@ public class GameInstaller : MonoInstaller
     private void BindPlayer()
     {
         Container.Bind<Player>().FromComponentInHierarchy().AsSingle();
+        Container.Bind<PlayerTouchController>().FromComponentInHierarchy().AsSingle();
     }
 }
