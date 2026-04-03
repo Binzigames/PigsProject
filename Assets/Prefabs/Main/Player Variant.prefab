@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: _rigidbody
       value: 
       objectReference: {fileID: 4798199436841825025}
+    - target: {fileID: 3039529129547806561, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
+      propertyPath: _groundLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4525100986691258891, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -52,6 +56,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4859179401657705236, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6417200252295120060, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       propertyPath: _moveAction
       value: 
@@ -64,6 +72,10 @@ PrefabInstance:
       propertyPath: _minSwipeDistance
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 6417200252295120060, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
+      propertyPath: _touchScreenPressAction
+      value: 
+      objectReference: {fileID: -8822153560699769550, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     - target: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       propertyPath: m_Name
       value: Player Variant
@@ -109,7 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8be59c0e6e6aa0468e15c1bd7aecf79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  _jumpForce: 50
+  _moveOffset: 3
+  _moveSpeed: 5
+  _jumpForce: 20
 --- !u!54 &4798199436841825025
 Rigidbody:
   m_ObjectHideFlags: 0

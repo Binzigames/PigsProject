@@ -504,6 +504,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2686280740845967422, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
+      propertyPath: _groundLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3577378613197956436, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -543,6 +547,18 @@ PrefabInstance:
     - target: {fileID: 3577378613197956436, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478136717566086219, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226081467360340963, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
+      propertyPath: _touchScreenPressAction
+      value: 
+      objectReference: {fileID: -8822153560699769550, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 8269673273327403075, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
+      propertyPath: _jumpForce
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8491667860976784895, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
       propertyPath: m_Name
@@ -696,7 +712,7 @@ PrefabInstance:
       objectReference: {fileID: 1455144069}
     - target: {fileID: 2618988029461279544, guid: 2c62450380a9cc24eaf60ec2a2518bb1, type: 3}
       propertyPath: _segmentsMoveSpeed
-      value: 19.96
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3128724845727305042, guid: 2c62450380a9cc24eaf60ec2a2518bb1, type: 3}
       propertyPath: m_Name
@@ -720,6 +736,10 @@ PrefabInstance:
       value: Debug_gloor_2
       objectReference: {fileID: 0}
     - target: {fileID: 754983874733045405, guid: b9384b02772805c4ea67ee89075f9d48, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 754983874733045405, guid: b9384b02772805c4ea67ee89075f9d48, type: 3}
       propertyPath: m_TagString
       value: Segment
       objectReference: {fileID: 0}
@@ -730,6 +750,22 @@ PrefabInstance:
     - target: {fileID: 2223018034199841584, guid: b9384b02772805c4ea67ee89075f9d48, type: 3}
       propertyPath: _triggerArea
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538103583752592190, guid: b9384b02772805c4ea67ee89075f9d48, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4747874712673021682, guid: b9384b02772805c4ea67ee89075f9d48, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882543551043001377, guid: b9384b02772805c4ea67ee89075f9d48, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928463534822944176, guid: b9384b02772805c4ea67ee89075f9d48, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8057152932079304124, guid: b9384b02772805c4ea67ee89075f9d48, type: 3}
       propertyPath: m_LocalPosition.z

@@ -7,7 +7,7 @@ public class PlayerTouchController : MonoBehaviour
 {
     [SerializeField] private float _minSwipeDistance = 50f;
 
-    private readonly InputSystem _inputSystem;
+    [SerializeField] private InputActionReference _touchScreenPressAction;
 
     private Vector2 _startTouchPosition;
     private Vector2 _endTouchPosition;
@@ -19,13 +19,11 @@ public class PlayerTouchController : MonoBehaviour
 
     private void Awake()
     {
-        InputSystem _inputSystem = new();
-        _inputSystem.Gameplay.Enable();
-        
-        _inputSystem.Gameplay.TouchScreenPress.started += OnTouchPress;
-        _inputSystem.Gameplay.TouchScreenPress.canceled += OnTouchPress;
+        _touchScreenPressAction.action.started += OnTouchPress;
+        _touchScreenPressAction.action.canceled += OnTouchPress;
     }
-    
+
+
     private void OnTouchPress(InputAction.CallbackContext context)
     {
         if (context.started)

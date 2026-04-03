@@ -1,16 +1,27 @@
+using TMPro;
 using UnityEngine;
 using Zenject;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float _jumpForce = 5f;
     private const int STARTED_LANE = 0;
 
-    [Inject] private readonly Player _player;
-    private Vector3 _targetPosition = Vector3.zero;
-    private int _currentLane;
-    private bool _isJumped = false;
+    [SerializeField] private float _moveOffset = 3f;
+    [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] private float _jumpForce = 5f;
 
+    private Player _player;
+    private PlayerTouchController _touchController;
+
+    private int _currentLane;
+    private Vector3 _targetPosition;
+
+    [Inject]
+    public void Construct(Player player, PlayerTouchController touchController)
+    {
+        _player = player;
+        _touchController = touchController;
+    }
     private void Awake()
     {
         Subscribe();
@@ -23,30 +34,35 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        _player.transform.position = _targetPosition;
+        HandleMove();
     }
     private void Subscribe()
     {
-        var playerController = _player.PlayerController;
-
-        playerController.OnSwipeLeft += MoveLeft;
-        playerController.OnSwipeRight += MoveRight;
-        playerController.OnSwipeDown += Slide;
-        playerController.OnSwipeUp += Jump;
+        _touchController.OnSwipeLeft += MoveLeft;
+        _touchController.OnSwipeRight += MoveRight;
+        _touchController.OnSwipeDown += Slide;
+        _touchController.OnSwipeUp += Jump;
     }
     private void Unsubcribe()
     {
-        var playerController = _player.PlayerController;
+        _touchController.OnSwipeLeft -= MoveLeft;
+        _touchController.OnSwipeRight -= MoveRight;
+        _touchController.OnSwipeDown -= Slide;
+        _touchController.OnSwipeUp -= Jump;
+    }
 
-        playerController.OnSwipeLeft -= MoveLeft;
-        playerController.OnSwipeRight -= MoveRight;
-        playerController.OnSwipeDown -= Slide;
-        playerController.OnSwipeUp -= Jump;
+    private void HandleMove()
+    {
+        var targetLanePosition = Vector3.Lerp(transform.position,
+                                                _moveOffset * _targetPosition,
+                                                    _moveSpeed * Time.deltaTime);
+        transform.position = targetLanePosition;
     }
 
     private void MoveLeft()
     {
         ChangeLane(-1);
+
     }
     private void MoveRight()
     {
@@ -64,7 +80,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jump()
     {
-        _player.RigidBody.AddForce(_jumpForce *  Vector3.up, ForceMode.Impulse);
+        if (_player.IsGrounded())
+        {
+            _player.RigidBody.AddForce(_jumpForce * Vector3.up, ForceMode.Impulse);
+        }
     }
     private void Slide()
     {
