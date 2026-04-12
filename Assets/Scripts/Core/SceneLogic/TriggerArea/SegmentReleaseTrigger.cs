@@ -11,7 +11,6 @@ public class SegmentReleaseTrigger : MonoBehaviour
         if(other.CompareTag(SEGMENT_TAG))
         {
             _segmentManager.ReleaseSegmentToPool(other.gameObject);
-            Debug.Log(this);
         }
     }
 }

@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class DynamicObstacle : Obstacle
 {
-    [SerializeField] [Range(0f, 10f)] 
-    private float _moveSpeed = 5f;
+    [SerializeField] private float _moveSpeed = 10f;
+    [SerializeField] private Transform _respawnPoint;
 
+    private void OnEnable()
+    {
+        transform.position = _respawnPoint.position;
+    }
     private void FixedUpdate()
     {
         MoveObstacle();

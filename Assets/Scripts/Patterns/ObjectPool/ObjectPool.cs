@@ -14,7 +14,7 @@ namespace Assets.Scripts.Patterns.ObjectPool
         [SerializeField] private GameObject[] _objectToPoolArray;
         [SerializeField] private List<GameObject> _pooledObjectList;
         private int _toPoolArrayIndex = -1;
-        private int _pooledListIndex = -1;
+        private int _pooledListIndex = 0;
 
         [SerializeField] private int _poolSize = 5;
 
