@@ -2,16 +2,19 @@ using UnityEngine;
 using UnityEngine.Pool;
 using Zenject;
 
-public class Obstacle : MonoBehaviour
+namespace Scripts.Core.SceneLogic
 {
-    [Inject] private readonly Player _player;
-    public IObjectPool<Obstacle> ObstaclePool { get; set; }
-
-    private void OnTriggerEnter(Collider other)
+    public class Obstacle : MonoBehaviour
     {
-        if (other.CompareTag(_player.tag))
+        [Inject] private readonly Player _player;
+        public IObjectPool<Obstacle> ObstaclePool { get; set; }
+
+        private void OnTriggerEnter(Collider other)
         {
-            Debug.Log($"Collision with the {other}");
+            if (other.CompareTag(_player.tag))
+            {
+                Debug.Log($"Collision with the {other}");
+            }
         }
     }
 }

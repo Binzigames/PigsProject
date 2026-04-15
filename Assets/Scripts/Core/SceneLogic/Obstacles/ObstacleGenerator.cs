@@ -3,77 +3,80 @@ using UnityEngine;
 using UnityEngine.Pool;
 using Zenject;
 
-public class ObstacleGenerator : MonoBehaviour
+namespace Scripts.Core.SceneLogic
 {
-    private DiContainer _diContainer;
-    private ObstacleDataContainer _obstacleDataContainer;
-
-    [SerializeField] private int _defaultPoolCapacity = 10;
-    [SerializeField] private int _maxPoolSize = 15;
-
-    private IObjectPool<Obstacle> _obstaclePool;
-
-    private List<Obstacle> _obstaclePrefabList;
-    private List<Obstacle> _pooledObstacleList;
-
-
-    private int _indexPrefabList = -1;
-
-    public IObjectPool<Obstacle> Pool => _obstaclePool;
-    public List<Obstacle> PooledObstacleList => _pooledObstacleList;
-
-
-    [Inject]
-    public void Construct(IStaticDataProvider dataProvider, DiContainer container)
+    public class ObstacleGenerator : MonoBehaviour
     {
-        _obstacleDataContainer = dataProvider.GetDataContainer<ObstacleDataContainer>();
-        _diContainer = container;
-    }
+        private DiContainer _diContainer;
+        private ObstacleDataContainer _obstacleDataContainer;
 
-    private void Awake()
-    {
-        Debug.Log(_obstacleDataContainer);
-        _obstaclePrefabList = _obstacleDataContainer.GetObstacleList();
+        [SerializeField] private int _defaultPoolCapacity = 10;
+        [SerializeField] private int _maxPoolSize = 15;
 
-        _obstaclePool = new ObjectPool<Obstacle>(CreateObstacle, OnGetObstacle, OnReleaseObstacle,
-                                    OnDestroyObstacle, collectionCheck: true, _defaultPoolCapacity, _maxPoolSize);
-    }
+        private IObjectPool<Obstacle> _obstaclePool;
 
-    private Obstacle CreateObstacle()
-    {
-        var obstaclePrefab = GetNextObstaclePrefab();
+        private List<Obstacle> _obstaclePrefabList;
+        private List<Obstacle> _pooledObstacleList;
 
-        Obstacle obstacleInstance = _diContainer.InstantiatePrefabForComponent<Obstacle>(obstaclePrefab, transform);
-        obstacleInstance.ObstaclePool = _obstaclePool;
-        return obstacleInstance;
-    }
-    private Obstacle GetNextObstaclePrefab()
-    {
-        if (_indexPrefabList <= _obstaclePrefabList.Count)
+
+        private int _indexPrefabList = -1;
+
+        public IObjectPool<Obstacle> Pool => _obstaclePool;
+        public List<Obstacle> PooledObstacleList => _pooledObstacleList;
+
+
+        [Inject]
+        public void Construct(IStaticDataProvider dataProvider, DiContainer container)
         {
-            _indexPrefabList++;
-        }
-        else
-        {
-            _indexPrefabList = 0; //Reset index
+            _obstacleDataContainer = dataProvider.GetDataContainer<ObstacleDataContainer>();
+            _diContainer = container;
         }
 
-        return _obstaclePrefabList[_indexPrefabList];
-    }
-    private void OnGetObstacle(Obstacle obstacle)
-    {
-        if (!_pooledObstacleList.Contains(obstacle))
+        private void Awake()
         {
-            _pooledObstacleList.Add(obstacle);
+            Debug.Log(_obstacleDataContainer);
+            _obstaclePrefabList = _obstacleDataContainer.GetObstacleList();
+
+            _obstaclePool = new ObjectPool<Obstacle>(CreateObstacle, OnGetObstacle, OnReleaseObstacle,
+                                        OnDestroyObstacle, collectionCheck: true, _defaultPoolCapacity, _maxPoolSize);
         }
-        obstacle.gameObject.SetActive(true);
-    }
-    private void OnReleaseObstacle(Obstacle obstacle)
-    {
-        obstacle.gameObject.SetActive(false);
-    }
-    private void OnDestroyObstacle(Obstacle obstacle)
-    {
-        Destroy(obstacle);
+
+        private Obstacle CreateObstacle()
+        {
+            var obstaclePrefab = GetNextObstaclePrefab();
+
+            Obstacle obstacleInstance = _diContainer.InstantiatePrefabForComponent<Obstacle>(obstaclePrefab, transform);
+            obstacleInstance.ObstaclePool = _obstaclePool;
+            return obstacleInstance;
+        }
+        private Obstacle GetNextObstaclePrefab()
+        {
+            if (_indexPrefabList <= _obstaclePrefabList.Count)
+            {
+                _indexPrefabList++;
+            }
+            else
+            {
+                _indexPrefabList = 0; //Reset index
+            }
+
+            return _obstaclePrefabList[_indexPrefabList];
+        }
+        private void OnGetObstacle(Obstacle obstacle)
+        {
+            if (!_pooledObstacleList.Contains(obstacle))
+            {
+                _pooledObstacleList.Add(obstacle);
+            }
+            obstacle.gameObject.SetActive(true);
+        }
+        private void OnReleaseObstacle(Obstacle obstacle)
+        {
+            obstacle.gameObject.SetActive(false);
+        }
+        private void OnDestroyObstacle(Obstacle obstacle)
+        {
+            Destroy(obstacle);
+        }
     }
 }

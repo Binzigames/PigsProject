@@ -1,20 +1,23 @@
 using UnityEngine;
 
-public class DynamicObstacle : Obstacle
+namespace Scripts.Core.SceneLogic
 {
-    [SerializeField] private float _moveSpeed = 10f;
-    [SerializeField] private Transform _respawnPoint;
+    public class DynamicObstacle : Obstacle
+    {
+        [SerializeField] private float _moveSpeed = 10f;
+        [SerializeField] private Transform _respawnPoint;
 
-    private void OnEnable()
-    {
-        transform.position = _respawnPoint.position;
-    }
-    private void FixedUpdate()
-    {
-        MoveObstacle();
-    }
-    private void MoveObstacle()
-    {
-        transform.position += Time.fixedDeltaTime * _moveSpeed * Vector3.back;
+        private void OnEnable()
+        {
+            transform.position = _respawnPoint.position;
+        }
+        private void FixedUpdate()
+        {
+            MoveObstacle();
+        }
+        private void MoveObstacle()
+        {
+            transform.position += Time.fixedDeltaTime * _moveSpeed * Vector3.back;
+        }
     }
 }
