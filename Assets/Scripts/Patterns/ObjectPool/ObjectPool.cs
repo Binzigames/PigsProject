@@ -12,9 +12,10 @@ namespace Assets.Scripts.Patterns.ObjectPool
 
         [SerializeField] private GameObject _startedObjectToPool;
         [SerializeField] private GameObject[] _objectToPoolArray;
-        private int _arrayIndex = -1;
-
         [SerializeField] private List<GameObject> _pooledObjectList;
+        private int _toPoolArrayIndex = -1;
+        private int _pooledListIndex = 0;
+
         [SerializeField] private int _poolSize = 5;
 
         public List<GameObject> PooledObjectList => _pooledObjectList;
@@ -41,28 +42,39 @@ namespace Assets.Scripts.Patterns.ObjectPool
         }
         private GameObject GetNextPrefab()
         {
-            if (_arrayIndex >= _objectToPoolArray.Length - 1)
+            if (_toPoolArrayIndex >= _objectToPoolArray.Length - 1)
             {
-                _arrayIndex = -1;
+                _toPoolArrayIndex = -1;
             }
-            _arrayIndex ++;
-            return _objectToPoolArray[_arrayIndex];
+            _toPoolArrayIndex++;
+            return _objectToPoolArray[_toPoolArrayIndex];
         }
 
         public GameObject GetObjectFromPool()
         {
-            foreach (GameObject gameObject in _pooledObjectList)
-            {
-                if (!gameObject.activeInHierarchy)
-                {
-                    gameObject.SetActive(true);
-                    return gameObject;
-                }
-            }
+            var nextPooledObject = GetNextPooledObject();
 
-            CreateInstance(out GameObject newInstance);
-            newInstance.SetActive(true);
-            return newInstance;
+            if (!nextPooledObject.activeInHierarchy)
+            {
+                nextPooledObject.SetActive(true);
+                return nextPooledObject;
+            }
+            else
+            {
+                CreateInstance(out GameObject newInstance);
+                newInstance.SetActive(true);
+                return newInstance;
+            }
+        }
+
+        private GameObject GetNextPooledObject()
+        {
+            if (_pooledListIndex >= _pooledObjectList.Count - 1)
+            {
+                _pooledListIndex = -1;
+            }
+            _pooledListIndex++;
+            return _pooledObjectList[_pooledListIndex];
         }
 
         public void ReleaseObjectToPool(GameObject gameObject)

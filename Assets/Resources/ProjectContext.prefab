@@ -74,6 +74,10 @@ PrefabInstance:
       propertyPath: _dataContainerList.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 824025570435090914, guid: 69114b11e3582544f9af3835ecc31511, type: 3}
+      propertyPath: '_dataContainerList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: fa6ef1c9aa167db40a5fab6803b791d3, type: 2}
     - target: {fileID: 3664851216274300725, guid: 69114b11e3582544f9af3835ecc31511, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

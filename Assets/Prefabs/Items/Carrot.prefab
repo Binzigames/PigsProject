@@ -48,6 +48,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4587302668392987624, guid: 95cb0a18bb8947143bd8ebc267bd727d, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4587302668392987624, guid: 95cb0a18bb8947143bd8ebc267bd727d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ce76e42487e5134aa70286619ff0eee, type: 2}
+    - target: {fileID: -4587302668392987624, guid: 95cb0a18bb8947143bd8ebc267bd727d, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1ca2fa5127281de40bfc371d952a83bc, type: 2}
+    - target: {fileID: -2571118854743697038, guid: 95cb0a18bb8947143bd8ebc267bd727d, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2571118854743697038, guid: 95cb0a18bb8947143bd8ebc267bd727d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ce76e42487e5134aa70286619ff0eee, type: 2}
+    - target: {fileID: -2571118854743697038, guid: 95cb0a18bb8947143bd8ebc267bd727d, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1ca2fa5127281de40bfc371d952a83bc, type: 2}
     - target: {fileID: 919132149155446097, guid: 95cb0a18bb8947143bd8ebc267bd727d, type: 3}
       propertyPath: m_Name
       value: Carrot
@@ -84,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502beafaf90d5f24ea0baa6595b9b88b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CurrencyItem
-  _currencyValue: 1
+  _value: 1
 --- !u!65 &2763927965800999658
 BoxCollider:
   m_ObjectHideFlags: 0

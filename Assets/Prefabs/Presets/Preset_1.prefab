@@ -465,7 +465,6 @@ GameObject:
   - component: {fileID: 7695477915143721100}
   - component: {fileID: 3198414218716386986}
   - component: {fileID: 286696414560397597}
-  - component: {fileID: 608407168141868026}
   m_Layer: 0
   m_Name: Preset_1
   m_TagString: Untagged
@@ -572,20 +571,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &608407168141868026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2961166325297472573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9030dbde61bc79047b19aabbd0d48600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MovingObject
-  moveSpeed: 10
-  destroyZ: -60
 --- !u!1 &3655314842719314339
 GameObject:
   m_ObjectHideFlags: 0

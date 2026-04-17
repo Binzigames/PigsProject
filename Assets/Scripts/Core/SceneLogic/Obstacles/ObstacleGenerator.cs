@@ -3,54 +3,80 @@ using UnityEngine;
 using UnityEngine.Pool;
 using Zenject;
 
-public class ObstacleGenerator : MonoBehaviour
+namespace Scripts.Core.SceneLogic
 {
-    [Inject] private readonly DiContainer _diContainer;
-
-    private IObjectPool<Obstacle> _obstaclePool;
-    [SerializeField] private List<Obstacle> _obstaclePrefabList;
-    private int _indexPrefabList = -1;
-
-    [SerializeField] private int _defaultPoolCapacity = 10;
-    [SerializeField] private int _maxPoolSize = 15;
-
-    private void Awake()
+    public class ObstacleGenerator : MonoBehaviour
     {
-        _obstaclePool = new ObjectPool<Obstacle>(CreateObstacle, OnGetObstacle, OnReleaseObstacle,
-                                    OnDestroyObstacle, collectionCheck: true, _defaultPoolCapacity, _maxPoolSize);
-    }
+        private DiContainer _diContainer;
+        private ObstacleDataContainer _obstacleDataContainer;
 
-    private Obstacle CreateObstacle()
-    {
-        var obstaclePrefab = GetNextObstaclePrefab();
-        
-        Obstacle obstacleInstance = _diContainer.InstantiatePrefabForComponent<Obstacle>(obstaclePrefab, transform);
-        obstacleInstance.ObstaclePool = _obstaclePool;
-        return obstacleInstance;
-    }
-    private Obstacle GetNextObstaclePrefab()
-    {
-        if (_indexPrefabList <= _obstaclePrefabList.Count)
+        [SerializeField] private int _defaultPoolCapacity = 10;
+        [SerializeField] private int _maxPoolSize = 15;
+
+        private IObjectPool<Obstacle> _obstaclePool;
+
+        private List<Obstacle> _obstaclePrefabList;
+        private List<Obstacle> _pooledObstacleList;
+
+
+        private int _indexPrefabList = -1;
+
+        public IObjectPool<Obstacle> Pool => _obstaclePool;
+        public List<Obstacle> PooledObstacleList => _pooledObstacleList;
+
+
+        [Inject]
+        public void Construct(IStaticDataProvider dataProvider, DiContainer container)
         {
-            _indexPrefabList ++;
-        }
-        else
-        {
-            _indexPrefabList = 0; //Reset index
+            _obstacleDataContainer = dataProvider.GetDataContainer<ObstacleDataContainer>();
+            _diContainer = container;
         }
 
-        return _obstaclePrefabList[_indexPrefabList];
-    }
-    private void OnGetObstacle(Obstacle obstacle)
-    {
-        obstacle.gameObject.SetActive(true);
-    }
-    private void OnReleaseObstacle(Obstacle obstacle)
-    {
-        obstacle.gameObject.SetActive(false);
-    }
-    private void OnDestroyObstacle(Obstacle obstacle)
-    {
-        Destroy(obstacle);
+        private void Awake()
+        {
+            Debug.Log(_obstacleDataContainer);
+            _obstaclePrefabList = _obstacleDataContainer.GetObstacleList();
+
+            _obstaclePool = new ObjectPool<Obstacle>(CreateObstacle, OnGetObstacle, OnReleaseObstacle,
+                                        OnDestroyObstacle, collectionCheck: true, _defaultPoolCapacity, _maxPoolSize);
+        }
+
+        private Obstacle CreateObstacle()
+        {
+            var obstaclePrefab = GetNextObstaclePrefab();
+
+            Obstacle obstacleInstance = _diContainer.InstantiatePrefabForComponent<Obstacle>(obstaclePrefab, transform);
+            obstacleInstance.ObstaclePool = _obstaclePool;
+            return obstacleInstance;
+        }
+        private Obstacle GetNextObstaclePrefab()
+        {
+            if (_indexPrefabList <= _obstaclePrefabList.Count)
+            {
+                _indexPrefabList++;
+            }
+            else
+            {
+                _indexPrefabList = 0; //Reset index
+            }
+
+            return _obstaclePrefabList[_indexPrefabList];
+        }
+        private void OnGetObstacle(Obstacle obstacle)
+        {
+            if (!_pooledObstacleList.Contains(obstacle))
+            {
+                _pooledObstacleList.Add(obstacle);
+            }
+            obstacle.gameObject.SetActive(true);
+        }
+        private void OnReleaseObstacle(Obstacle obstacle)
+        {
+            obstacle.gameObject.SetActive(false);
+        }
+        private void OnDestroyObstacle(Obstacle obstacle)
+        {
+            Destroy(obstacle);
+        }
     }
 }
