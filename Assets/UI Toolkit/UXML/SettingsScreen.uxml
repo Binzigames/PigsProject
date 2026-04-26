@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Sheets/SettingsStyleSheet.uss?fileID=7433441132597879392&amp;guid=2ff81459934e22a46ae3341df74c7884&amp;type=3#SettingsStyleSheet"/>
+    <ui:Label text="SETTINGS" style="height: 209px; align-self: auto; align-items: auto; align-content: auto; -unity-text-align: lower-center; -unity-font-style: bold; font-size: 51px;"/>
+    <ui:Button text="X" name="ExitSettingsButton" style="position: absolute; right: 62px; top: 141px; left: auto; height: 87px; width: 104px; font-size: 71px; -unity-font-style: bold;"/>
+    <ui:GroupBox style="flex-direction: column; align-items: center; justify-content: flex-start; height: 1454px; align-content: auto;">
+        <ui:Toggle label="Sound" name="SoundToggle" class="toggle-settings" style="height: 12%; justify-content: space-between; align-items: center; flex-direction: row; align-self: center; top: 242px; width: 60%;"/>
+        <ui:Toggle label="Music" name="MusicToggle" class="toggle-settings" style="height: 12%; justify-content: space-between; align-items: center; flex-direction: row; align-self: center; top: 242px; width: 60%;"/>
+        <ui:Toggle label="Haptic" name="HapticToggle" class="toggle-settings" style="height: 12%; justify-content: space-between; align-items: center; flex-direction: row; align-self: center; top: 242px; width: 60%;"/>
+    </ui:GroupBox>
+    <ui:Label text="V.0.0.0 (23.04.2026)&#10;" name="GameVersion" style="flex-grow: 1; -unity-text-align: lower-center; margin-top: 94px; margin-right: 94px; margin-bottom: 94px; margin-left: 94px; font-size: 36px; -unity-font-style: bold;"/>
+</ui:UXML>
