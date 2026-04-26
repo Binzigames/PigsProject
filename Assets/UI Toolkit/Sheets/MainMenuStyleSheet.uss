@@ -1,0 +1,23 @@
+:root {
+}
+
+
+
+.toggle-settings {
+    background-color: rgb(255, 0, 10);
+    margin-top: 38px;
+    margin-right: 38px;
+    margin-bottom: 38px;
+    margin-left: 38px;
+    font-size: 50px;
+    -unity-text-align: upper-center;
+    white-space: normal;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    flex-shrink: 0;
+    opacity: 1;
+    padding-left: 132px;
+    -unity-font-style: bold;
+}

@@ -1,9 +1,13 @@
+using System;
+using UnityEngine;
+
 namespace DevConfigs.GameStateMachine
 {
     public class GameStateMachine
     {
         public IGameState CurrentState {get; private set;}
         public FactoryGameState factoryGameState;
+        public event Action<IGameState> OnChangeState;
 
         public GameStateMachine()
         {
@@ -14,12 +18,18 @@ namespace DevConfigs.GameStateMachine
         {
             CurrentState = gameState;
             gameState.Enter();
+            OnChangeState?.Invoke(gameState);
+            
+            Debug.Log(CurrentState);
         }
         public void TransitionTo(IGameState gameState)
         {
             CurrentState.Exit();
             CurrentState = gameState;
             gameState.Enter();
+            OnChangeState?.Invoke(gameState);
+            
+            Debug.Log(CurrentState);
         }
         public void Execute() // each per frame
         {
