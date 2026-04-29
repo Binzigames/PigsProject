@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public abstract class UIView
+public abstract class UIView : IDisposable
 {
     protected VisualElement _root;
 
@@ -26,6 +27,8 @@ public abstract class UIView
     }
     public virtual void Hide()
     {
-        _root.style.display = DisplayStyle.None;      
+        _root.style.display = DisplayStyle.None;
     }
+
+    public virtual void Dispose() { }
 }
