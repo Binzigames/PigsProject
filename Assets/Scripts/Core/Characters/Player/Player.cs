@@ -2,16 +2,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public PlayerStateMachine PlayerStateMachine;
+
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _groundCheckDistance = 1f;
 
     public Rigidbody RigidBody => _rigidbody;
 
-    private void OnValidate()
+    private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
+        PlayerStateMachine = new PlayerStateMachine();     
     }
+
     public bool IsGrounded()
     {
         return Physics.Raycast(gameObject.transform.position,
