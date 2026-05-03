@@ -1,35 +1,35 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UIDocument))]
-public class UIManager : MonoBehaviour
+public class MainMenuManager : MonoBehaviour
 {
     private const string SETTINGS_SCREEN = "SettingsScreen";
+
+    private UIDocument _document;
 
     private UIView _mainMenuView;
     private UIView _settingsView;
 
-    private UIDocument _mainMenuDocument;
+    private readonly List<UIView> _viewList = new();
 
-    private void Awake()
+    private void OnEnable()
     {
-        _mainMenuDocument = GetComponent<UIDocument>();
+        _document = GetComponent<UIDocument>();
 
         SetupView();
         SubscribeToEvents();
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         UnsubscribeFromEvents();
-    }
 
-    private void SetupView()
-    {
-        VisualElement root = _mainMenuDocument.rootVisualElement;
-
-        _mainMenuView = new MainMenuView(root);
-        _settingsView = new SettingsView(root.Q<VisualElement>(SETTINGS_SCREEN));
+        foreach (var view in _viewList)
+        {
+            view.Dispose();
+        }
     }
 
     private void SubscribeToEvents()
@@ -45,6 +45,22 @@ public class UIManager : MonoBehaviour
         SettingsEvents.OnExitSettingsButton -= HideSettingsScreen;
     }
 
+    private void SetupView()
+    {
+        VisualElement root = _document.rootVisualElement;
+
+        _mainMenuView = new MainMenuView(root);
+        _settingsView = new SettingsView(root.Q<VisualElement>(SETTINGS_SCREEN));
+
+        AddViewToList();
+    }
+
+    private void AddViewToList()
+    {
+        _viewList.Add(_mainMenuView);
+        _viewList.Add(_settingsView);
+    }
+
     private void ShowSettingsScreen()
     {
         _settingsView.Show();
@@ -54,5 +70,4 @@ public class UIManager : MonoBehaviour
     {
         _settingsView.Hide();
     }
-
 }

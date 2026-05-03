@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="pause__pause-panel" style="flex-grow: 1; background-color: rgba(0, 30, 180, 0.69); position: absolute; flex-shrink: 1; width: 900px; height: 650px; right: 209px; left: 86px; top: 484px; margin-top: 0; bottom: 636px;">
+        <ui:VisualElement name="pause-label-panel" style="flex-grow: 0; position: relative; width: 892px; height: 114px; background-color: rgb(226, 0, 184); align-items: stretch; flex-shrink: 0; flex-direction: column; justify-content: flex-end; align-self: center;">
+            <ui:Label text="game paused" name="pause-label" style="-unity-text-align: upper-center; -unity-font-style: bold; font-size: 53px; margin-top: 27px;"/>
+        </ui:VisualElement>
+        <ui:Button text="resume" name="resume-button" style="-unity-text-align: middle-center; white-space: nowrap; position: relative; height: 111px; width: 546px; align-self: center; margin-top: 0; top: 125px; font-size: 59px;"/>
+        <ui:Button text="end run" name="endrun-button" style="-unity-text-align: middle-center; white-space: nowrap; position: relative; height: 111px; width: 546px; margin-top: 0; align-self: center; flex-shrink: 1; top: 200px; font-size: 59px;"/>
+    </ui:VisualElement>
+</ui:UXML>
