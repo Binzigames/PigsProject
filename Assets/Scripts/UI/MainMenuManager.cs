@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using DevConfigs.GameStateMachine;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -7,19 +6,17 @@ using UnityEngine.UIElements;
 public class MainMenuManager : MonoBehaviour
 {
     private const string SETTINGS_SCREEN = "SettingsScreen";
-    // private const string HUD_SCREEN = "HUDScreen";
 
-    private List<UIView> _viewList;
+    private UIDocument _document;
 
     private UIView _mainMenuView;
     private UIView _settingsView;
-    // private UIView _hUDView;
 
-    private UIDocument _uiDocument;
+    private readonly List<UIView> _viewList = new();
 
     private void OnEnable()
     {
-        _uiDocument = GetComponent<UIDocument>();
+        _document = GetComponent<UIDocument>();
 
         SetupView();
         SubscribeToEvents();
@@ -35,36 +32,33 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    private void SetupView()
-    {
-        VisualElement root = _uiDocument.rootVisualElement;
-
-        _mainMenuView = new MainMenuView(root);
-        _settingsView = new SettingsView(root.Q<VisualElement>(SETTINGS_SCREEN));
-        // _hUDView = new HUDView(root.Q<VisualElement>(HUD_SCREEN));
-
-        AddViewsToList();
-    }
-
-    private void AddViewsToList()
-    {
-        _viewList.Add(_mainMenuView);
-        _viewList.Add(_settingsView);
-    }
-
     private void SubscribeToEvents()
     {
         MainMenuEvents.OnSettingButtonPressed += ShowSettingsScreen;
-        // MainMenuEvents.OnPlayButtonPressed += ShowHUDScreen;
 
         SettingsEvents.OnExitSettingsButton += HideSettingsScreen;
     }
     private void UnsubscribeFromEvents()
     {
         MainMenuEvents.OnSettingButtonPressed -= ShowSettingsScreen;
-        // MainMenuEvents.OnPlayButtonPressed -= ShowHUDScreen;
 
         SettingsEvents.OnExitSettingsButton -= HideSettingsScreen;
+    }
+
+    private void SetupView()
+    {
+        VisualElement root = _document.rootVisualElement;
+
+        _mainMenuView = new MainMenuView(root);
+        _settingsView = new SettingsView(root.Q<VisualElement>(SETTINGS_SCREEN));
+
+        AddViewToList();
+    }
+
+    private void AddViewToList()
+    {
+        _viewList.Add(_mainMenuView);
+        _viewList.Add(_settingsView);
     }
 
     private void ShowSettingsScreen()
@@ -76,9 +70,4 @@ public class MainMenuManager : MonoBehaviour
     {
         _settingsView.Hide();
     }
-
-    // private void ShowHUDScreen()
-    // {
-    //     _hUDView.Show();
-    // }
 }

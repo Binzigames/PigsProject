@@ -9,9 +9,7 @@ public class PlayerInteraction : MonoBehaviour
         if (other.CompareTag(ITEM_TAG))
         {
             other.TryGetComponent(out Item item);
-            
-            var collectCommand = new CollectItemCommand(item);
-            collectCommand.Execute();
+            item.Collect();
         }
     }
 }

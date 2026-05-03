@@ -4,7 +4,7 @@ namespace DevConfigs.GameStateMachine
     {
         public void Enter()
         {
-            throw new System.NotImplementedException();
+            // throw new System.NotImplementedException();
         }
 
         public void Execute()
@@ -14,7 +14,7 @@ namespace DevConfigs.GameStateMachine
 
         public void Exit()
         {
-            throw new System.NotImplementedException();
+            // throw new System.NotImplementedException();
         }
     }
 }

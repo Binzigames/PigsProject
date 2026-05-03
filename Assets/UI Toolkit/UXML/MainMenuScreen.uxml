@@ -1,5 +1,4 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="HUDScreen" src="project://database/Assets/UI%20Toolkit/UXML/HUDScreen.uxml?fileID=9197481963319205126&amp;guid=89a687b78e3240c4a85d28000fc3b971&amp;type=3#HUDScreen"/>
     <ui:Template name="SettingsScreen" src="project://database/Assets/UI%20Toolkit/UXML/SettingsScreen.uxml?fileID=9197481963319205126&amp;guid=3d051a4ab0234d541b5669e8541b8f3d&amp;type=3#SettingsScreen"/>
     <Style src="project://database/Assets/UI%20Toolkit/Sheets/MainMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=42eb6303ced98fa41a14eef78ce2893e&amp;type=3#MainMenuStyleSheet"/>
     <ui:VisualElement name="UpperBox" style="flex-grow: 0; position: relative; height: 453px; width: 1076px; flex-shrink: 0; display: flex;">
@@ -10,5 +9,4 @@
     </ui:VisualElement>
     <ui:Button text="TAP TO ESCAPE" name="PlayButton" class="button" style="bottom: 0; flex-grow: 1; flex-shrink: 0; font-size: 65px; -unity-text-align: middle-center; -unity-font-style: italic; background-color: rgba(188, 188, 188, 0.2);"/>
     <ui:Instance template="SettingsScreen" name="SettingsScreen" enabled="true" style="position: absolute; right: 0; left: 0; background-color: rgb(50, 205, 50); display: none; visibility: visible;"/>
-    <ui:Instance template="HUDScreen" name="HUDScreen" style="position: absolute; display: none;"/>
 </ui:UXML>

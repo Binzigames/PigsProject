@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.UIElements;
 
 public class MainMenuView : UIView
@@ -18,16 +17,15 @@ public class MainMenuView : UIView
     }
     protected override void RegisterButtonCallbacks()
     {
-        _playButton.clicked += ClickPlayButton;
-        _settingsButton.clicked += ClickSettingButton;
-        
+        _playButton.RegisterCallback<ClickEvent>(ClickPlayButton);
+        _settingsButton.RegisterCallback<ClickEvent>(ClickSettingButton);
     }
 
-    private void ClickPlayButton()
+    private void ClickPlayButton(ClickEvent evt)
     {
         MainMenuEvents.OnPlayButtonPressed?.Invoke();
     }
-    private void ClickSettingButton()
+    private void ClickSettingButton(ClickEvent evt)
     {
         MainMenuEvents.OnSettingButtonPressed?.Invoke();
     }
