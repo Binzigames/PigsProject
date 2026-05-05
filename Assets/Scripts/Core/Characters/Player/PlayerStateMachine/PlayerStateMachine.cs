@@ -1,35 +1,37 @@
 
-
-public class PlayerStateMachine
+namespace Scripts.Core.Characters
 {
-    public IPlayerState CurrentState { get; private set;}
-
-    public IdleState _idleState;
-    public RunState _runState;
-    public LoseState _loseState;
-
-    public PlayerStateMachine()
+    public class PlayerStateMachine
     {
-        _idleState = new IdleState();
-        _runState = new RunState();
-        _loseState = new LoseState();
-    }
+        public IPlayerState CurrentState { get; private set; }
 
-    public void Initialize(IPlayerState playerState)
-    {
-        CurrentState = playerState;
-        playerState.Enter();
-    }
+        public IdleState IdleState;
+        public RunState RunState;
+        public LoseState LoseState;
+        
+        public PlayerStateMachine(Player player, PlayerAnimation playerAnimation)
+        {
+            IdleState = new IdleState(playerAnimation);
+            RunState = new RunState(player, playerAnimation);
+            LoseState = new LoseState(playerAnimation);
+        }
 
-    public void TransitionTo(IPlayerState playerState)
-    {
-        CurrentState.Exit();
-        CurrentState = playerState;
-        playerState.Enter();
-    }
+        public void Initialize(IPlayerState playerState)
+        {
+            CurrentState = playerState;
+            playerState.Enter();
+        }
 
-    public void Execute()
-    {
-        CurrentState?.Execute();
+        public void TransitionTo(IPlayerState playerState)
+        {
+            CurrentState.Exit();
+            CurrentState = playerState;
+            playerState.Enter();
+        }
+
+        public void Execute()
+        {
+            CurrentState?.Execute();
+        }
     }
 }

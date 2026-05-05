@@ -1,22 +1,30 @@
-public class LoseState : IPlayerState
+using UnityEngine;
+
+namespace Scripts.Core.Characters
 {
-    public LoseState()
+    public class LoseState : IPlayerState
     {
+        private PlayerAnimation _playerAnimation;
+
+        public LoseState(PlayerAnimation playerAnimation)
+        {
+            _playerAnimation = playerAnimation;
+        }
         
-    }
-    public void Enter()
-    {
-        throw new System.NotImplementedException();
-    }
+        public void Enter()
+        {
+            _playerAnimation.SetLoseAnimation(true);
+        }
 
-    public void Execute()
-    {
-        throw new System.NotImplementedException();
-    }
+        public void Execute()
+        {
+            
+        }
 
-    public void Exit()
-    {
-        throw new System.NotImplementedException();
-    }
+        public void Exit()
+        {
+            _playerAnimation.SetLoseAnimation(false);
+        }
 
+    }
 }

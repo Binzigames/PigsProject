@@ -1,24 +1,29 @@
-
-public class IdleState : IPlayerState
+namespace Scripts.Core.Characters
 {
-    public IdleState()
+    public class IdleState : IPlayerState
     {
-        
-    }
+        private PlayerAnimation _playerAnimation;
 
-    public void Enter()
-    {
-        throw new System.NotImplementedException();
-    }
+        public IdleState(PlayerAnimation playerAnimation)
+        {
+            _playerAnimation = playerAnimation;
+        }
 
-    public void Execute()
-    {
-        throw new System.NotImplementedException();
-    }
+        public void Enter()
+        {
+            _playerAnimation.SetRunAnimation(false);
+            _playerAnimation.SetLoseAnimation(false);
+        }
 
-    public void Exit()
-    {
-        throw new System.NotImplementedException();
-    }
+        public void Execute()
+        {
+            
+        }
 
+        public void Exit()
+        {
+            
+        }
+
+    }
 }

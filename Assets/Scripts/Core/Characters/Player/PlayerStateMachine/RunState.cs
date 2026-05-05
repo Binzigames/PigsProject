@@ -1,23 +1,35 @@
-public class RunState : IPlayerState
+namespace Scripts.Core.Characters
 {
-    public RunState()
+    public class RunState : IPlayerState
     {
-        
-    }
-    
-    public void Enter()
-    {
-        throw new System.NotImplementedException();
-    }
+        private readonly Player _player;
+        private readonly PlayerAnimation _playerAnimation;
 
-    public void Execute()
-    {
-        throw new System.NotImplementedException();
-    }
+        public RunState(Player player, PlayerAnimation playerAnimation)
+        {
+            _player = player;
+            _playerAnimation = playerAnimation;
+        }
 
-    public void Exit()
-    {
-        throw new System.NotImplementedException();
-    }
+        public void Enter()
+        {
+            _playerAnimation.SetRunAnimation(true);
+        }
 
+        public void Execute()
+        {
+            if (_player.IsCrashed)
+            {
+                var loseState = _player.PlayerStateMachine.LoseState;
+                _player.PlayerStateMachine.TransitionTo(loseState);
+            }
+
+        }
+
+        public void Exit()
+        {
+            _playerAnimation.SetRunAnimation(false);
+        }
+
+    }
 }

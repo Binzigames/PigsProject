@@ -1,6 +1,9 @@
-public interface IPlayerState
+namespace Scripts.Core.Characters
 {
-    public void Enter();
-    public void Execute();
-    public void Exit();
+    public interface IPlayerState
+    {
+        public void Enter();
+        public void Execute();
+        public void Exit();
+    }
 }

@@ -732,10 +732,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2686280740845967422, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
-      propertyPath: _groundLayer.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 3577378613197956436, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -775,18 +771,6 @@ PrefabInstance:
     - target: {fileID: 3577378613197956436, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5478136717566086219, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6226081467360340963, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
-      propertyPath: _touchScreenPressAction
-      value: 
-      objectReference: {fileID: -8822153560699769550, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-    - target: {fileID: 8269673273327403075, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
-      propertyPath: _jumpForce
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8491667860976784895, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
       propertyPath: m_Name
