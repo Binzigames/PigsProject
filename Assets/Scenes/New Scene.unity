@@ -667,23 +667,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!1 &1966173480 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8491667860976784895, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
-  m_PrefabInstance: {fileID: 781302828108473212}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1966173487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966173480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 347ac70cca999e54d93fc26490e92f97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
 --- !u!1001 &302002597052746150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -749,10 +732,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2686280740845967422, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
-      propertyPath: _groundLayer.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 3577378613197956436, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -793,18 +772,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5478136717566086219, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6226081467360340963, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
-      propertyPath: _touchScreenPressAction
-      value: 
-      objectReference: {fileID: -8822153560699769550, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-    - target: {fileID: 8269673273327403075, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
-      propertyPath: _jumpForce
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 8491667860976784895, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
       propertyPath: m_Name
       value: Player
@@ -812,10 +779,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8491667860976784895, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 1966173487}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
 --- !u!1001 &1513264082208783663
 PrefabInstance:

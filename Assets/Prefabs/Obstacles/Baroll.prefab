@@ -81,6 +81,10 @@ PrefabInstance:
       value: Baroll
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d3501566a5497ab4bbacc92c16814e07, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d3501566a5497ab4bbacc92c16814e07, type: 3}
       propertyPath: m_TagString
       value: Obstacle
       objectReference: {fileID: 0}
@@ -113,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DynamicObstacle
   _moveSpeed: 10
+  _respawnPoint: {fileID: 0}
 --- !u!65 &325219784385317983
 BoxCollider:
   m_ObjectHideFlags: 0

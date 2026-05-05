@@ -4,6 +4,7 @@ using Zenject;
 
 public class MainMenuController : MonoBehaviour
 {
+    [Inject] private Player _player;
     [Inject] private GameManager _gameManager;
     
     private void OnEnable()
@@ -17,7 +18,7 @@ public class MainMenuController : MonoBehaviour
 
     private void StartGame()
     {
-        var startGameCommand = new StartGameCommand(_gameManager);
+        var startGameCommand = new StartGameCommand(_player, _gameManager);
         startGameCommand.Execute();
     }
 }

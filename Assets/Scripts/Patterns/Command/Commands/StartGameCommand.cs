@@ -5,16 +5,20 @@ namespace Scripts.Patterns.Commands
     public class StartGameCommand : ICommand
     {
         private GameManager _gameManager;
-        // private PlayerState => run
+        private Player _player;
         // private AudioSoruce _musicSource
-        public StartGameCommand(GameManager gameManager)
+        public StartGameCommand(Player player, GameManager gameManager)
         {
+            _player = player;
             _gameManager = gameManager;
         }
         public void Execute()
         {
-            var runState = _gameManager.GameStateMachine.factoryGameState.GetGameState(GameStateType.RunningState);
-            _gameManager.GameStateMachine.TransitionTo(runState);
+            var runGameState = _gameManager.GameStateMachine.factoryGameState.GetGameState(GameStateType.RunningState);
+            _gameManager.GameStateMachine.TransitionTo(runGameState);
+
+            var runPlayerState = _player.PlayerStateMachine.RunState;
+            _player.PlayerStateMachine.TransitionTo(runPlayerState);
         }
     }
 }
