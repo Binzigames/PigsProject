@@ -5,7 +5,7 @@ namespace DevConfigs.GameStateMachine
 {
     public class GameStateMachine
     {
-        public IGameState CurrentState {get; private set;}
+        public IGameState CurrentState { get; private set; }
         public FactoryGameState factoryGameState;
         public event Action<IGameState> OnChangeState;
 
@@ -19,21 +19,24 @@ namespace DevConfigs.GameStateMachine
             CurrentState = gameState;
             gameState.Enter();
             OnChangeState?.Invoke(gameState);
-            
+
             Debug.Log(CurrentState);
         }
         public void TransitionTo(IGameState gameState)
         {
+            if (CurrentState == gameState)
+                return;
+
             CurrentState.Exit();
             CurrentState = gameState;
             gameState.Enter();
             OnChangeState?.Invoke(gameState);
-            
+
             Debug.Log(CurrentState);
         }
         public void Execute() // each per frame
         {
             CurrentState?.Execute();
         }
-    }   
+    }
 }

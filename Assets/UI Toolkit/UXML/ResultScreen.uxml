@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="result-panel" style="flex-grow: 1; position: absolute; left: 148px; top: 400px; right: 148px; bottom: 500px; background-color: rgb(9, 0, 106); align-self: center; align-items: stretch; height: 747px;">
+        <ui:VisualElement name="result__score" style="position: absolute; height: 336px; width: 400px; top: 8px; left: 192px; right: 192px; -unity-text-align: upper-left; align-items: center;">
+            <ui:Label text="SCORE" name="title-score-label" style="-unity-text-align: upper-left; font-size: 75px;"/>
+            <ui:Label text="14,523" name="score-label" style="-unity-text-align: upper-left; font-size: 103px; -unity-font-style: bold;"/>
+            <ui:Label text="New Best Score" name="best-score-label" style="-unity-text-align: upper-left; font-size: 45px; -unity-font-style: bold-and-italic;"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="result__currency" style="flex-grow: 0; position: absolute; height: 172px; width: 776px; top: 355px; left: auto; justify-content: center; align-items: flex-start; flex-wrap: nowrap; align-content: auto; -unity-text-align: upper-left; white-space: normal; flex-direction: column; align-self: center; padding-left: 249px;">
+            <ui:Image name="currency-image" style="position: absolute; width: 110px; height: 110px; background-color: rgb(255, 0, 251);"/>
+            <ui:Label text="150" name="currency-label" style="font-size: 81px; -unity-font-style: bold; white-space: normal; margin-left: 112px;"/>
+        </ui:VisualElement>
+        <ui:Button text="Continue" name="result__menu-button" style="position: absolute; height: 139px; width: 334px; bottom: 0; align-self: center; margin-bottom: 30px; font-size: 58px;"/>
+    </ui:VisualElement>
+</ui:UXML>
