@@ -25,7 +25,7 @@ public class PauseController : MonoBehaviour
 
     private void EndRun()
     {
-        var endGameCommand = new EndGameCommand(_gameManager);
+        var endGameCommand = new MenuGameCommand(_gameManager);
         endGameCommand.Execute();
     }
 

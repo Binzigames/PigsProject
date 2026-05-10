@@ -1,4 +1,5 @@
 using Scripts.Core.Characters;
+using Scripts.UI.Events;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerAnimation))]
@@ -8,7 +9,8 @@ public class Player : MonoBehaviour
 
     private bool _isCrashed = false;
     private PlayerAnimation _playerAnimation;
-    [SerializeField] private Rigidbody _rigidbody;
+    private Rigidbody _rigidbody;
+    
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _groundCheckDistance = 1f;
 
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
         if (other.CompareTag(OBSTACLE_TAG))
         {
             _isCrashed = true;
+            GameplayEvents.OnEndRunning?.Invoke();
         }
     }
 

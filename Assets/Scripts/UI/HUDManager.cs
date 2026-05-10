@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Scripts.UI.Events;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -7,11 +8,13 @@ public class HUDManager : MonoBehaviour
 {
     private const string HUD_ELEMENTS = "HUDElements";
     private const string PAUSE_SCREEN = "PauseScreen";
+    private const string RESULT_SCREEN = "ResultScreen";
 
     private UIDocument _document;
 
     private UIView _hudView;
     private UIView _pauseView;
+    private UIView _resultView;
 
     private VisualElement _hudViewElements;
 
@@ -38,15 +41,17 @@ public class HUDManager : MonoBehaviour
     private void SubscribeToEvents()
     {
         HUDEvents.OnPausePressed += ShowPausePanel;
-
         PauseEvents.OnResumeButtonPressed += ShowHUDElements;
+
+        GameplayEvents.OnEndRunning += ShowResultScreen;
     }
 
     private void UnsubscribeFromEvents()
     {
         HUDEvents.OnPausePressed -= ShowPausePanel;
-
         PauseEvents.OnResumeButtonPressed -= ShowHUDElements;
+
+        GameplayEvents.OnEndRunning -= ShowResultScreen;
     }
 
     private void SetupView()
@@ -55,6 +60,8 @@ public class HUDManager : MonoBehaviour
 
         _hudView = new HUDView(root);
         _pauseView = new PauseView(root.Q<VisualElement>(PAUSE_SCREEN));
+        _resultView = new ResultView(root.Q<VisualElement>(RESULT_SCREEN));
+
 
         _hudViewElements = root.Q<VisualElement>(HUD_ELEMENTS);
 
@@ -76,6 +83,12 @@ public class HUDManager : MonoBehaviour
     {
         _pauseView.Hide();
         _hudViewElements.style.display = DisplayStyle.Flex;
+    }
+
+    private void ShowResultScreen()
+    {
+        _resultView.Show();
+        _hudViewElements.style.display = DisplayStyle.None;
     }
 
 }

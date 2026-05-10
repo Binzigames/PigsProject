@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using DevConfigs.GameStateMachine;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Zenject;
 
 public class GameUIManager : MonoBehaviour
@@ -44,7 +42,6 @@ public class GameUIManager : MonoBehaviour
             break;
 
             default:
-            Debug.Log("null");
             break;
         }
     }
