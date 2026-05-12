@@ -14,7 +14,7 @@ public class ResumeGameCommand : ICommand
     
     public void Execute()
     {
-        var runningState = _gameManager.GameStateMachine.factoryGameState.GetGameState(GameStateType.RunningState);
+        var runningState = _gameManager.GameStateFactory.GetGameState(GameStateType.RunningState);
         _gameManager.GameStateMachine.TransitionTo(runningState);
 
         Time.timeScale = RUN_GAME_TIME;

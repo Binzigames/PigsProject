@@ -1,14 +1,14 @@
 
 namespace DevConfigs.GameStateMachine
 {
-    public class FactoryGameState
+    public class GameStateFactory
     {
         private readonly MenuState _menuState;
         private readonly RunningState _runningState;
         private readonly PauseState _pauseState;
         private readonly EndRunningState _endRunningState;
 
-        public FactoryGameState()
+        public GameStateFactory()
         {
             _menuState = new MenuState();
             _runningState = new RunningState();

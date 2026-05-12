@@ -18,7 +18,10 @@ public class MainMenuController : MonoBehaviour
 
     private void StartGame()
     {
-        var startGameCommand = new StartGameCommand(_player, _gameManager);
-        startGameCommand.Execute();
+        // var startGameCommand = new StartGameCommand(_player, _gameManager);
+        // startGameCommand.Execute();
+
+        var runningState = _gameManager.GameStateFactory.GetGameState(GameStateType.RunningState);
+        _gameManager.GameStateMachine.TransitionTo(runningState);
     }
 }

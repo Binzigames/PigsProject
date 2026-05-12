@@ -14,7 +14,7 @@ public class PauseGameCommand : ICommand
 
     public void Execute()
     {
-        var pauseState = _gameManager.GameStateMachine.factoryGameState.GetGameState(GameStateType.PauseState);
+        var pauseState = _gameManager.GameStateFactory.GetGameState(GameStateType.PauseState);
         _gameManager.GameStateMachine.TransitionTo(pauseState);
 
         Time.timeScale = STOP_GAME_TIME; 
