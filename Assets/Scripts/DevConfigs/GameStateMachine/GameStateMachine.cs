@@ -6,13 +6,8 @@ namespace DevConfigs.GameStateMachine
     public class GameStateMachine
     {
         public IGameState CurrentState { get; private set; }
-        public FactoryGameState factoryGameState;
         public event Action<IGameState> OnChangeState;
 
-        public GameStateMachine()
-        {
-            factoryGameState = new FactoryGameState();
-        }
 
         public void Initialize(IGameState gameState)
         {

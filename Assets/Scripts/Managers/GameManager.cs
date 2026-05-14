@@ -5,7 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private GameStateMachine _gameStateMachine;
+    private GameStateFactory _gameStateFactory;
     public GameStateMachine GameStateMachine => _gameStateMachine;
+    public GameStateFactory GameStateFactory => _gameStateFactory;
 
     private void Awake()
     {
@@ -21,8 +23,9 @@ public class GameManager : MonoBehaviour
     private void Init()
     {
         _gameStateMachine = new GameStateMachine();
-        
-        var menuState = _gameStateMachine.factoryGameState.GetGameState(GameStateType.MenuState);
+        _gameStateFactory = new GameStateFactory();
+
+        var menuState = _gameStateFactory.GetGameState(GameStateType.MenuState);
         _gameStateMachine.Initialize(menuState);
     }
 
@@ -38,10 +41,7 @@ public class GameManager : MonoBehaviour
 
     private void TransitionToResultState()
     {
-        var endState = _gameStateMachine.factoryGameState.GetGameState(GameStateType.EndRunningState);
+        var endState = _gameStateFactory.GetGameState(GameStateType.EndRunningState);
         _gameStateMachine.TransitionTo(endState);
-
-        var endGameCommand = new EndGameCommand();
-        endGameCommand.Execute();
     }
 }

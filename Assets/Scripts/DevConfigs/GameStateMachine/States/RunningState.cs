@@ -9,7 +9,7 @@ namespace DevConfigs.GameStateMachine
 
         public void Execute()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void Exit()

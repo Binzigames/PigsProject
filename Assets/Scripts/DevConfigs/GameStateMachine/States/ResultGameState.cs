@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace DevConfigs.GameStateMachine
 {
-    public class PauseState : IGameState
+    public class ResultGameState : IGameState
     {
         private const int RUN_GAME_TIME = 1;
         private const int STOP_GAME_TIME = 0;
-        
+
         public void Enter()
         {
             Time.timeScale = STOP_GAME_TIME;
@@ -14,7 +14,7 @@ namespace DevConfigs.GameStateMachine
 
         public void Execute()
         {
-            
+
         }
 
         public void Exit()

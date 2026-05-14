@@ -1,4 +1,3 @@
-using DevConfigs.GameStateMachine;
 
 namespace Scripts.Patterns.Commands
 {
@@ -14,7 +13,7 @@ namespace Scripts.Patterns.Commands
         }
         public void Execute()
         {
-            var runGameState = _gameManager.GameStateMachine.factoryGameState.GetGameState(GameStateType.RunningState);
+            var runGameState = _gameManager.GameStateFactory.GetGameState(GameStateType.RunningState);
             _gameManager.GameStateMachine.TransitionTo(runGameState);
 
             var runPlayerState = _player.PlayerStateMachine.RunState;

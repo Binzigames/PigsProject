@@ -5,9 +5,11 @@ using Unity.Cinemachine;
 
 public class GameInstaller : MonoInstaller
 {
+    [Header("Player")]
     [SerializeField] private Player _playerPrefab;
-    [SerializeField] private CinemachineCamera _cinemachineCamera;
     [SerializeField] private Vector3 _playerInitPos;
+    [Header("Other")]
+    [SerializeField] private CinemachineCamera _cinemachineCamera;
     [SerializeField] private GameObject _currencyManager;
     public override void InstallBindings()
     {
@@ -32,7 +34,11 @@ public class GameInstaller : MonoInstaller
     private void SetPlayer(InjectContext ctx, Player player)
     {
         player.transform.position = _playerInitPos;
-        _cinemachineCamera.Follow = player.transform;
+        
+        if (_cinemachineCamera != null)
+        {
+            _cinemachineCamera.Follow = player.transform;
+        }
     }
 
     private void BindManagers()

@@ -1,5 +1,3 @@
-namespace DevConfigs.GameStateMachine
-{
     public enum GameStateType
     {
         MenuState,
@@ -7,4 +5,3 @@ namespace DevConfigs.GameStateMachine
         RunningState,
         EndRunningState
     }
-}
