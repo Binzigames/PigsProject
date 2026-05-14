@@ -43,8 +43,5 @@ public class GameManager : MonoBehaviour
     {
         var endState = _gameStateFactory.GetGameState(GameStateType.EndRunningState);
         _gameStateMachine.TransitionTo(endState);
-
-        var endGameCommand = new EndGameCommand();
-        endGameCommand.Execute();
     }
 }

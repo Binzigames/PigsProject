@@ -4,9 +4,16 @@ using Zenject;
 
 public class MainMenuController : MonoBehaviour
 {
-    [Inject] private Player _player;
-    [Inject] private GameManager _gameManager;
-    
+    private Player _player;
+    private GameManager _gameManager;
+
+    [Inject]
+    public void Construct(Player player, GameManager gameManager)
+    {
+        _player = player;
+        _gameManager = gameManager;
+    }
+
     private void OnEnable()
     {
         MainMenuEvents.OnPlayButtonPressed += StartGame;
@@ -18,10 +25,7 @@ public class MainMenuController : MonoBehaviour
 
     private void StartGame()
     {
-        // var startGameCommand = new StartGameCommand(_player, _gameManager);
-        // startGameCommand.Execute();
-
-        var runningState = _gameManager.GameStateFactory.GetGameState(GameStateType.RunningState);
-        _gameManager.GameStateMachine.TransitionTo(runningState);
+        var startGameCommand = new StartGameCommand(_player, _gameManager);
+        startGameCommand.Execute();
     }
 }
