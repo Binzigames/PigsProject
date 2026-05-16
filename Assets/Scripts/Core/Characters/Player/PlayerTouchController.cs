@@ -5,12 +5,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerTouchController : MonoBehaviour
 {
+    private const string TOUCH_ACTION_NAME = "TouchScreenPress";
     [SerializeField] private float _minSwipeDistance = 50f;
 
-    [SerializeField] private InputActionReference _touchScreenPressAction;
+    [SerializeField] private PlayerInput _playerInput;
 
     private Vector2 _startTouchPosition;
     private Vector2 _endTouchPosition;
+
+    private  InputAction _touchAction;
 
     public event Action OnSwipeRight;
     public event Action OnSwipeLeft;
@@ -19,10 +22,19 @@ public class PlayerTouchController : MonoBehaviour
 
     private void Awake()
     {
-        _touchScreenPressAction.action.started += OnTouchPress;
-        _touchScreenPressAction.action.canceled += OnTouchPress;
+        _playerInput = GetComponent<PlayerInput>();
+
+        _touchAction = _playerInput.actions[TOUCH_ACTION_NAME];
+        
+        _touchAction.started += OnTouchPress;
+        _touchAction.canceled += OnTouchPress;
     }
 
+    private void OnDestroy()
+    {
+        _touchAction.started -= OnTouchPress;
+        _touchAction.canceled -= OnTouchPress;
+    }
 
     private void OnTouchPress(InputAction.CallbackContext context)
     {

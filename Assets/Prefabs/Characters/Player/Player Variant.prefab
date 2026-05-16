@@ -226,6 +226,14 @@ PrefabInstance:
       propertyPath: _touchScreenPressAction
       value: 
       objectReference: {fileID: -8822153560699769550, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 6935007740141660936, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
+      propertyPath: _jumpForce
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935007740141660936, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
+      propertyPath: _gravityMultiplier
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       propertyPath: m_Name
       value: Player Variant
@@ -258,6 +266,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5675907556285343178}
+    - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4100194757489723097}
   m_SourcePrefab: {fileID: 100100000, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
 --- !u!4 &3577378613197956436 stripped
 Transform:
@@ -353,6 +364,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347ac70cca999e54d93fc26490e92f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
+--- !u!114 &-4100194757489723097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8491667860976784895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1001 &8640604709214576901
 PrefabInstance:
   m_ObjectHideFlags: 0
