@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed614c89b597f14da04f0954815602c, type: 3}
+  m_Name: LevelDifficultyDataContainer
+  m_EditorClassIdentifier: Assembly-CSharp::LevelDifficultyDataContainer
+  _levelDifficultyData:
+  - {fileID: 11400000, guid: 74879aecefe229d4f9181ae41f47d8c4, type: 2}
+  - {fileID: 11400000, guid: cd0488401b1659343bc84699adc8e8d4, type: 2}
+  - {fileID: 11400000, guid: 74e23e1569785cb478bd26af956c027c, type: 2}
