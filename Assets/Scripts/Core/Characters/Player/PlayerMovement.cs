@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -6,9 +5,14 @@ public class PlayerMovement : MonoBehaviour
 {
     private const int STARTED_LANE = 0;
 
-    [SerializeField] private float _moveOffset = 3f;
+    [Header("Run")]
+    private bool _canJump = false;
+    [SerializeField] private float _moveOffset = 3.5f;
     [SerializeField] private float _moveSpeed = 5f;
-    [SerializeField] private float _jumpForce = 5f;
+
+    [Header("Jump")]
+    [SerializeField] private float _jumpForce = 50f;
+    [SerializeField] private float _gravityMultiplier = 3.5f;
 
     private Player _player;
     private PlayerTouchController _touchController;
@@ -34,7 +38,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        HandleGravity();
         HandleMove();
+        HandleJump();
     }
     private void Subscribe()
     {
@@ -53,10 +59,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMove()
     {
-        var targetLanePosition = Vector3.Lerp(transform.position,
+        var smoothTargetPos = Vector3.Lerp(_player.RigidBody.position,
                                                 _moveOffset * _targetPosition,
-                                                    _moveSpeed * Time.deltaTime);
-        transform.position = targetLanePosition;
+                                                    _moveSpeed * Time.fixedDeltaTime);
+        _player.RigidBody.MovePosition(smoothTargetPos);
     }
 
     private void MoveLeft()
@@ -78,13 +84,33 @@ public class PlayerMovement : MonoBehaviour
         _currentLane = targetLane;
         _targetPosition = new Vector3(targetLane, 0, 0);
     }
-    private void Jump()
+    private void HandleJump()
     {
-        if (_player.IsGrounded())
+        if (_player.IsGrounded() && _canJump)
         {
-            _player.RigidBody.AddForce(_jumpForce * Vector3.up, ForceMode.Impulse);
+            var targetJumpPos = new Vector3
+                                    (_player.RigidBody.linearVelocity.x,
+                                        _jumpForce, _player.RigidBody.linearVelocity.z);
+
+            _player.RigidBody.linearVelocity = targetJumpPos;
+        }
+        else if (!_player.IsGrounded())
+        {
+            _canJump = false;
         }
     }
+
+    private void HandleGravity()
+    {
+        if (_player.RigidBody.linearVelocity.y > 0)
+        {
+            _player.RigidBody.linearVelocity -=
+                 _gravityMultiplier * Physics.gravity.y * Time.fixedDeltaTime * Vector3.down;
+        }
+    }
+
+    private void Jump() => _canJump = true;
+
     private void Slide()
     {
         // Slide
