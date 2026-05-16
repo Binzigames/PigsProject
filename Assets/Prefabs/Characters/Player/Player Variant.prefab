@@ -257,13 +257,7 @@ PrefabInstance:
       addedObject: {fileID: 4108913177334439907}
     - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8269673273327403075}
-    - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5675907556285343178}
-    - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2319137670290162900}
   m_SourcePrefab: {fileID: 100100000, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
 --- !u!4 &3577378613197956436 stripped
 Transform:
@@ -338,7 +332,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 27f050b0c6d66134fb68cc8ae5583ccf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -347,21 +341,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8269673273327403075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8491667860976784895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8be59c0e6e6aa0468e15c1bd7aecf79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  _moveOffset: 3.5
-  _moveSpeed: 5
-  _jumpForce: 20
 --- !u!114 &5675907556285343178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,19 +353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347ac70cca999e54d93fc26490e92f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
---- !u!114 &2319137670290162900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8491667860976784895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4cdb191a0effae489f8bc1329d0766a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  _animator: {fileID: 4108913177334439907}
 --- !u!1001 &8640604709214576901
 PrefabInstance:
   m_ObjectHideFlags: 0

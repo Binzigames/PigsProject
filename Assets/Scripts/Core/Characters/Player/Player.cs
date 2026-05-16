@@ -2,14 +2,14 @@ using Scripts.Core.Characters;
 using Scripts.UI.Events;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerAnimation))]
+[RequireComponent(typeof(PlayerAnimation), typeof(PlayerMovement))]
 public class Player : MonoBehaviour
 {
     private const string OBSTACLE_TAG = "Obstacle";
 
     private bool _isCrashed = false;
     private PlayerAnimation _playerAnimation;
-    private Rigidbody _rigidbody;
+    [SerializeField] private Rigidbody _rigidbody;
     
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _groundCheckDistance = 1f;
