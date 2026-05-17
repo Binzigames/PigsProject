@@ -1,17 +1,29 @@
 using Assets.Scripts.Patterns.ObjectPool;
+using DevConfigs.GameStateMachine;
 using UnityEngine;
 using Zenject;
 
 public class SegmentManager : MonoBehaviour
 {
-    [Inject] private readonly ObjectPool _objectPool;
+    private ObjectPool _objectPool;
+    private LevelDifficultyDataContainer _levelDifficultyDataContainer;
+    private GameManager _gameManager;
 
-    [SerializeField] private float _segmentsMoveSpeed;
+    [SerializeField] private float _moveSpeed;
     [SerializeField] private Transform _spawnPosition;
+
+    [Inject]
+    public void Construct(ObjectPool objectPool, IStaticDataProvider dataProvider, GameManager gameManager)
+    {
+        _objectPool = objectPool;
+        _levelDifficultyDataContainer = dataProvider.GetDataContainer<LevelDifficultyDataContainer>();
+        _gameManager = gameManager;
+    }
 
     private void FixedUpdate()
     {
-        MoveSegmentsIfActive();
+        if (_gameManager.GameStateMachine.CurrentState is RunningState)
+            MoveSegmentsIfActive();
     }
 
     private void MoveSegmentsIfActive()
@@ -24,9 +36,10 @@ public class SegmentManager : MonoBehaviour
             }
         }
     }
+
     private void MoveSegment(GameObject segment)
     {
-        segment.transform.position += _segmentsMoveSpeed * Time.fixedDeltaTime * Vector3.back;
+        segment.transform.position += _moveSpeed * Time.fixedDeltaTime * Vector3.back;
     }
 
     public void GetSegmentFromPool()
@@ -38,5 +51,12 @@ public class SegmentManager : MonoBehaviour
     public void ReleaseSegmentToPool(GameObject gameObject)
     {
         _objectPool.ReleaseObjectToPool(gameObject);
+    }
+
+    public void ChangeDifficulty(LevelDifficultyType type)
+    {
+        var difficultyData = _levelDifficultyDataContainer.GetLevelDifficulty(type);
+
+        _moveSpeed = difficultyData.MoveSpeed;
     }
 }
