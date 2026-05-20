@@ -8,13 +8,14 @@ public class GameInstaller : MonoInstaller
     [Header("Player")]
     [SerializeField] private Player _playerPrefab;
     [SerializeField] private Vector3 _playerInitPos;
-
+    
     [Header("Other")]
     [SerializeField] private CinemachineCamera _cinemachineCamera;
     public override void InstallBindings()
     {
         BindSegments();
         BindPlayer();
+        BindSaveProcessor();
     }
 
     private void BindSegments()
@@ -40,4 +41,8 @@ public class GameInstaller : MonoInstaller
         }
     }
 
+    private void BindSaveProcessor()
+    {
+        Container.Bind<ISaveProcessor<SaveData>>().To<PlayerPrefsSaveProcessor<SaveData>>().AsSingle();
+    }
 }
