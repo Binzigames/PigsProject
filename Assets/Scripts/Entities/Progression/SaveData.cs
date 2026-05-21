@@ -5,11 +5,30 @@ using UnityEngine;
 public class SaveData
 {
     [SerializeField]
-    private bool _firstBoot;
+    private int _currentScore;
 
-    public bool FirstBoot
+    [SerializeField]
+    private int _bestScore;
+
+    [SerializeField]
+    private int _money;
+
+    public int CurrentScore
     {
-        get => _firstBoot;
-        set => _firstBoot = value;
+        get => _currentScore;
+        set => _currentScore = value;
     }
+
+    public int BestScore
+    {
+        get => _bestScore;
+        set => _bestScore = value;
+    }
+
+    public int Money
+    {
+        get => _money;
+        set => _money = value;
+    }
+
 }

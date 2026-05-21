@@ -6,16 +6,24 @@ using Unity.Cinemachine;
 public class GameInstaller : MonoInstaller
 {
     [Header("Player")]
-    [SerializeField] private Player _playerPrefab;
-    [SerializeField] private Vector3 _playerInitPos;
-    
+    [SerializeField]
+    private Player _playerPrefab;
+
+    [SerializeField]
+    private Vector3 _playerInitPos;
+
     [Header("Other")]
-    [SerializeField] private CinemachineCamera _cinemachineCamera;
+    [SerializeField]
+    private CinemachineCamera _cinemachineCamera;
+
+    [SerializeField]
+    private GameObject _currencyManager;
+
     public override void InstallBindings()
     {
         BindSegments();
         BindPlayer();
-        BindSaveProcessor();
+        BindManagers();
     }
 
     private void BindSegments()
@@ -26,23 +34,24 @@ public class GameInstaller : MonoInstaller
     private void BindPlayer()
     {
         Container.Bind<Player>().FromComponentInNewPrefab(_playerPrefab).AsSingle()
-                                        .OnInstantiated<Player>(SetPlayer).NonLazy();
+                                        .OnInstantiated<Player>(InitPlayer).NonLazy();
         Container.Bind<PlayerTouchController>().FromComponentInHierarchy().AsSingle();
         Container.Bind<PlayerInteraction>().FromComponentInHierarchy().AsSingle();
     }
 
-    private void SetPlayer(InjectContext ctx, Player player)
+    private void InitPlayer(InjectContext ctx, Player player)
     {
         player.transform.position = _playerInitPos;
-        
+
         if (_cinemachineCamera != null)
         {
             _cinemachineCamera.Follow = player.transform;
         }
     }
 
-    private void BindSaveProcessor()
+    private void BindManagers()
     {
-        Container.Bind<ISaveProcessor<SaveData>>().To<PlayerPrefsSaveProcessor<SaveData>>().AsSingle();
+        Container.Bind<CurrencyManager>().FromComponentInNewPrefab(_currencyManager).AsSingle().NonLazy();
     }
+
 }
