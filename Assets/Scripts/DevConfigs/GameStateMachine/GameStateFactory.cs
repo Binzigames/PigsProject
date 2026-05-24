@@ -8,10 +8,10 @@ namespace DevConfigs.GameStateMachine
         private readonly PauseState _pauseState;
         private readonly ResultGameState _resultState;
 
-        public GameStateFactory()
+        public GameStateFactory(IScoreService scoreService)
         {
-            _menuState = new MenuState();
-            _runningState = new RunningState();
+            _menuState = new MenuState(scoreService);
+            _runningState = new RunningState(scoreService);
             _pauseState = new PauseState();
             _resultState = new ResultGameState();
         }

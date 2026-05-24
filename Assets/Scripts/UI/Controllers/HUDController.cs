@@ -5,39 +5,40 @@ public class HUDController : MonoBehaviour
 {
     private GameManager _gameManager;
     private CurrencyManager _currencyManager;
-
+    private IScoreService _scoreService;
 
     [Inject]
-    public void Costruct(GameManager gameManager, CurrencyManager currencyManager)
+    public void Costruct(GameManager gameManager, CurrencyManager currencyManager, IScoreService scoreService)
     {
         _gameManager = gameManager;
-        _currencyManager = currencyManager;   
+        _currencyManager = currencyManager;
+        _scoreService = scoreService;
     }
 
     private void OnEnable()
     {
-        // HUDEvents.OnChangedScore += ChangeScorePanel;
         HUDEvents.OnPausePressed += PauseGame;
+
         _currencyManager.OnCollectedCurrency += HandleCurrencyLabel;
+        _scoreService.OnScoreChanged += HandleScoreLabel;
     }
 
     private void OnDisable()
     {
-        // HUDEvents.OnChangedScore -= ChangeScorePanel;
         HUDEvents.OnPausePressed -= PauseGame;
+
         _currencyManager.OnCollectedCurrency -= HandleCurrencyLabel;
+        _scoreService.OnScoreChanged -= HandleScoreLabel;
     }
 
     private void HandleCurrencyLabel(int value)
-    {    
+    {
         HUDEvents.OnChangedCurrency?.Invoke(value);
     }
 
     private void HandleScoreLabel(int score)
     {
-        // get score from scoreManager
-        // scoreService
-        // soundService
+        HUDEvents.OnChangedScore?.Invoke(score);
     }
 
     private void PauseGame()
