@@ -109,3 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb6d9381ac43be4fb1bae153c467f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameInstaller
+  _playerPrefab: {fileID: 2686280740845967422, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
+  _playerInitPos: {x: 0, y: 1, z: -10}
+  _currencyManager: {fileID: 4067265822824009043, guid: 5ce792895f2d3014ba124059ee3095c9, type: 3}
+  _scoreManager: {fileID: 3177373996972836358, guid: b98b2d732163fb54eb844fa926c37186, type: 3}
+  _cinemachineCamera: {fileID: 0}

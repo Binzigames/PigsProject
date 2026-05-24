@@ -8,14 +8,13 @@ public class GameInstaller : MonoInstaller
     [Header("Player")]
     [SerializeField] private Player _playerPrefab;
     [SerializeField] private Vector3 _playerInitPos;
+
     [Header("Other")]
     [SerializeField] private CinemachineCamera _cinemachineCamera;
-    [SerializeField] private GameObject _currencyManager;
     public override void InstallBindings()
     {
         BindSegments();
         BindPlayer();
-        BindManagers();
     }
 
     private void BindSegments()
@@ -41,8 +40,4 @@ public class GameInstaller : MonoInstaller
         }
     }
 
-    private void BindManagers()
-    {
-        Container.Bind<CurrencyManager>().FromComponentInNewPrefab(_currencyManager).AsSingle().NonLazy();
-    }
 }
