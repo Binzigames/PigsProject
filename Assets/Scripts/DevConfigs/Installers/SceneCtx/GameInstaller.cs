@@ -16,14 +16,10 @@ public class GameInstaller : MonoInstaller
     [SerializeField]
     private CinemachineCamera _cinemachineCamera;
 
-    [SerializeField]
-    private GameObject _currencyManager;
-
     public override void InstallBindings()
     {
         BindSegments();
         BindPlayer();
-        BindManagers();
     }
 
     private void BindSegments()
@@ -47,11 +43,6 @@ public class GameInstaller : MonoInstaller
         {
             _cinemachineCamera.Follow = player.transform;
         }
-    }
-
-    private void BindManagers()
-    {
-        Container.Bind<CurrencyManager>().FromComponentInNewPrefab(_currencyManager).AsSingle().NonLazy();
     }
 
 }

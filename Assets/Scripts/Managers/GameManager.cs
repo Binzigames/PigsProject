@@ -6,14 +6,12 @@ using Zenject;
 public class GameManager : MonoBehaviour
 {
     private IScoreService _scoreService;
-
-    private GameStateMachine _gameStateMachine;
-    private GameStateFactory _gameStateFactory;
-
+    private IUnityLifecycleEventListener _lifecycleListener;
     private ISaveProcessor<SaveData> _saveProcessor;
     private SaveData _saveData;
 
-    private IUnityLifecycleEventListener _lifecycleListener;
+    private GameStateMachine _gameStateMachine;
+    private GameStateFactory _gameStateFactory;
 
     public GameStateMachine GameStateMachine => _gameStateMachine;
     public GameStateFactory GameStateFactory => _gameStateFactory;
