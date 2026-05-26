@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private GameStateMachine _gameStateMachine;
     private GameStateFactory _gameStateFactory;
 
+    public SaveData SaveData => _saveData;
     public GameStateMachine GameStateMachine => _gameStateMachine;
     public GameStateFactory GameStateFactory => _gameStateFactory;
 

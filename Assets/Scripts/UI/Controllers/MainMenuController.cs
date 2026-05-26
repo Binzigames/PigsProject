@@ -17,15 +17,29 @@ public class MainMenuController : MonoBehaviour
     private void OnEnable()
     {
         MainMenuEvents.OnPlayButtonPressed += StartGame;
+        MainMenuEvents.OnShowedBestScore += SetBestScore;
+        MainMenuEvents.OnShowedTotalMoney += SetTotalMoney;
     }
     private void OnDisable()
     {
         MainMenuEvents.OnPlayButtonPressed -= StartGame;
+        MainMenuEvents.OnShowedBestScore -= SetBestScore;
+        MainMenuEvents.OnShowedTotalMoney = SetTotalMoney;
     }
 
     private void StartGame()
     {
         var startGameCommand = new StartGameCommand(_player, _gameManager);
         startGameCommand.Execute();
+    }
+
+    private void SetBestScore(int bestScore)
+    {
+        _ = _gameManager.SaveData.BestScore;
+    }
+
+    private void SetTotalMoney(int money)
+    {
+        _ = _gameManager.SaveData.Money;
     }
 }

@@ -2,6 +2,7 @@ namespace DevConfigs.GameStateMachine
 {
     public class MenuState : IGameState
     {
+        
         private IScoreService _scoreService;
 
         public MenuState(IScoreService scoreService)
