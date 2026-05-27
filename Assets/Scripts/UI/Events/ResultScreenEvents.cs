@@ -5,7 +5,8 @@ namespace Scripts.UI.Events
     public static class ResultScreenEvents
     {
         public static Action OnContinueButtonPressed;
-        public static Action<string> OnScoreResult;
-        public static Action<string> OnCurrencyResult;
+        public static Action<int> OnScoreResult;
+        public static Action<int> OnBestScoreResult;
+        public static Action<int> OnCurrencyResult;
     }
 }

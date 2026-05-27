@@ -8,12 +8,12 @@ namespace DevConfigs.GameStateMachine
         private readonly PauseState _pauseState;
         private readonly ResultGameState _resultState;
 
-        public GameStateFactory(IScoreService scoreService)
+        public GameStateFactory(GameManager gameManager, IScoreService scoreService, CurrencyManager currencyManager)
         {
-            _menuState = new MenuState(scoreService);
+            _menuState = new MenuState(scoreService, currencyManager);
             _runningState = new RunningState(scoreService);
             _pauseState = new PauseState();
-            _resultState = new ResultGameState();
+            _resultState = new ResultGameState(scoreService, currencyManager, gameManager);
         }
 
         public IGameState GetGameState(GameStateType gameStateType)

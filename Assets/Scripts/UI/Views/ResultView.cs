@@ -17,6 +17,7 @@ public class ResultView : UIView
     {
         ResultScreenEvents.OnScoreResult += SetScoreResult;
         ResultScreenEvents.OnCurrencyResult += SetCurrencyResult;
+        ResultScreenEvents.OnBestScoreResult += BestScoreTextHandler;
     }
 
     protected override void SetVisualElements()
@@ -38,16 +39,20 @@ public class ResultView : UIView
         ResultScreenEvents.OnContinueButtonPressed?.Invoke();
     }
 
-    private void SetScoreResult(string result)
+    private void SetScoreResult(int score)
     {
-        _scoreLabel.text = result;
-        // (if result > bestresult) { _bestscoreText visible}
+        _scoreLabel.text = score.ToString();
     }
 
-    private void SetCurrencyResult(string result)
+    private void SetCurrencyResult(int money)
     {
-        _currencyLabel.text = result;
+        _currencyLabel.text = money.ToString();
     }
 
+    private void BestScoreTextHandler(int bestScore)
+    {
+        bool isShown = bestScore > int.Parse(_scoreLabel.text);
+        _bestScoreLabel.SetEnabled(isShown);
+    }
 
 }

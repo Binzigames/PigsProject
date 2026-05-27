@@ -5,6 +5,7 @@ using Zenject;
 
 public class GameManager : MonoBehaviour
 {
+    private CurrencyManager _currencyManager;
     private IScoreService _scoreService;
     private IUnityLifecycleEventListener _lifecycleListener;
     private ISaveProcessor<SaveData> _saveProcessor;
@@ -18,8 +19,9 @@ public class GameManager : MonoBehaviour
     public GameStateFactory GameStateFactory => _gameStateFactory;
 
     [Inject]
-    public void Contruct(IScoreService scoreService, ISaveProcessor<SaveData> saveProcessor, IUnityLifecycleEventListener lifecycleListener)
+    public void Contruct(IScoreService scoreService, ISaveProcessor<SaveData> saveProcessor, IUnityLifecycleEventListener lifecycleListener, CurrencyManager currencyManager)
     {
+        _currencyManager = currencyManager;
         _scoreService = scoreService;
         _saveProcessor = saveProcessor;
         _lifecycleListener = lifecycleListener;
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
         Load();
 
         _gameStateMachine = new GameStateMachine();
-        _gameStateFactory = new GameStateFactory(_scoreService);
+        _gameStateFactory = new GameStateFactory(this, _scoreService, _currencyManager);
 
         var menuState = _gameStateFactory.GetGameState(GameStateType.MenuState);
         _gameStateMachine.Initialize(menuState);
@@ -75,16 +77,19 @@ public class GameManager : MonoBehaviour
     private void OnApplicationFocusHandler(bool focus)
     {
         Save();
+        Debug.Log("Focused Saved");
     }
 
     private void OnApplicationPauseHandler(bool pause)
     {
         Save();
+        Debug.Log("Paused Saved");
     }
 
     private void OnApplicationQuitHandler()
     {
         Save();
+        Debug.Log("Exit Saved");
     }
 
     private void Load()

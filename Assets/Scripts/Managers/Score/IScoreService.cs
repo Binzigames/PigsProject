@@ -1,9 +1,9 @@
-
 using System;
-using UnityEngine;
 
 public interface IScoreService
 {
+    public int CurrentScore { get; }
+
     public void StartRun();
     public void StopRun();
     public void ResetScore();

@@ -4,11 +4,11 @@
     <ui:VisualElement name="UpperBox" style="flex-grow: 0; position: relative; height: 453px; width: 1076px; flex-shrink: 0; display: flex;">
         <ui:VisualElement name="HighScorePanel" style="flex-grow: 1; position: absolute; height: 128px; width: 477px; background-color: rgba(255, 255, 255, 0.51); top: 284px; left: 544px;">
             <ui:Label text="HIGH SCORE:&#10;" style="font-size: 41px; -unity-text-align: upper-center;"/>
-            <ui:Label text="0&#10;" name="best_score-label" style="font-size: 41px; -unity-text-align: upper-center;"/>
+            <ui:Label text="000&#10;" name="best_score-label" style="font-size: 41px; -unity-text-align: upper-center;"/>
         </ui:VisualElement>
         <ui:Button text="Settings" name="SettingsButton" style="position: absolute; top: 132px; left: 900px; height: 103px; width: 118px; font-size: 31px; -unity-font-style: bold;"/>
         <ui:VisualElement name="total_money-panel" style="flex-grow: 1; position: absolute; height: 57px; width: 258px; top: 164px; left: 551px; background-color: rgb(175, 175, 175);">
-            <ui:Label text="0" name="money-label" style="flex-grow: 1; align-self: auto; -unity-text-align: upper-right; font-size: 41px; -unity-font-style: bold;"/>
+            <ui:Label text="000" name="money-label" style="flex-grow: 1; align-self: auto; -unity-text-align: upper-right; font-size: 41px; -unity-font-style: bold;"/>
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:Button text="TAP TO ESCAPE" name="PlayButton" class="button" style="bottom: 0; flex-grow: 1; flex-shrink: 0; font-size: 65px; -unity-text-align: middle-center; -unity-font-style: italic; background-color: rgba(188, 188, 188, 0.2);"/>
