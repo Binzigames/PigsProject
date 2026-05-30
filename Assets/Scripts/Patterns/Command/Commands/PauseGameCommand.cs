@@ -1,3 +1,4 @@
+using DevConfigs.GameStateMachine;
 using Scripts.Patterns;
 
 public class PauseGameCommand : ICommand
@@ -11,7 +12,7 @@ public class PauseGameCommand : ICommand
 
     public void Execute()
     {
-        var pauseState = _gameManager.GameStateFactory.GetGameState(GameStateType.PauseState);
+        var pauseState = _gameManager.GameStateFactory.ResolveGameState<PauseState>();
         _gameManager.GameStateMachine.TransitionTo(pauseState);
     }
 }
