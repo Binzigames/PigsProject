@@ -6,11 +6,16 @@ using Unity.Cinemachine;
 public class GameInstaller : MonoInstaller
 {
     [Header("Player")]
-    [SerializeField] private Player _playerPrefab;
-    [SerializeField] private Vector3 _playerInitPos;
+    [SerializeField]
+    private Player _playerPrefab;
+
+    [SerializeField]
+    private Vector3 _playerInitPos;
 
     [Header("Other")]
-    [SerializeField] private CinemachineCamera _cinemachineCamera;
+    [SerializeField]
+    private CinemachineCamera _cinemachineCamera;
+
     public override void InstallBindings()
     {
         BindSegments();
@@ -25,15 +30,15 @@ public class GameInstaller : MonoInstaller
     private void BindPlayer()
     {
         Container.Bind<Player>().FromComponentInNewPrefab(_playerPrefab).AsSingle()
-                                        .OnInstantiated<Player>(SetPlayer).NonLazy();
+                                        .OnInstantiated<Player>(InitPlayer).NonLazy();
         Container.Bind<PlayerTouchController>().FromComponentInHierarchy().AsSingle();
         Container.Bind<PlayerInteraction>().FromComponentInHierarchy().AsSingle();
     }
 
-    private void SetPlayer(InjectContext ctx, Player player)
+    private void InitPlayer(InjectContext ctx, Player player)
     {
         player.transform.position = _playerInitPos;
-        
+
         if (_cinemachineCamera != null)
         {
             _cinemachineCamera.Follow = player.transform;

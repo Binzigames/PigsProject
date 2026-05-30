@@ -1,3 +1,4 @@
+using DevConfigs.GameStateMachine;
 using Scripts.UI.Events;
 using UnityEngine;
 using Zenject;
@@ -5,37 +6,53 @@ using Zenject;
 public class ResultController : MonoBehaviour
 {
     private GameManager _gameManager;
-    private CurrencyManager _currencyManager;
+    private ICurrencyManager _currencyManager;
+    private IScoreManager _scoreManager;
 
     [Inject]
-    public void Construct(GameManager gameManager, CurrencyManager currencyManager)
+    public void Construct(GameManager gameManager, ICurrencyManager currencyManager, IScoreManager scoreManager)
     {
         _gameManager = gameManager;
         _currencyManager = currencyManager;
+        _scoreManager = scoreManager;
     }
 
     private void OnEnable()
     {
-        ResultScreenEvents.OnScoreResult += SummarizeScore;
-        ResultScreenEvents.OnCurrencyResult += SummarizeCurrency;
+        _gameManager.GameStateMachine.OnChangeState += SummurizeResults;
+
         ResultScreenEvents.OnContinueButtonPressed += ContinueGame;
     }
 
     private void OnDisable()
     {
-        ResultScreenEvents.OnScoreResult -= SummarizeScore;
-        ResultScreenEvents.OnCurrencyResult -= SummarizeCurrency;
+        _gameManager.GameStateMachine.OnChangeState += SummurizeResults;
+        
         ResultScreenEvents.OnContinueButtonPressed -= ContinueGame;
     }
 
-    private void SummarizeScore(string score)
+    private void SummurizeResults(IGameState gameState)
     {
-        // get score reached
+        if (gameState is ResultGameState)
+        {
+            SummarizeScore();
+            SummarizeCurrency();
+        }
     }
 
-    private void SummarizeCurrency(string currency)
+    private void SummarizeScore()
     {
-        // get curremcy gathered
+        var scoreReached = _scoreManager.CurrentScore;
+        ResultScreenEvents.OnScoreResult?.Invoke(scoreReached);
+
+        var bestRecord = _gameManager.SaveData.BestScore;
+        ResultScreenEvents.OnShowBestScore?.Invoke(bestRecord);
+    }
+
+    private void SummarizeCurrency()
+    {
+        var collectedMoney = _currencyManager.TotalCurrency;
+        ResultScreenEvents.OnCurrencyResult?.Invoke(collectedMoney);
     }
 
     private void ContinueGame()

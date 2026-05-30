@@ -2,18 +2,22 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour, IScoreService
+public class ScoreManager : MonoBehaviour, IScoreManager
 {
     private const float SCORE_PER_SECOND = 50f;
 
+    [SerializeField] 
+    private int _multiplier = 5;
     private int _currentScore;
-    private int _multiplier = 2;
-
     private bool _isRunning = false;
-
     public event Action<int> OnScoreChanged;
 
     public int CurrentScore => _currentScore;
+    public int Multiplier
+    {
+        get => _multiplier;
+        set => _multiplier = value;
+    }
 
     public void StartRun()
     {

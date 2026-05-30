@@ -3,9 +3,9 @@ namespace DevConfigs.GameStateMachine
 {
     public class RunningState : IGameState
     {
-        private IScoreService _scoreService;
+        private IScoreManager _scoreService;
 
-        public RunningState(IScoreService scoreService)
+        public RunningState(IScoreManager scoreService)
         {
             _scoreService = scoreService;
         }

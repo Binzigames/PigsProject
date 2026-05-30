@@ -42,9 +42,7 @@ public class HUDView : UIView
 
     private void UpdateCurrency(int value)
     {
-        int currencyNumber = Int32.Parse(_currencyLable.text);
-        currencyNumber += value;
-        _currencyLable.text = currencyNumber.ToString();
+        _currencyLable.text = value.ToString();
     }
 
 }
