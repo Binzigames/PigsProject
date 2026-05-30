@@ -3,18 +3,18 @@ namespace DevConfigs.GameStateMachine
     public class MenuState : IGameState
     {
         
-        private IScoreService _scoreService;
-        private CurrencyManager _currencyManager;
+        private IScoreManager _scoreManager;
+        private ICurrencyManager _currencyManager;
 
-        public MenuState(IScoreService scoreService, CurrencyManager currencyManager)
+        public MenuState(IScoreManager scoreManager, ICurrencyManager currencyManager)
         {
-            _scoreService = scoreService;
+            _scoreManager = scoreManager;
             _currencyManager = currencyManager;
         }
 
         public void Enter()
         {
-            _scoreService.ResetScore();
+            _scoreManager.ResetScore();
             _currencyManager.ResetCurrency();
         }
 

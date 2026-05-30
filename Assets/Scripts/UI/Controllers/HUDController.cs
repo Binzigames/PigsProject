@@ -4,15 +4,15 @@ using Zenject;
 public class HUDController : MonoBehaviour
 {
     private GameManager _gameManager;
-    private CurrencyManager _currencyManager;
-    private IScoreService _scoreService;
+    private ICurrencyManager _currencyManager;
+    private IScoreManager _scoreManager;
 
     [Inject]
-    public void Costruct(GameManager gameManager, CurrencyManager currencyManager, IScoreService scoreService)
+    public void Costruct(GameManager gameManager, ICurrencyManager currencyManager, IScoreManager scoreManager)
     {
         _gameManager = gameManager;
         _currencyManager = currencyManager;
-        _scoreService = scoreService;
+        _scoreManager = scoreManager;
     }
 
     private void OnEnable()
@@ -20,7 +20,7 @@ public class HUDController : MonoBehaviour
         HUDEvents.OnPausePressed += PauseGame;
 
         _currencyManager.OnCollectedCurrency += HandleCurrencyLabel;
-        _scoreService.OnScoreChanged += HandleScoreLabel;
+        _scoreManager.OnScoreChanged += HandleScoreLabel;
     }
 
     private void OnDisable()
@@ -28,7 +28,7 @@ public class HUDController : MonoBehaviour
         HUDEvents.OnPausePressed -= PauseGame;
 
         _currencyManager.OnCollectedCurrency -= HandleCurrencyLabel;
-        _scoreService.OnScoreChanged -= HandleScoreLabel;
+        _scoreManager.OnScoreChanged -= HandleScoreLabel;
     }
 
     private void HandleCurrencyLabel(int value)

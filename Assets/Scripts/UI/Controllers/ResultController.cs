@@ -1,3 +1,4 @@
+using DevConfigs.GameStateMachine;
 using Scripts.UI.Events;
 using UnityEngine;
 using Zenject;
@@ -5,42 +6,53 @@ using Zenject;
 public class ResultController : MonoBehaviour
 {
     private GameManager _gameManager;
-    private CurrencyManager _currencyManager;
-    private IScoreService _scoreService;
+    private ICurrencyManager _currencyManager;
+    private IScoreManager _scoreManager;
 
     [Inject]
-    public void Construct(GameManager gameManager, CurrencyManager currencyManager, IScoreService scoreService)
+    public void Construct(GameManager gameManager, ICurrencyManager currencyManager, IScoreManager scoreManager)
     {
         _gameManager = gameManager;
         _currencyManager = currencyManager;
-        _scoreService = scoreService;
+        _scoreManager = scoreManager;
     }
 
     private void OnEnable()
     {
-        _scoreService.OnScoreChanged += SummarizeScore;
-        _currencyManager.OnCollectedCurrency += SummarizeCurrency;
+        _gameManager.GameStateMachine.OnChangeState += SummurizeResults;
+
         ResultScreenEvents.OnContinueButtonPressed += ContinueGame;
     }
 
     private void OnDisable()
     {
+        _gameManager.GameStateMachine.OnChangeState += SummurizeResults;
+        
         ResultScreenEvents.OnContinueButtonPressed -= ContinueGame;
     }
 
-    private void SummarizeScore(int score)
+    private void SummurizeResults(IGameState gameState)
     {
-       ResultScreenEvents.OnScoreResult?.Invoke(score);
-
-    //    var bestScoreData = _gameManager.SaveData.BestScore;
-    //    TODO ADD SAVE DATA BEST RECORD
-    //    ResultScreenEvents.OnBestScoreResult?.Invoke(score);
+        if (gameState is ResultGameState)
+        {
+            SummarizeScore();
+            SummarizeCurrency();
+        }
     }
 
-    private void SummarizeCurrency(int money)
+    private void SummarizeScore()
     {
-       ResultScreenEvents.OnCurrencyResult?.Invoke(money);
-       //    TODO ADD SAVE DATA MONEY 
+        var scoreReached = _scoreManager.CurrentScore;
+        ResultScreenEvents.OnScoreResult?.Invoke(scoreReached);
+
+        var bestRecord = _gameManager.SaveData.BestScore;
+        ResultScreenEvents.OnShowBestScore?.Invoke(bestRecord);
+    }
+
+    private void SummarizeCurrency()
+    {
+        var collectedMoney = _currencyManager.TotalCurrency;
+        ResultScreenEvents.OnCurrencyResult?.Invoke(collectedMoney);
     }
 
     private void ContinueGame()

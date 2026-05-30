@@ -6,7 +6,7 @@ namespace Scripts.UI.Events
     {
         public static Action OnContinueButtonPressed;
         public static Action<int> OnScoreResult;
-        public static Action<int> OnBestScoreResult;
+        public static Action<int> OnShowBestScore;
         public static Action<int> OnCurrencyResult;
     }
 }

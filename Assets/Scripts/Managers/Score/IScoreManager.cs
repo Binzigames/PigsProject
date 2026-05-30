@@ -1,8 +1,9 @@
 using System;
 
-public interface IScoreService
+public interface IScoreManager
 {
     public int CurrentScore { get; }
+    public int Multiplier { get; set; }
 
     public void StartRun();
     public void StopRun();

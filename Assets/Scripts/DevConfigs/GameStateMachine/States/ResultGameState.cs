@@ -8,13 +8,13 @@ namespace DevConfigs.GameStateMachine
         private const int STOP_GAME_TIME = 0;
 
         private SaveData _saveData;
-        private IScoreService _scoreService;
-        private CurrencyManager _currencyManager;
+        private IScoreManager _scoreManager;
+        private ICurrencyManager _currencyManager;
 
-        public ResultGameState(IScoreService scoreService, CurrencyManager currencyManager, GameManager gameManager)
+        public ResultGameState(IScoreManager scoreManager, ICurrencyManager currencyManager, GameManager gameManager)
         {
             _saveData = gameManager.SaveData;
-            _scoreService = scoreService;
+            _scoreManager = scoreManager;
             _currencyManager = currencyManager;
         }
 
@@ -23,7 +23,7 @@ namespace DevConfigs.GameStateMachine
             Time.timeScale = STOP_GAME_TIME;
 
             _saveData.Money += _currencyManager.TotalCurrency;
-            _saveData.BestScore = Mathf.Max(_scoreService.CurrentScore, _saveData.BestScore);
+            _saveData.BestScore = Mathf.Max(_scoreManager.CurrentScore, _saveData.BestScore);
         }
 
         public void Execute()
