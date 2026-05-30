@@ -11,19 +11,19 @@ namespace DevConfigs.GameStateMachine
         public GameStateFactory(GameManager gameManager, IScoreManager scoreManager, ICurrencyManager currencyManager)
         {
             _menuState = new MenuState(scoreManager, currencyManager);
-            _runningState = new RunningState(gameManager, scoreManager);
+            _runningState = new RunningState(scoreManager);
             _pauseState = new PauseState();
             _resultState = new ResultGameState(scoreManager, currencyManager, gameManager);
         }
 
-        public IGameState ResolveGameState<T>() where T : IGameState
+        public IGameState GetGameState(GameStateType gameStateType)
         {
-            return typeof(T) switch
+            return gameStateType switch
             {
-                var t when t == typeof(MenuState) => _menuState,
-                var t when t == typeof(RunningState) => _runningState,
-                var t when t == typeof(PauseState) => _pauseState,
-                var t when t == typeof(ResultGameState) => _resultState,
+                GameStateType.MenuState => _menuState,
+                GameStateType.PauseState => _pauseState,
+                GameStateType.RunningState => _runningState,
+                GameStateType.EndRunningState => _resultState,
                 _ => throw new System.NotImplementedException()
             };
         }

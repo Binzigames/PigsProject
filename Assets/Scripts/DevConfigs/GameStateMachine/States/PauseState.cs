@@ -12,6 +12,11 @@ namespace DevConfigs.GameStateMachine
             Time.timeScale = STOP_GAME_TIME;
         }
 
+        public void Execute()
+        {
+            
+        }
+
         public void Exit()
         {
             Time.timeScale = RUN_GAME_TIME;

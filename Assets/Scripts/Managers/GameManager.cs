@@ -1,4 +1,5 @@
 using DevConfigs.GameStateMachine;
+using Scripts.UI.Events;
 using UnityEngine;
 using Zenject;
 
@@ -44,12 +45,14 @@ public class GameManager : MonoBehaviour
         _gameStateMachine = new GameStateMachine();
         _gameStateFactory = new GameStateFactory(this, _scoreManager, _currencyManager);
 
-        var menuState = _gameStateFactory.ResolveGameState<MenuState>();
+        var menuState = _gameStateFactory.GetGameState(GameStateType.MenuState);
         _gameStateMachine.Initialize(menuState);
     }
 
     private void SubToEvents()
     {
+        GameplayEvents.OnEndRunning += TransitionToResultState;
+
         _lifecycleListener.OnApplicationFocusCallback += OnApplicationFocusHandler;
         _lifecycleListener.OnApplicationPauseCallback += OnApplicationPauseHandler;
         _lifecycleListener.OnApplicationQuitCallback += OnApplicationQuitHandler;
@@ -57,9 +60,18 @@ public class GameManager : MonoBehaviour
 
     private void UnsubFromEvents()
     {
+        GameplayEvents.OnEndRunning -= TransitionToResultState;
+
         _lifecycleListener.OnApplicationFocusCallback -= OnApplicationFocusHandler;
         _lifecycleListener.OnApplicationPauseCallback -= OnApplicationPauseHandler;
         _lifecycleListener.OnApplicationQuitCallback -= OnApplicationQuitHandler;
+
+    }
+
+    private void TransitionToResultState()
+    {
+        var endState = _gameStateFactory.GetGameState(GameStateType.EndRunningState);
+        _gameStateMachine.TransitionTo(endState);
     }
 
     private void OnApplicationFocusHandler(bool focus)

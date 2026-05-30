@@ -3,8 +3,8 @@ namespace DevConfigs.GameStateMachine
     public class MenuState : IGameState
     {
         
-        private readonly IScoreManager _scoreManager;
-        private readonly ICurrencyManager _currencyManager;
+        private IScoreManager _scoreManager;
+        private ICurrencyManager _currencyManager;
 
         public MenuState(IScoreManager scoreManager, ICurrencyManager currencyManager)
         {
@@ -17,7 +17,12 @@ namespace DevConfigs.GameStateMachine
             _scoreManager.ResetScore();
             _currencyManager.ResetCurrency();
         }
-        
+
+        public void Execute()
+        {
+
+        }
+
         public void Exit()
         {
 

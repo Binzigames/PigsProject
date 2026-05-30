@@ -29,5 +29,9 @@ namespace DevConfigs.GameStateMachine
 
             Debug.Log(CurrentState);
         }
+        public void Execute() // each per frame
+        {
+            CurrentState?.Execute();
+        }
     }
 }

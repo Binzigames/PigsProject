@@ -1,4 +1,3 @@
-using DevConfigs.GameStateMachine;
 using Scripts.Patterns;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +12,7 @@ public class MenuGameCommand : ICommand
 
     public void Execute()
     {
-        var menuState = _gameManager.GameStateFactory.ResolveGameState<MenuState>();
+        var menuState = _gameManager.GameStateFactory.GetGameState(GameStateType.MenuState);
         _gameManager.GameStateMachine.TransitionTo(menuState);
         
         var currentScene = SceneManager.GetActiveScene();

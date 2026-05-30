@@ -25,7 +25,12 @@ namespace DevConfigs.GameStateMachine
             _saveData.Money += _currencyManager.TotalCurrency;
             _saveData.BestScore = Mathf.Max(_scoreManager.CurrentScore, _saveData.BestScore);
         }
-        
+
+        public void Execute()
+        {
+
+        }
+
         public void Exit()
         {
             Time.timeScale = RUN_GAME_TIME;

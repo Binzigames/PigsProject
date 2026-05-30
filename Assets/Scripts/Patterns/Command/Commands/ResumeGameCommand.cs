@@ -1,4 +1,3 @@
-using DevConfigs.GameStateMachine;
 using Scripts.Patterns;
 
 public class ResumeGameCommand : ICommand
@@ -12,7 +11,7 @@ public class ResumeGameCommand : ICommand
 
     public void Execute()
     {
-        var runningState = _gameManager.GameStateFactory.ResolveGameState<RunningState>();
+        var runningState = _gameManager.GameStateFactory.GetGameState(GameStateType.RunningState);
         _gameManager.GameStateMachine.TransitionTo(runningState);
     }
 
