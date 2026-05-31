@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -6,13 +7,28 @@ public class PlayerMovement : MonoBehaviour
     private const int STARTED_LANE = 0;
 
     [Header("Run")]
-    private bool _canJump = false;
-    [SerializeField] private float _moveOffset = 3.5f;
-    [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] 
+    private float _moveOffset = 3.5f;
+
+    [SerializeField] 
+    private float _moveSpeed = 5f;
 
     [Header("Jump")]
-    [SerializeField] private float _jumpForce = 50f;
-    [SerializeField] private float _gravityMultiplier = 3.5f;
+    [SerializeField] 
+    private float _jumpForce = 50f;
+    
+    [SerializeField] 
+    private float _gravityMultiplier = 3.5f;
+    private float _defaultGravityMultiplier;
+    private bool _isJumping = false;
+
+    [Header("Slide")]
+    [SerializeField] 
+    private int _slideDuration = 2;
+
+    [SerializeField][Tooltip("Gravity force during jump")]
+    private float _gravityMultiplierOnSlide = 2f;
+    private bool _isSliding = false; 
 
     private Player _player;
     private PlayerTouchController _touchController;
@@ -31,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
         Subscribe();
 
         _currentLane = STARTED_LANE;
+        _defaultGravityMultiplier = _gravityMultiplier;
     }
     private void OnDestroy()
     {
@@ -86,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void HandleJump()
     {
-        if (_player.IsGrounded() && _canJump)
+        if (_player.IsGrounded() && _isJumping)
         {
             var targetJumpPos = new Vector3
                                     (_player.RigidBody.linearVelocity.x,
@@ -96,31 +113,45 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (!_player.IsGrounded())
         {
-            _canJump = false;
+            _isJumping = false;
         }
+    }
+
+    private async void HandleSlide()
+    {
+        if (_player.IsGrounded())
+        {
+            Debug.Log("Slide");
+            _player.SwapColliders();
+            await UniTask.Delay(_slideDuration * 1000);
+
+            _player.SwapColliders();
+        }
+        else
+        {
+            _gravityMultiplier *= _gravityMultiplierOnSlide;
+        }
+
+        _isSliding = false;
     }
 
     private void HandleGravity()
     {
-        if (_player.RigidBody.linearVelocity.y > 0)
+        if (!_player.IsGrounded())
         {
             _player.RigidBody.linearVelocity -=
                  _gravityMultiplier * Physics.gravity.y * Time.fixedDeltaTime * Vector3.down;
         }
+        else if (_player.IsGrounded() && _gravityMultiplier != _defaultGravityMultiplier)
+        {
+            _gravityMultiplier =  _defaultGravityMultiplier;
+        }
     }
 
-    private void Jump() => _canJump = true;
-
+    private void Jump() => _isJumping = true;
     private void Slide()
     {
-        // Slide
+        _isSliding = true;
+        HandleSlide();
     }
-
-
-
-
-
-
-
-
 }

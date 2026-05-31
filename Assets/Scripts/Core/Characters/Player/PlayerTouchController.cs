@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerTouchController : MonoBehaviour
 {
     private const string TOUCH_ACTION_NAME = "TouchScreenPress";
@@ -22,7 +23,7 @@ public class PlayerTouchController : MonoBehaviour
 
     private void Awake()
     {
-        _playerInput = GetComponent<PlayerInput>();
+        _playerInput = _playerInput != null ? _playerInput : GetComponent<PlayerInput>();
 
         _touchAction = _playerInput.actions[TOUCH_ACTION_NAME];
         

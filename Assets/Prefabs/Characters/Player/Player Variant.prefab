@@ -163,6 +163,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4798199436841825025}
     - target: {fileID: 3039529129547806561, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
+      propertyPath: _mainCollider
+      value: 
+      objectReference: {fileID: 3350898832030642160}
+    - target: {fileID: 3039529129547806561, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
+      propertyPath: _slideCollider
+      value: 
+      objectReference: {fileID: -6297923111386590459}
+    - target: {fileID: 3039529129547806561, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       propertyPath: _groundLayer.m_Bits
       value: 8
       objectReference: {fileID: 0}
@@ -217,7 +225,7 @@ PrefabInstance:
     - target: {fileID: 6417200252295120060, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       propertyPath: _playerInput
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -4100194757489723097}
     - target: {fileID: 6417200252295120060, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       propertyPath: _minSwipeDistance
       value: 100
@@ -232,7 +240,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6935007740141660936, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       propertyPath: _gravityMultiplier
-      value: 15
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935007740141660936, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
+      propertyPath: _gravityForceOnSlide
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935007740141660936, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
+      propertyPath: _gravityMultiplierOnSlide
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       propertyPath: m_Name
@@ -259,16 +275,19 @@ PrefabInstance:
       addedObject: {fileID: 3350898832030642160}
     - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       insertIndex: 2
-      addedObject: {fileID: 4798199436841825025}
+      addedObject: {fileID: -6297923111386590459}
     - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       insertIndex: 3
+      addedObject: {fileID: 4798199436841825025}
+    - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
+      insertIndex: 4
       addedObject: {fileID: 4108913177334439907}
+    - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: -4100194757489723097}
     - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5675907556285343178}
-    - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -4100194757489723097}
   m_SourcePrefab: {fileID: 100100000, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
 --- !u!4 &3577378613197956436 stripped
 Transform:
@@ -303,6 +322,27 @@ CapsuleCollider:
   m_Height: 3.2838972
   m_Direction: 1
   m_Center: {x: -0.1, y: 1.1419486, z: -0.240345}
+--- !u!65 &-6297923111386590459
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8491667860976784895}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: -0.1, y: 0, z: -0.240345}
 --- !u!54 &4798199436841825025
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -352,18 +392,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5675907556285343178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8491667860976784895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 347ac70cca999e54d93fc26490e92f97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
 --- !u!114 &-4100194757489723097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +422,18 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5675907556285343178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8491667860976784895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347ac70cca999e54d93fc26490e92f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
 --- !u!1001 &8640604709214576901
 PrefabInstance:
   m_ObjectHideFlags: 0
