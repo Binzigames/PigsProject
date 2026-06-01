@@ -61,4 +61,10 @@ public class Player : MonoBehaviour
         _slideCollider.enabled = !_slideCollider.enabled;
     }
 
+    public void ResetColliders()
+    {
+        _mainCollider.enabled = true;
+        _slideCollider.enabled = false;
+    }
+
 }

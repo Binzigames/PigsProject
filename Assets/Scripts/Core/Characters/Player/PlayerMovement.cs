@@ -1,3 +1,5 @@
+using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
@@ -5,30 +7,34 @@ using Zenject;
 public class PlayerMovement : MonoBehaviour
 {
     private const int STARTED_LANE = 0;
+    private const int SECOND_IN_MILLISECONDS = 1000;
+
+    private CancellationTokenSource _slideCts;
 
     [Header("Run")]
-    [SerializeField] 
+    [SerializeField]
     private float _moveOffset = 3.5f;
 
-    [SerializeField] 
+    [SerializeField]
     private float _moveSpeed = 5f;
 
     [Header("Jump")]
-    [SerializeField] 
+    [SerializeField]
     private float _jumpForce = 50f;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private float _gravityMultiplier = 3.5f;
     private float _defaultGravityMultiplier;
     private bool _isJumping = false;
 
     [Header("Slide")]
-    [SerializeField] 
+    [SerializeField]
     private int _slideDuration = 2;
 
-    [SerializeField][Tooltip("Gravity force during jump")]
+    [SerializeField]
+    [Tooltip("Gravity force during jump")]
     private float _gravityMultiplierOnSlide = 2f;
-    private bool _isSliding = false; 
+    private bool _isSliding = false;
 
     private Player _player;
     private PlayerTouchController _touchController;
@@ -42,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         _player = player;
         _touchController = touchController;
     }
+
     private void Awake()
     {
         Subscribe();
@@ -49,16 +56,19 @@ public class PlayerMovement : MonoBehaviour
         _currentLane = STARTED_LANE;
         _defaultGravityMultiplier = _gravityMultiplier;
     }
+
     private void OnDestroy()
     {
         Unsubcribe();
     }
+
     private void FixedUpdate()
     {
         HandleGravity();
         HandleMove();
         HandleJump();
     }
+
     private void Subscribe()
     {
         _touchController.OnSwipeLeft += MoveLeft;
@@ -66,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
         _touchController.OnSwipeDown += Slide;
         _touchController.OnSwipeUp += Jump;
     }
+
     private void Unsubcribe()
     {
         _touchController.OnSwipeLeft -= MoveLeft;
@@ -85,12 +96,13 @@ public class PlayerMovement : MonoBehaviour
     private void MoveLeft()
     {
         ChangeLane(-1);
-
     }
+    
     private void MoveRight()
     {
         ChangeLane(1);
     }
+
     private void ChangeLane(int direction)
     {
         var targetLane = _currentLane + direction;
@@ -101,6 +113,17 @@ public class PlayerMovement : MonoBehaviour
         _currentLane = targetLane;
         _targetPosition = new Vector3(targetLane, 0, 0);
     }
+    
+    private void Jump()
+    {
+        _isJumping = true;
+    }
+
+    private async void Slide()
+    {
+        await HandleSlide();
+    }
+    
     private void HandleJump()
     {
         if (_player.IsGrounded() && _isJumping)
@@ -117,22 +140,39 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private async void HandleSlide()
+    private async UniTask HandleSlide()
     {
+        if (_isSliding) return;
+
         if (_player.IsGrounded())
         {
-            Debug.Log("Slide");
-            _player.SwapColliders();
-            await UniTask.Delay(_slideDuration * 1000);
+            _isSliding = true;
 
-            _player.SwapColliders();
+            _slideCts?.Cancel(); // if active - cancel
+            _slideCts = new CancellationTokenSource();
+
+            try
+            {
+                _player.SwapColliders();
+                await UniTask.Delay(_slideDuration * SECOND_IN_MILLISECONDS, cancellationToken: _slideCts.Token);
+
+                _player.SwapColliders();
+            }
+            catch (OperationCanceledException)
+            {
+                _player.ResetColliders();
+            }
+            finally
+            {
+                _isSliding = false;
+            }
         }
+
         else
         {
             _gravityMultiplier *= _gravityMultiplierOnSlide;
+            _isSliding = false;
         }
-
-        _isSliding = false;
     }
 
     private void HandleGravity()
@@ -144,14 +184,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (_player.IsGrounded() && _gravityMultiplier != _defaultGravityMultiplier)
         {
-            _gravityMultiplier =  _defaultGravityMultiplier;
+            _gravityMultiplier = _defaultGravityMultiplier;
         }
     }
 
-    private void Jump() => _isJumping = true;
-    private void Slide()
-    {
-        _isSliding = true;
-        HandleSlide();
-    }
 }
