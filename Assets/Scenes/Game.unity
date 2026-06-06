@@ -910,8 +910,24 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2944902418247633950, guid: 53b8fe34af5c01746b02a50ca910a2ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 896441335}
   m_SourcePrefab: {fileID: 100100000, guid: 53b8fe34af5c01746b02a50ca910a2ac, type: 3}
+--- !u!1 &896441332 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2944902418247633950, guid: 53b8fe34af5c01746b02a50ca910a2ac, type: 3}
+  m_PrefabInstance: {fileID: 656020027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!81 &896441335
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896441332}
+  m_Enabled: 1
 --- !u!43 &1355056920
 Mesh:
   m_ObjectHideFlags: 0
@@ -2276,6 +2292,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3437900540705098677, guid: e1a1d974a1a30444e8201c5b96806814, type: 3}
+      propertyPath: _musicService
+      value: 
+      objectReference: {fileID: 4114192104683256527, guid: a41d42bea615e4b23b3df1295e289721, type: 3}
+    - target: {fileID: 3437900540705098677, guid: e1a1d974a1a30444e8201c5b96806814, type: 3}
       propertyPath: _playerPrefab
       value: 
       objectReference: {fileID: 2686280740845967422, guid: 2c7cdab58f358ce46b00fa13368c97ee, type: 3}
@@ -2283,6 +2303,10 @@ PrefabInstance:
       propertyPath: _scoreManager
       value: 
       objectReference: {fileID: 3177373996972836358, guid: b98b2d732163fb54eb844fa926c37186, type: 3}
+    - target: {fileID: 3437900540705098677, guid: e1a1d974a1a30444e8201c5b96806814, type: 3}
+      propertyPath: _soundService
+      value: 
+      objectReference: {fileID: 3160821349310211506, guid: b3f67ff2b638c47c5b6e658089d5343c, type: 3}
     - target: {fileID: 3437900540705098677, guid: e1a1d974a1a30444e8201c5b96806814, type: 3}
       propertyPath: _currencyManager
       value: 
