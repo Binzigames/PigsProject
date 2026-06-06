@@ -98,7 +98,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _BackBend: -0.0012999999
+    - _BackBend: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -128,7 +128,7 @@ Material:
     - _RipleSpeed: 0.5
     - _SideWayBend: 0.001
     - _SidewayBend: 0.001
-    - _SidewaysBend: -0.0032
+    - _SidewaysBend: 0.0014
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
