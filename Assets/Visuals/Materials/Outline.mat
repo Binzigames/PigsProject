@@ -85,6 +85,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
+    - _BackBend: -0.0012999999
     - _BendBack: -0.001
     - _BendSideways: 0.001
     - _Blend: 0
@@ -109,6 +110,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Scale: 0.07
+    - _SidewaysBend: -0.0032
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5627470582744088665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9014561652666692885}
+  - component: {fileID: 8169314672274790794}
+  m_Layer: 0
+  m_Name: MaterialWarpManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9014561652666692885
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5627470582744088665}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.85478, y: 1.67, z: 24.76}
+  m_LocalScale: {x: 10.79, y: 10.79, z: 10.79}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8169314672274790794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5627470582744088665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b88ecc4622dd2d4a894318d1b83f002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _warpMaterials:
+  - {fileID: 2100000, guid: 2ce76e42487e5134aa70286619ff0eee, type: 2}
+  - {fileID: 2100000, guid: 1ca2fa5127281de40bfc371d952a83bc, type: 2}
+  - {fileID: 2100000, guid: 9071ba771a4f91d45b696ad700607429, type: 2}
+  - {fileID: 2100000, guid: 26d24e10493df2b44a391ea599eae082, type: 2}
+  - {fileID: 2100000, guid: 88156af8edbf6a84ba8b0de60502ee6b, type: 2}
+  - {fileID: 2100000, guid: 972918037cea9d243a6b8ff0b27838c3, type: 2}
+  - {fileID: 2100000, guid: 815320a7853f9e94b8a672c7c158ac8d, type: 2}
+  - {fileID: 2100000, guid: 9db95036eadbd014fabc8007347559bd, type: 2}
+  _sidewaysBend: 0
+  _backBend: 0
