@@ -100,6 +100,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: scarecrow
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 902f48769fb851e40a40e4e332038047, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1684929138796537589, guid: 902f48769fb851e40a40e4e332038047, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
