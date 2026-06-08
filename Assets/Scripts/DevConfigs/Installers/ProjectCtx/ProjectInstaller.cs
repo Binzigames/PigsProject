@@ -16,6 +16,8 @@ public class ProjectInstaller : MonoInstaller
 
         Container.Bind<GameManager>().FromComponentInNewPrefab(_gameManager).AsSingle().NonLazy();
         BindManagers();
+
+        Container.Bind<ISceneLoadService>().To<SceneLoadService>().AsSingle();
     }
 
     private void BindManagers()

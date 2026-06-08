@@ -8,13 +8,15 @@ public class ResultController : MonoBehaviour
     private GameManager _gameManager;
     private ICurrencyManager _currencyManager;
     private IScoreManager _scoreManager;
+    private ISceneLoadService _sceneLoadService;
 
     [Inject]
-    public void Construct(GameManager gameManager, ICurrencyManager currencyManager, IScoreManager scoreManager)
+    public void Construct(GameManager gameManager, ICurrencyManager currencyManager, IScoreManager scoreManager, ISceneLoadService sceneLoadService)
     {
         _gameManager = gameManager;
         _currencyManager = currencyManager;
         _scoreManager = scoreManager;
+        _sceneLoadService = sceneLoadService;
     }
 
     private void OnEnable()
@@ -57,7 +59,7 @@ public class ResultController : MonoBehaviour
 
     private void ContinueGame()
     {
-        var menuCommand = new MenuGameCommand(_gameManager);
+        var menuCommand = new MenuGameCommand(_gameManager, _sceneLoadService);
         menuCommand.Execute();
     }
 }

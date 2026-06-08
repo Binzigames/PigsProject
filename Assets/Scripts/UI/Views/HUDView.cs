@@ -1,5 +1,4 @@
 using UnityEngine.UIElements;
-using System;
 
 public class HUDView : UIView
 {
@@ -10,7 +9,6 @@ public class HUDView : UIView
     private Button _pauseButton;
     private Label _scoreLable;
     private Label _currencyLable;
-
 
     public HUDView(VisualElement root) : base(root)
     {
