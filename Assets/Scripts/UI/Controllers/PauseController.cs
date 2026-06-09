@@ -3,7 +3,15 @@ using Zenject;
 
 public class PauseController : MonoBehaviour
 {
-    [Inject] private GameManager _gameManager;
+    private GameManager _gameManager;
+    private ILoadSceneService _sceneLoadService;
+
+    [Inject]
+    public void Construct(GameManager gameManager, ILoadSceneService sceneLoadService)
+    {
+        _gameManager = gameManager;
+        _sceneLoadService = sceneLoadService;
+    }
 
     private void OnEnable()
     {
@@ -14,7 +22,7 @@ public class PauseController : MonoBehaviour
     private void OnDisable()
     {
         PauseEvents.OnResumeButtonPressed -= ResumeGame;
-        PauseEvents.OnEndRunButtonPressed -= EndRun;   
+        PauseEvents.OnEndRunButtonPressed -= EndRun;
     }
 
     private void ResumeGame()
@@ -25,7 +33,7 @@ public class PauseController : MonoBehaviour
 
     private void EndRun()
     {
-        var endGameCommand = new MenuGameCommand(_gameManager);
+        var endGameCommand = new MenuGameCommand(_gameManager, _sceneLoadService);
         endGameCommand.Execute();
     }
 
