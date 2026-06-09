@@ -24,20 +24,10 @@ public class SceneLoadService : ISceneLoadService
 
         while (!asyncOperation.isDone)
         {
-            var targetProgress = Mathf.Clamp01(asyncOperation.progress / 0.9f) * 100f;
-
-            _progressTween?.Kill();
-
-            _progressTween = DOTween.To(() => _startedProgress,
-                x => { _startedProgress = x; LoadingEvents.OnChangedProgress?.Invoke(x); },
-                    targetProgress, DURATION_TO_TARGET_PROGRESS);
-
+            Debug.Log(asyncOperation.progress);
             await UniTask.Yield();
         }
 
-        _progressTween?.Kill();
-
-        LoadingEvents.OnChangedProgress?.Invoke(100f);
         await UniTask.Delay(DELAY_WHEN_LOADED_IN_MILLISECONDS);
         LoadingEvents.OnHideLoadingScreen?.Invoke();
     }

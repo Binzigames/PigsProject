@@ -112,6 +112,7 @@ MonoBehaviour:
   _currencyManager: {fileID: 4067265822824009043, guid: 5ce792895f2d3014ba124059ee3095c9, type: 3}
   _scoreManager: {fileID: 3177373996972836358, guid: b98b2d732163fb54eb844fa926c37186, type: 3}
   _lifecycleListener: {fileID: -6660001586202209559, guid: cf0193c110ce64b4fb841e3410c66332, type: 3}
+  _loadingScreen: {fileID: 5322665112980262311, guid: 3494fa8556ec84ee792599857c6982ce, type: 3}
 --- !u!1001 &7757814650881713863
 PrefabInstance:
   m_ObjectHideFlags: 0

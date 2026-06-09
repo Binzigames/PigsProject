@@ -8,7 +8,9 @@ public class ProjectInstaller : MonoInstaller
     [SerializeField] private CurrencyManager _currencyManager;
     [SerializeField] private ScoreManager _scoreManager;
 
+    [Header("Other")]
     [SerializeField] private UnityLifecycleEventListener _lifecycleListener;
+    [SerializeField] private GameObject _loadingScreen;
     public override void InstallBindings()
     {
         BindSaveProcessor();
@@ -17,6 +19,7 @@ public class ProjectInstaller : MonoInstaller
         Container.Bind<GameManager>().FromComponentInNewPrefab(_gameManager).AsSingle().NonLazy();
         BindManagers();
 
+        Container.Bind<LoadingView>().FromComponentInNewPrefab(_loadingScreen).AsSingle().NonLazy();
         Container.Bind<ISceneLoadService>().To<SceneLoadService>().AsSingle();
     }
 
