@@ -11,16 +11,15 @@ public class ProjectInstaller : MonoInstaller
     [Header("Other")]
     [SerializeField] private UnityLifecycleEventListener _lifecycleListener;
     [SerializeField] private GameObject _loadingScreen;
+    
     public override void InstallBindings()
     {
+        Container.Bind<GameManager>().FromComponentInNewPrefab(_gameManager).AsSingle().NonLazy();
+
         BindSaveProcessor();
         BindLifecycleEventListener();
-
-        Container.Bind<GameManager>().FromComponentInNewPrefab(_gameManager).AsSingle().NonLazy();
         BindManagers();
-
-        Container.Bind<LoadingView>().FromComponentInNewPrefab(_loadingScreen).AsSingle().NonLazy();
-        Container.Bind<ISceneLoadService>().To<SceneLoadService>().AsSingle();
+        BindLoaders();
     }
 
     private void BindManagers()
@@ -42,5 +41,11 @@ public class ProjectInstaller : MonoInstaller
                                 .AsSingle()
                                     .NonLazy();
         
+    }
+
+    private void BindLoaders()
+    {
+        Container.Bind<LoadingView>().FromComponentInNewPrefab(_loadingScreen).AsSingle().NonLazy();
+        Container.Bind<ILoadSceneService>().To<LoadSceneService>().AsSingle();
     }
 }

@@ -1,10 +1,8 @@
 using System;
 using System.Threading;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class LoadingView : MonoBehaviour
@@ -56,7 +54,7 @@ public class LoadingView : MonoBehaviour
         await SetViewActive(false);
     }
 
-    public async UniTask SetViewActive(bool isActive)
+    private async UniTask SetViewActive(bool isActive)
     {
         if (isActive)
         {
@@ -85,7 +83,6 @@ public class LoadingView : MonoBehaviour
 
         _canvasGroup.interactable = isActive;
         _canvasGroup.blocksRaycasts = isActive;
-        _isShown = isActive;
     }
 
     private Tween AnimateLoading()

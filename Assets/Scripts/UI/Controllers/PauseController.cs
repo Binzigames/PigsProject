@@ -4,10 +4,10 @@ using Zenject;
 public class PauseController : MonoBehaviour
 {
     private GameManager _gameManager;
-    private ISceneLoadService _sceneLoadService;
+    private ILoadSceneService _sceneLoadService;
 
     [Inject]
-    public void Construct(GameManager gameManager, ISceneLoadService sceneLoadService)
+    public void Construct(GameManager gameManager, ILoadSceneService sceneLoadService)
     {
         _gameManager = gameManager;
         _sceneLoadService = sceneLoadService;

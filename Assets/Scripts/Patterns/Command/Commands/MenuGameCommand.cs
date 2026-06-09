@@ -6,10 +6,10 @@ using Zenject;
 
 public class MenuGameCommand : ICommand
 {
-    private readonly ISceneLoadService _sceneLoadService;
+    private readonly ILoadSceneService _sceneLoadService;
     private readonly GameManager _gameManager;
 
-    public MenuGameCommand(GameManager gameManager, ISceneLoadService sceneLoadService)
+    public MenuGameCommand(GameManager gameManager, ILoadSceneService sceneLoadService)
     {
         _gameManager = gameManager;
         _sceneLoadService = sceneLoadService;

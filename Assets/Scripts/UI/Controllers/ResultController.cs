@@ -8,10 +8,10 @@ public class ResultController : MonoBehaviour
     private GameManager _gameManager;
     private ICurrencyManager _currencyManager;
     private IScoreManager _scoreManager;
-    private ISceneLoadService _sceneLoadService;
+    private ILoadSceneService _sceneLoadService;
 
     [Inject]
-    public void Construct(GameManager gameManager, ICurrencyManager currencyManager, IScoreManager scoreManager, ISceneLoadService sceneLoadService)
+    public void Construct(GameManager gameManager, ICurrencyManager currencyManager, IScoreManager scoreManager, ILoadSceneService sceneLoadService)
     {
         _gameManager = gameManager;
         _currencyManager = currencyManager;
