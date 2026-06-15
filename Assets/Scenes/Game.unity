@@ -1955,6 +1955,11 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &1646616832 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6516355118313734729, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
+  m_PrefabInstance: {fileID: 2641436850812347128}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1758062220
 Mesh:
   m_ObjectHideFlags: 0
@@ -2275,12 +2280,43 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 84277247975866899, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
   m_PrefabInstance: {fileID: 2641436850812347128}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1646616832}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
+--- !u!114 &2129269915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646616832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b617507da6d07e749b7efdb34e1173e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
+  TrackerSettings:
+    BindingMode: 0
+    PositionDamping: {x: 0.5, y: 0, z: 0}
+    AngularDampingMode: 0
+    RotationDamping: {x: 0, y: 0, z: 0}
+    QuaternionDamping: 1
+  FollowOffset: {x: 0, y: 6, z: -11}
+--- !u!114 &2129269916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646616832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6745bfb36f0e148718237bacc6335dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &1879617016968430834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2379,6 +2415,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 84277247975866899, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
+      propertyPath: Lens.FieldOfView
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 84277247975866899, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 0}
@@ -2413,6 +2453,14 @@ PrefabInstance:
     - target: {fileID: 1688387533028404256, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
       propertyPath: Composition.ScreenPosition.y
       value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688387533028404256, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
+      propertyPath: Composition.HardLimits.Size.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688387533028404256, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
+      propertyPath: Composition.HardLimits.Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1860317452402528234, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
       propertyPath: m_Name
@@ -2502,10 +2550,17 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3229659567156815178, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6516355118313734729, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2129269915}
+    - targetCorrespondingSourceObject: {fileID: 6516355118313734729, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2129269916}
   m_SourcePrefab: {fileID: 100100000, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
 --- !u!1001 &4084811879406093626
 PrefabInstance:
@@ -2585,7 +2640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2618988029461279544, guid: 2c62450380a9cc24eaf60ec2a2518bb1, type: 3}
       propertyPath: _moveSpeed
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2618988029461279544, guid: 2c62450380a9cc24eaf60ec2a2518bb1, type: 3}
       propertyPath: _spawnPosition
