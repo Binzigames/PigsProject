@@ -21,7 +21,6 @@ public class LoadingView : MonoBehaviour
 
     private CancellationTokenSource _cts;
     private Tween _loadingTween;
-    private bool _isShown = false;
 
     private void OnValidate()
     {
