@@ -16,12 +16,14 @@ public class Player : MonoBehaviour
     [SerializeField] private BoxCollider _slideCollider;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _groundCheckDistance = 1f;
+    [SerializeField] private bool _cheats = false;
 
 
     public PlayerStateMachine PlayerStateMachine => _playerStateMachine;
     public Rigidbody RigidBody => _rigidbody;
     public bool IsCrashed => _isCrashed;
-    
+    public bool Cheats => _cheats;
+
 
     private void Awake()
     {
@@ -29,10 +31,13 @@ public class Player : MonoBehaviour
         _mainCollider = _mainCollider != null ? _mainCollider : GetComponent<CapsuleCollider>();
         _slideCollider = _slideCollider != null ? _slideCollider : GetComponent<BoxCollider>();
         _slideCollider.enabled = false;
-        
+
 
         _playerStateMachine = new PlayerStateMachine(this, _playerAnimation);
         _playerStateMachine.Initialize(_playerStateMachine.IdleState);
+
+        if (_cheats)
+            EnableCheats();
     }
 
     private void Update()
@@ -42,11 +47,21 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(OBSTACLE_TAG))
+        if (!_cheats)
         {
-            _isCrashed = true;
-            GameplayEvents.OnEndRunning?.Invoke();
+            if (other.CompareTag(OBSTACLE_TAG))
+            {
+                _isCrashed = true;
+                GameplayEvents.OnEndRunning?.Invoke();
+            }
         }
+    }
+
+    private void EnableCheats()
+    {
+        _mainCollider.isTrigger = true;
+        _slideCollider.isTrigger = true;
+        _rigidbody.isKinematic = true;
     }
 
     public bool IsGrounded()

@@ -163,6 +163,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4108913177334439907}
     - target: {fileID: 3039529129547806561, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
+      propertyPath: _cheats
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3039529129547806561, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       propertyPath: _rigidbody
       value: 
       objectReference: {fileID: 4798199436841825025}
