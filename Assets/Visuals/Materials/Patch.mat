@@ -39,9 +39,9 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _BackBend: 0
+    - _BackBend: -0.00002
     - _QueueControl: 0
-    - _SidewaysBend: 0.0014
+    - _SidewaysBend: 0.00018
     m_Colors:
     - _Color: {r: 0.827451, g: 0.74509805, b: 0.60784316, a: 1}
   m_BuildTextureStacks: []

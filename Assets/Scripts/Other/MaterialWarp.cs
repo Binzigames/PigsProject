@@ -10,34 +10,42 @@ public class MaterialWarp : MonoBehaviour
     private Material[] _warpMaterials;
 
     [SerializeField]
-    [Range(-1, 1)]
+    [Range(-0.001f, 0.001f)]
     private float _sidewaysBend = 0f;
     private float _currentSideBend;
 
     [SerializeField]
-    [Range(-1, 1)]
+    [Range(-0.001f, 0.001f)]
     private float _backBend = 0f;
     private float _currentBackBend;
+
+    private void Awake()
+    {
+        BendAllMaterials();
+    }
 
     private void Update()
     {
         if (IsBendValueWasChanged())
         {
-            Debug.Log("is changed");
-            for (int i = 0; i < _warpMaterials.Length; i++)
+            BendAllMaterials();
+        }
+    }
+
+    private void BendAllMaterials()
+    {
+        for (int i = 0; i < _warpMaterials.Length; i++)
             {
-                _warpMaterials[i].SetFloat(_sideBendID, _sidewaysBend * 0.01f);
-                _warpMaterials[i].SetFloat(_backBendID, _backBend * 0.01f);
+                _warpMaterials[i].SetFloat(_sideBendID, _sidewaysBend);
+                _warpMaterials[i].SetFloat(_backBendID, _backBend);
             }
             _currentSideBend = _sidewaysBend;
             _currentBackBend = _backBend;
-        }
     }
 
     private bool IsBendValueWasChanged()
     {
-        return _currentSideBend != _sidewaysBend ||
-                        _currentBackBend != _backBend;
+        return _currentSideBend != _sidewaysBend || _currentBackBend != _backBend;
     }
 
 }
