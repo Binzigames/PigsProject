@@ -1,8 +1,6 @@
 :root {
 }
 
-
-
 .toggle-settings {
     background-color: rgb(255, 0, 10);
     margin-top: 38px;
@@ -21,3 +19,40 @@
     padding-left: 132px;
     -unity-font-style: bold;
 }
+
+.upper-panel {
+    flex-grow: 0;
+    position: relative;
+    height: 453px;
+    width: 1076px;
+    flex-shrink: 0;
+    display: flex;
+    background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=-107725982&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_1");
+}
+
+.count-panel {
+    flex-grow: 1;
+    position: absolute;
+    height: 57px;
+    width: 176px;
+    top: 164px;
+    left: 551px;
+    background-color: rgba(175, 175, 175, 0);
+    background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=1894781151&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_2");
+    aspect-ratio: auto;
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+.high_score-panel {
+    flex-grow: 1;
+    position: absolute;
+    height: 128px;
+    width: 477px;
+    background-color: rgba(255, 255, 255, 0.51);
+    top: 284px;
+    left: 544px;
+}
+
+
+
+
