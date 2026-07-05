@@ -1,0 +1,19 @@
+:root {
+}
+
+.pause-title__panel {
+    position: absolute;
+    background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=-551857921&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_0");
+}
+
+.resume__button {
+    background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=1931952423&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_6");
+}
+
+.endrun__button {
+    background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=1467923691&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_7");
+}
+
+.pause__panel {
+    background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=-1854848773&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_5");
+}
