@@ -76,6 +76,7 @@ public class HUDManager : MonoBehaviour
     private void ShowPausePanel()
     {
         _pauseView.Show();
+        PauseEvents.OnShownPausePanel?.Invoke();
         _hudViewElements.style.display = DisplayStyle.None;
     }
 

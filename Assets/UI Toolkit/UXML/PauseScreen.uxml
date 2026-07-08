@@ -1,6 +1,7 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Sheets/PauseStyleSheet.uss?fileID=7433441132597879392&amp;guid=8aa3bf1d7bdaa4ab38563f7729e362d8&amp;type=3#PauseStyleSheet"/>
-    <ui:VisualElement name="pause__pause-panel" class="pause__panel" style="flex-grow: 1; position: absolute; flex-shrink: 1; width: 900px; height: 650px; right: 94px; left: 86px; top: 484px; margin-top: 0; bottom: 826px;">
+    <ui:VisualElement name="background" class="background"/>
+    <ui:VisualElement name="pause__pause-panel" class="pause__panel" style="transition-timing-function: linear; transition-duration: 0.2s;">
         <ui:VisualElement name="pause-label-panel" class="pause-title__panel" style="flex-grow: 0; position: relative; width: 904px; height: 150px; align-items: stretch; flex-shrink: 0; flex-direction: column; justify-content: flex-end; align-self: center;">
             <ui:Label text="GAME PAUSED" name="pause-label" style="-unity-text-align: upper-center; -unity-font-style: normal; font-size: 66px; margin-top: 27px; -unity-font-definition: url(&quot;project://database/Assets/Visuals/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=7bf66073856ae40a1875549e19ef7770&amp;type=3#LilitaOne-Regular&quot;); top: -40px; color: rgb(255, 255, 255); -unity-text-outline-color: rgba(0, 0, 0, 0); text-shadow: 0 10px 0 rgb(0, 0, 0);"/>
         </ui:VisualElement>

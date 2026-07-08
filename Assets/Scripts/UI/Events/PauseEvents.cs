@@ -4,4 +4,5 @@ public static class PauseEvents
 {
     public static Action OnResumeButtonPressed;
     public static Action OnEndRunButtonPressed;
+    public static Action OnShownPausePanel;
 }
