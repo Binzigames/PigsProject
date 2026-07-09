@@ -3,6 +3,8 @@ using UnityEngine.UIElements;
 
 public class SettingsView : UIView
 {
+    private const string SETTINGS = "settings";
+    private const string SETTINGS_HIDE_CLASS = "settings_hide";
     private const string EXIT_BUTTON = "ExitSettingsButton";
     private const string SOUND_TOGGLE = "SoundToggle";
     private const string MUSIC_TOGGLE = "MusicToggle";
@@ -12,6 +14,7 @@ public class SettingsView : UIView
     private const string HAPTIC_IMG_CHECKER = "haptic-checker";
     private const string GAME_VERSION = "GameVersion";
 
+    private VisualElement _settingsElements;
     private VisualElement _exitSettingsButton;
     private Label _gameVersion;
 
@@ -25,15 +28,20 @@ public class SettingsView : UIView
 
     public SettingsView(VisualElement root) : base(root)
     {
+        MainMenuEvents.OnSettingButtonPressed += OnShowSettings;
+
         _gameVersion.text = Application.version;
 
         _hapticChecker.visible = _hapticToggle.value;
         _musicChecker.visible = _musicToggle.value;
         _soundChecker.visible = _soundToggle.value;
+
+        _settingsElements.AddToClassList(SETTINGS_HIDE_CLASS);
     }
 
     protected override void SetVisualElements()
     {
+        _settingsElements = _root.Q<VisualElement>(SETTINGS);
         _exitSettingsButton = _root.Q<VisualElement>(EXIT_BUTTON) as Button;
 
         _soundToggle = _root.Q<Toggle>(SOUND_TOGGLE);
@@ -56,6 +64,11 @@ public class SettingsView : UIView
         _hapticToggle.RegisterCallback<ClickEvent>(OnHapticToggle);
     }
 
+    private void OnShowSettings()
+    {
+        _settingsElements.RemoveFromClassList(SETTINGS_HIDE_CLASS);
+    }
+
     private void OnHapticToggle(ClickEvent evt)
     {
         SettingsEvents.OnHapticToggle?.Invoke(_hapticToggle.value);
@@ -76,6 +89,7 @@ public class SettingsView : UIView
 
     private void OnExitSettings(ClickEvent click)
     {
+        _settingsElements.AddToClassList(SETTINGS_HIDE_CLASS);
         SettingsEvents.OnExitSettingsButton?.Invoke();
     }
 }

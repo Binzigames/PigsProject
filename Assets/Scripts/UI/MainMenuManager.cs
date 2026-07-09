@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -6,13 +9,13 @@ using UnityEngine.UIElements;
 public class MainMenuManager : MonoBehaviour
 {
     private const string SETTINGS_SCREEN = "SettingsScreen";
-
     private UIDocument _document;
 
     private UIView _mainMenuView;
     private UIView _settingsView;
 
     private readonly List<UIView> _viewList = new();
+    private CancellationTokenSource _cts;
 
     private void OnEnable()
     {
@@ -66,8 +69,23 @@ public class MainMenuManager : MonoBehaviour
         _settingsView.Show();
     }
 
-    private void HideSettingsScreen()
+    private async void HideSettingsScreen()
     {
-        _settingsView.Hide();
+        _cts?.Dispose();
+        _cts = new CancellationTokenSource();
+
+        try
+        {
+            await UniTask.Delay(1000, cancellationToken: _cts.Token);
+            _settingsView.Hide();
+        }
+        catch(OperationCanceledException)
+        {
+            return;
+        }
+        finally
+        {
+            _settingsView.Hide();
+        }
     }
 }
