@@ -1,0 +1,91 @@
+.result__continue-button {
+    position: relative;
+    height: 145px;
+    width: 435px;
+    align-self: center;
+    margin-bottom: 30px;
+    font-size: 55px;
+    top: -88px;
+    -unity-font-definition: url("project://database/Assets/Visuals/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=7bf66073856ae40a1875549e19ef7770&type=3#LilitaOne-Regular");
+    background-color: rgba(188, 188, 188, 0);
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
+    background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=1931952423&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_6");
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-text-align: middle-center;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    text-shadow: 0 8.5px 0 rgb(0, 0, 0);
+    transition-duration: 0.08s;
+}
+
+.result__continue-button:active {
+    position: relative;
+    height: 145px;
+    width: 435px;
+    align-self: center;
+    margin-bottom: 30px;
+    font-size: 55px;
+    top: -88px;
+    -unity-font-definition: url("project://database/Assets/Visuals/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=7bf66073856ae40a1875549e19ef7770&type=3#LilitaOne-Regular");
+    background-color: rgba(188, 188, 188, 0);
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
+    background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=1931952423&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_6");
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-text-align: middle-center;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    text-shadow: 0 8.5px 0 rgb(0, 0, 0);
+    transition-duration: 0.08s;
+    transition-timing-function: ease-out;
+    scale: 1.1 1.1 1.1;
+}
+
+
+
+.score__counting-button {
+    -unity-font-definition: url("project://database/Assets/Visuals/Fonts/Fredoka/static/Fredoka-Bold.ttf?fileID=12800000&guid=732388cc0064347a1a537388e326031e&type=3#Fredoka-Bold");
+    font-size: 70px;
+    top: -90px;
+    color: rgb(255, 107, 0);
+    transition-duration: 0.08s;
+}
+
+
+
+.result-panel {
+    flex-grow: 1;
+    align-items: center;
+    transition-timing-function: ease-out;
+    transition-duration: 1s;
+}
+
+.result-panel__hide {
+    flex-grow: 1;
+    align-items: center;
+    scale: 0 0 0;
+    opacity: 0;
+    transition-duration: 1s;
+}
+
+.result__background-panel {
+    flex-grow: 1;
+    background-color: rgba(255, 255, 255, 0.47);
+    align-self: stretch;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+}
+
+.result__background-panel_hide {
+    flex-grow: 1;
+    background-color: rgba(255, 255, 255, 0.47);
+    align-self: stretch;
+    opacity: 0;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+}

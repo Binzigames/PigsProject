@@ -1,9 +1,12 @@
 using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine.UIElements;
 
 public abstract class UIView : IDisposable
 {
     protected VisualElement _root;
+    private CancellationTokenSource _cts;
 
     public UIView(VisualElement root)
     {
@@ -24,10 +27,60 @@ public abstract class UIView : IDisposable
     {
         _root.style.display = DisplayStyle.Flex;
     }
+
     public virtual void Hide()
     {
         _root.style.display = DisplayStyle.None;
     }
+
+    /// <summary>
+    /// Show view after delay.
+    /// </summary>
+    /// <param name="delay">In milliseconds</param>
+    public async virtual void ShowOnDelay(int delay)
+    {
+        _cts?.Dispose();
+        _cts = new CancellationTokenSource();
+
+        try
+        {
+            await UniTask.Delay(delay);
+            _root.style.display = DisplayStyle.Flex;
+        }
+        catch (OperationCanceledException)
+        {
+            return;
+        }
+        finally
+        {
+            _root.style.display = DisplayStyle.Flex;
+        }
+    }
+
+    /// <summary>
+    /// Hide view after delay.
+    /// </summary>
+    /// <param name="delay">In milliseconds</param>
+    public async virtual void HideOnDelay(int delay)
+    {
+        _cts?.Dispose();
+        _cts = new CancellationTokenSource();
+
+        try
+        {
+            await UniTask.Delay(delay);
+            _root.style.display = DisplayStyle.None;
+        }
+        catch (OperationCanceledException)
+        {
+            return;
+        }
+        finally
+        {
+            _root.style.display = DisplayStyle.None;
+        }
+    }
+
 
     public virtual void Dispose() { }
 }

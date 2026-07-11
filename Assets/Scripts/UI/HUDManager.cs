@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(UIDocument))]
 public class HUDManager : MonoBehaviour
 {
+    private const int THREE_SECONDS_DELAY = 3000;
     private const string HUD_ELEMENTS = "HUDElements";
     private const string PAUSE_SCREEN = "PauseScreen";
     private const string RESULT_SCREEN = "ResultScreen";
@@ -88,7 +89,9 @@ public class HUDManager : MonoBehaviour
 
     private void ShowResultScreen()
     {
-        _resultView.Show();
+        ResultScreenEvents.OnShowResults?.Invoke();
+        _resultView.ShowOnDelay(THREE_SECONDS_DELAY);
+        //_resultView.Show();
         _hudViewElements.style.display = DisplayStyle.None;
     }
 

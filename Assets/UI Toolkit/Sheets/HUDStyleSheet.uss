@@ -7,4 +7,12 @@
 
 .pause-button {
     background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=401656944&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_8");
+    transition-duration: 0.08s;
+}
+
+.pause-button:active {
+    background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=401656944&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_8");
+    transition-timing-function: ease-out;
+    transition-duration: 0.08s;
+    scale: 1.1 1.1;
 }

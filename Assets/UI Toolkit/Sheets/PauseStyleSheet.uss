@@ -8,10 +8,25 @@
 
 .resume__button {
     background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=1931952423&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_6");
+    transition-duration: 0.08s;
+}
+
+.resume__button:active {
+    background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=1931952423&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_6");
+    transition-duration: 0.08s;
+    transition-timing-function: ease-out;
+    scale: 1.1 1.1;
 }
 
 .endrun__button {
     background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=1467923691&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_7");
+}
+
+.endrun__button:active {
+    background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=1467923691&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_7");
+    transition-timing-function: ease-out;
+    transition-duration: 0.08s;
+    scale: 1.1 1.1 1.1;
 }
 
 .pause__panel {
@@ -43,7 +58,7 @@
     position: relative;
     height: 2016px;
     width: 1079px;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.47);
     transition-duration: 0.2s;
     transition-timing-function: linear;
 }

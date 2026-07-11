@@ -9,7 +9,6 @@
     font-size: 55px;
     -unity-text-align: middle-center;
     white-space: normal;
-    flex-shrink: 0;
     padding-left: 132px;
     -unity-font-style: bold;
     background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=1931952423&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_6");
@@ -28,7 +27,6 @@
     font-size: 55px;
     -unity-text-align: middle-center;
     white-space: normal;
-    flex-shrink: 0;
     padding-left: 132px;
     -unity-font-style: bold;
     background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=1931952423&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_6");
@@ -39,10 +37,6 @@
     transition-timing-function: ease-out-bounce;
     scale: 1.1 1.1 1.1;
 }
-
-
-
-
 
 .unity-toggle__checkmark {
     width: 70px;
@@ -78,10 +72,6 @@
 .unity-toggle__input {
     right: -115px;
 }
-
-
-
-
 
 .exit-button {
     position: absolute;
@@ -119,15 +109,16 @@
 
 .settings {
     flex-grow: 1;
-    transition-duration: 0.5s;
-    transition-timing-function: ease;
+    transition-duration: 1s;
+    transition-timing-function: ease-out-bounce;
 }
 
 .settings_hide {
-    translate: 1129px 0;
-    transition-timing-function: ease-out;
-    opacity: 0;
+    translate: 0 -2017px;
+    transition-timing-function: ease-in;
+    opacity: 1;
     visibility: visible;
     display: flex;
     overflow: hidden;
+    transition-duration: 0.5s;
 }
