@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine.UIElements;
@@ -37,14 +38,16 @@ public abstract class UIView : IDisposable
     /// Show view after delay.
     /// </summary>
     /// <param name="delay">In milliseconds</param>
-    public async virtual void ShowOnDelay(int delay)
+    public async virtual UniTask ShowOnDelay(int delay)
     {
-        _cts?.Dispose();
-        _cts = new CancellationTokenSource();
 
         try
         {
-            await UniTask.Delay(delay);
+            _cts?.Cancel();
+            _cts?.Dispose();
+            _cts = new CancellationTokenSource();
+
+            await UniTask.Delay(delay, cancellationToken: _cts.Token);
             _root.style.display = DisplayStyle.Flex;
         }
         catch (OperationCanceledException)
@@ -61,14 +64,15 @@ public abstract class UIView : IDisposable
     /// Hide view after delay.
     /// </summary>
     /// <param name="delay">In milliseconds</param>
-    public async virtual void HideOnDelay(int delay)
+    public async virtual UniTask HideOnDelay(int delay)
     {
-        _cts?.Dispose();
-        _cts = new CancellationTokenSource();
-
         try
         {
-            await UniTask.Delay(delay);
+            _cts?.Cancel();
+            _cts?.Dispose();
+            _cts = new CancellationTokenSource();
+
+            await UniTask.Delay(delay, cancellationToken: _cts.Token);
             _root.style.display = DisplayStyle.None;
         }
         catch (OperationCanceledException)

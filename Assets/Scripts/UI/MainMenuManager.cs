@@ -68,6 +68,6 @@ public class MainMenuManager : MonoBehaviour
 
     private async void HideSettingsScreen()
     {
-        _settingsView.HideOnDelay(ONE_SECOND_DELAY);
+        await _settingsView.HideOnDelay(ONE_SECOND_DELAY);
     }
 }

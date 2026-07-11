@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(UIDocument))]
 public class HUDManager : MonoBehaviour
 {
-    private const int THREE_SECONDS_DELAY = 3000;
+    private const int TWO_SECONDS_DELAY = 2000;
     private const string HUD_ELEMENTS = "HUDElements";
     private const string PAUSE_SCREEN = "PauseScreen";
     private const string RESULT_SCREEN = "ResultScreen";
@@ -87,12 +87,11 @@ public class HUDManager : MonoBehaviour
         _hudViewElements.style.display = DisplayStyle.Flex;
     }
 
-    private void ShowResultScreen()
+    private async void ShowResultScreen()
     {
-        ResultScreenEvents.OnShowResults?.Invoke();
-        _resultView.ShowOnDelay(THREE_SECONDS_DELAY);
-        //_resultView.Show();
         _hudViewElements.style.display = DisplayStyle.None;
+        await _resultView.ShowOnDelay(TWO_SECONDS_DELAY);
+        ResultScreenEvents.OnShowResults?.Invoke();
     }
 
 }
