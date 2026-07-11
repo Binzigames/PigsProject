@@ -46,8 +46,6 @@
     scale: 1.1 1.1 1.1;
 }
 
-
-
 .score__counting-button {
     -unity-font-definition: url("project://database/Assets/Visuals/Fonts/Fredoka/static/Fredoka-Bold.ttf?fileID=12800000&guid=732388cc0064347a1a537388e326031e&type=3#Fredoka-Bold");
     font-size: 70px;
@@ -56,18 +54,20 @@
     transition-duration: 0.08s;
 }
 
-
-
 .result-panel {
-    flex-grow: 1;
+    background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=-1854848773&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_5");
+    -unity-background-scale-mode: scale-to-fit;
+    flex-direction: column-reverse;
+    position: absolute;
+    height: 830px;
+    width: 854px;
     align-items: center;
-    transition-timing-function: ease-out;
+    justify-content: flex-start;
+    align-self: center;
     transition-duration: 1s;
 }
 
 .result-panel__hide {
-    flex-grow: 1;
-    align-items: center;
     scale: 0 0 0;
     opacity: 0;
     transition-duration: 1s;
