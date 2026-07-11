@@ -111,14 +111,17 @@
     flex-grow: 1;
     transition-duration: 1s;
     transition-timing-function: ease-out-bounce;
+    justify-content: space-between;
 }
 
 .settings_hide {
-    translate: 0 -2017px;
+    translate: 0 -2956px;
     transition-timing-function: ease-in;
     opacity: 1;
     visibility: visible;
     display: flex;
-    overflow: hidden;
+    overflow: visible;
     transition-duration: 0.5s;
+    justify-content: space-between;
+    flex-grow: 1;
 }

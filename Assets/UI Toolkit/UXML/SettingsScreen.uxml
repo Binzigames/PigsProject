@@ -1,24 +1,24 @@
-<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/UI%20Toolkit/Sheets/SettingsStyleSheet.uss?fileID=7433441132597879392&amp;guid=2ff81459934e22a46ae3341df74c7884&amp;type=3#SettingsStyleSheet"/>
-    <ui:VisualElement name="settings" class="settings" style="background-color: rgb(136, 0, 255);">
-        <ui:VisualElement name="upper-bar" style="background-image: url(&quot;project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=-107725982&amp;guid=e376f57c569ef4439a67fc68500f6401&amp;type=3#Slide 16_9 - 1 (5)_1&quot;); background-size: 110% 110%; height: 292px;">
+    <ui:VisualElement name="settings" class="settings" style="background-color: rgb(136, 0, 255); position: relative; flex-shrink: 0;">
+        <ui:VisualElement name="upper-bar" style="background-image: url(&quot;project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=-107725982&amp;guid=e376f57c569ef4439a67fc68500f6401&amp;type=3#Slide 16_9 - 1 (5)_1&quot;); background-size: 110% 110%; height: 292px; position: relative; left: 0; right: 0; top: 0;">
             <ui:Label text="SETTINGS" enabled="true" style="-unity-text-align: lower-center; -unity-font-style: normal; font-size: 60px; -unity-font-definition: url(&quot;project://database/Assets/Visuals/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=7bf66073856ae40a1875549e19ef7770&amp;type=3#LilitaOne-Regular&quot;); color: rgb(255, 255, 255); text-shadow: 0 8.900001px 0 rgb(0, 0, 0); -unity-text-outline-width: 0; text-overflow: clip; top: 121px;"/>
             <ui:Button name="ExitSettingsButton" class="exit-button"/>
         </ui:VisualElement>
-        <ui:GroupBox enabled="true" picking-mode="Ignore" focusable="false" name="GroupBox" style="align-items: center; justify-content: flex-start; height: 1454px; align-content: auto;">
-            <ui:Toggle label="" name="SoundToggle" enabled="true" value="true" class="toggle-settings" style="height: 12%; justify-content: space-between; align-items: center; flex-direction: row; align-self: center; top: 242px; width: 60%;">
+        <ui:GroupBox enabled="true" name="GroupBox" style="position: relative; top: 0; align-self: center; justify-content: center; align-items: center; align-content: auto; height: 1349px; width: 1072px; flex-grow: 0; flex-shrink: 1; right: 0; left: 0; bottom: 0;">
+            <ui:Toggle label="" name="SoundToggle" enabled="true" value="true" class="toggle-settings" style="height: 12%; align-items: center; flex-direction: row; align-self: center; width: 60%; justify-content: space-between;">
                 <ui:Image name="sound-checker" class="toggle-image__checkmark toggle-image_checked" style="display: flex;"/>
                 <ui:Label text="Sound" class="label-button" style="left: -260px;"/>
             </ui:Toggle>
-            <ui:Toggle label="" name="MusicToggle" value="true" class="toggle-settings" style="height: 12%; justify-content: space-between; align-items: center; flex-direction: row; align-self: center; top: 242px; width: 60%;">
+            <ui:Toggle label="" name="MusicToggle" value="true" class="toggle-settings" style="height: 12%; justify-content: space-between; align-items: center; flex-direction: row; align-self: center; width: 60%;">
                 <ui:Image name="music-checker" class="toggle-image__checkmark toggle-image_checked"/>
                 <ui:Label text="Music" class="label-button"/>
             </ui:Toggle>
-            <ui:Toggle label="" name="HapticToggle" value="true" class="toggle-settings" style="height: 12%; justify-content: space-between; align-items: center; flex-direction: row; align-self: center; top: 242px; width: 60%;">
+            <ui:Toggle label="" name="HapticToggle" value="true" class="toggle-settings" style="height: 12%; justify-content: space-between; align-items: center; flex-direction: row; align-self: center; width: 60%;">
                 <ui:Image name="haptic-checker" class="toggle-image__checkmark toggle-image_checked"/>
                 <ui:Label text="Haptic" class="label-button"/>
             </ui:Toggle>
         </ui:GroupBox>
-        <ui:Label text="V.0.0.0 (23.04.2026)&#10;" name="GameVersion" style="-unity-text-align: lower-center; margin-top: 94px; margin-right: 94px; margin-bottom: 94px; margin-left: 94px; font-size: 36px; -unity-font-style: bold;"/>
+        <ui:Label text="V.0.0.0 (23.04.2026)&#10;" name="GameVersion" style="-unity-text-align: lower-center; margin-top: 94px; margin-right: 94px; margin-bottom: 94px; margin-left: 94px; font-size: 36px; -unity-font-style: bold; position: relative; bottom: 0; right: 0; left: 0;"/>
     </ui:VisualElement>
 </ui:UXML>
