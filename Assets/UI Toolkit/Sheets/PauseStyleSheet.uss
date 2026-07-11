@@ -32,8 +32,6 @@
 .pause__panel {
     background-image: url("project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=-1854848773&guid=e376f57c569ef4439a67fc68500f6401&type=3#Slide 16_9 - 1 (5)_5");
     position: absolute;
-    top: 500px;
-    align-self: center;
     transition-duration: 0.2s;
     transition-timing-function: ease-in;
     height: 690px;
@@ -54,13 +52,13 @@
 }
 
 .background {
-    flex-grow: 1;
-    position: relative;
-    height: 2016px;
-    width: 1079px;
     background-color: rgba(255, 255, 255, 0.47);
     transition-duration: 0.2s;
     transition-timing-function: linear;
+    width: 1212px;
+    height: 2479px;
+    flex-grow: 1;
+    flex-shrink: 0;
 }
 
 .background-out {
