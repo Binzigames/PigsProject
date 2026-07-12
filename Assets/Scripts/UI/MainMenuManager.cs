@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class MainMenuManager : MonoBehaviour
 {
     private const string SETTINGS_SCREEN = "SettingsScreen";
-
+    private const int ONE_SECOND_DELAY = 1000;
     private UIDocument _document;
 
     private UIView _mainMenuView;
@@ -66,8 +66,8 @@ public class MainMenuManager : MonoBehaviour
         _settingsView.Show();
     }
 
-    private void HideSettingsScreen()
+    private async void HideSettingsScreen()
     {
-        _settingsView.Hide();
+        await _settingsView.HideOnDelay(ONE_SECOND_DELAY);
     }
 }

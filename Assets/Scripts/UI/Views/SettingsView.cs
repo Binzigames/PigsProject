@@ -3,12 +3,18 @@ using UnityEngine.UIElements;
 
 public class SettingsView : UIView
 {
+    private const string SETTINGS = "settings";
+    private const string SETTINGS_HIDE_CLASS = "settings_hide";
     private const string EXIT_BUTTON = "ExitSettingsButton";
     private const string SOUND_TOGGLE = "SoundToggle";
     private const string MUSIC_TOGGLE = "MusicToggle";
     private const string HAPTIC_TOGGLE = "HapticToggle";
+    private const string SOUND_IMG_CHECKER = "sound-checker";
+    private const string MUSIC_IMG_CHECKER = "music-checker";
+    private const string HAPTIC_IMG_CHECKER = "haptic-checker";
     private const string GAME_VERSION = "GameVersion";
 
+    private VisualElement _settingsElements;
     private VisualElement _exitSettingsButton;
     private Label _gameVersion;
 
@@ -16,18 +22,35 @@ public class SettingsView : UIView
     private Toggle _musicToggle;
     private Toggle _hapticToggle;
 
+    private Image _soundChecker;
+    private Image _musicChecker;
+    private Image _hapticChecker;
+
     public SettingsView(VisualElement root) : base(root)
     {
+        MainMenuEvents.OnSettingButtonPressed += OnShowSettings;
+
         _gameVersion.text = Application.version;
+
+        _hapticChecker.visible = _hapticToggle.value;
+        _musicChecker.visible = _musicToggle.value;
+        _soundChecker.visible = _soundToggle.value;
+
+        _settingsElements.AddToClassList(SETTINGS_HIDE_CLASS);
     }
 
     protected override void SetVisualElements()
     {
+        _settingsElements = _root.Q<VisualElement>(SETTINGS);
         _exitSettingsButton = _root.Q<VisualElement>(EXIT_BUTTON) as Button;
 
         _soundToggle = _root.Q<Toggle>(SOUND_TOGGLE);
         _musicToggle = _root.Q<Toggle>(MUSIC_TOGGLE);
         _hapticToggle = _root.Q<Toggle>(HAPTIC_TOGGLE);
+
+        _soundChecker = _root.Q<Image>(SOUND_IMG_CHECKER);
+        _musicChecker = _root.Q<Image>(MUSIC_IMG_CHECKER);
+        _hapticChecker = _root.Q<Image>(HAPTIC_IMG_CHECKER);
 
         _gameVersion = _root.Q<Label>(GAME_VERSION);
     }
@@ -41,23 +64,32 @@ public class SettingsView : UIView
         _hapticToggle.RegisterCallback<ClickEvent>(OnHapticToggle);
     }
 
+    private void OnShowSettings()
+    {
+        _settingsElements.RemoveFromClassList(SETTINGS_HIDE_CLASS);
+    }
+
     private void OnHapticToggle(ClickEvent evt)
     {
         SettingsEvents.OnHapticToggle?.Invoke(_hapticToggle.value);
+        _hapticChecker.visible = _hapticToggle.value;
     }
 
     private void OnMusicToggle(ClickEvent evt)
     {
         SettingsEvents.OnMusicToggle?.Invoke(_musicToggle.value);
+        _musicChecker.visible = _musicToggle.value;
     }
 
     private void OnSoundToggle(ClickEvent evt)
     {
         SettingsEvents.OnSoundToggle?.Invoke(_soundToggle.value);
+        _soundChecker.visible = _soundToggle.value;
     }
 
     private void OnExitSettings(ClickEvent click)
     {
+        _settingsElements.AddToClassList(SETTINGS_HIDE_CLASS);
         SettingsEvents.OnExitSettingsButton?.Invoke();
     }
 }

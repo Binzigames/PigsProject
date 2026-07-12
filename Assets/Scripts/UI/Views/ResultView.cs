@@ -3,11 +3,17 @@ using UnityEngine.UIElements;
 
 public class ResultView : UIView
 {
+    private const string RESULT_PANEL = "result-panel";
+    private const string RESULT_PANEL_HIDE_CLASS = "result-panel__hide";
+    private const string PANEL_BACKGORUND = "result__background-panel";
+    private const string PANEL_BACKGORUND_HIDE_CLASS = "result__background-panel_hide";
     private const string SCORE = "score-label";
     private const string CURRENCY = "currency-label";
     private const string BEST_SCORE_TEXT = "best-score-label";
     private const string MENU_BUTTON = "result__menu-button";
 
+    private VisualElement _resultPanel;
+    private VisualElement _panelBackground;
     private Label _scoreLabel;
     private Label _currencyLabel;
     private Button _menuButton;
@@ -18,19 +24,32 @@ public class ResultView : UIView
         ResultScreenEvents.OnScoreResult += SetScoreResult;
         ResultScreenEvents.OnCurrencyResult += SetCurrencyResult;
         ResultScreenEvents.OnShowBestScore += UpdateBestScoreVisibility;
+        ResultScreenEvents.OnShowResults += OnShowResultPanel;
+
+        _resultPanel.AddToClassList(RESULT_PANEL_HIDE_CLASS);
+        _panelBackground.AddToClassList(PANEL_BACKGORUND_HIDE_CLASS);
     }
 
     protected override void SetVisualElements()
     {
+        _resultPanel = _root.Q<VisualElement>(RESULT_PANEL);
+        _panelBackground = _root.Q<VisualElement>(PANEL_BACKGORUND);
+
         _scoreLabel = _root.Q<Label>(SCORE);
         _currencyLabel = _root.Q<Label>(CURRENCY);
         _menuButton = _root.Q<Button>(MENU_BUTTON);
         _bestScoreLabel = _root.Q<Label>(BEST_SCORE_TEXT);
     }
-    
+
     protected override void RegisterButtonCallbacks()
     {
         _menuButton.RegisterCallback<ClickEvent>(MenuButtonPress);
+    }
+
+    private void OnShowResultPanel()
+    {
+        _resultPanel.RemoveFromClassList(RESULT_PANEL_HIDE_CLASS);
+        _panelBackground.RemoveFromClassList(PANEL_BACKGORUND_HIDE_CLASS);
     }
 
     private void MenuButtonPress(ClickEvent evt)

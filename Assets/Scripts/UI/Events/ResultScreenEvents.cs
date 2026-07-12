@@ -4,6 +4,7 @@ namespace Scripts.UI.Events
 {
     public static class ResultScreenEvents
     {
+        public static Action OnShowResults;
         public static Action OnContinueButtonPressed;
         public static Action<int> OnScoreResult;
         public static Action<int> OnShowBestScore;
