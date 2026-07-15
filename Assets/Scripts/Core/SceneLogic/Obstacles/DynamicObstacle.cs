@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Scripts.Core.SceneLogic
 {
-    public class DynamicObstacle : Obstacle
+    public class DynamicObstacle : Obstacle, IMovableObstacle
     {
         [SerializeField] private float _moveSpeed = 10f;
         [SerializeField] private Transform _respawnPoint;
@@ -11,11 +11,8 @@ namespace Scripts.Core.SceneLogic
         {
             transform.position = _respawnPoint.position;
         }
-        private void FixedUpdate()
-        {
-            MoveObstacle();
-        }
-        private void MoveObstacle()
+
+        public void MoveObstacle()
         {
             transform.position += Time.fixedDeltaTime * _moveSpeed * Vector3.back;
         }

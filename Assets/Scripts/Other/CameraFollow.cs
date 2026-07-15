@@ -1,16 +1,22 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class LockCameraY : CinemachineExtension
 {
-    private float _cameraYPos;
+    [SerializeField] private float _lockCameraYPos;
 
-    private void Awake()
+    protected override void PostPipelineStageCallback(
+        CinemachineVirtualCameraBase vcam,
+        CinemachineCore.Stage stage,
+        ref CameraState state,
+        float deltaTime)
     {
-        _cameraYPos = transform.position.y;
+        if (stage == CinemachineCore.Stage.Finalize)
+        {
+            var pos = state.RawPosition;
+            pos.y = _lockCameraYPos;
+            state.RawPosition = pos;
+        }
     }
-    
-    private void LateUpdate()
-    {
-        transform.position = new Vector3(transform.position.x, _cameraYPos, transform.position.z);
-    }
+
 }
