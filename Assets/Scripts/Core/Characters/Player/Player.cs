@@ -1,3 +1,4 @@
+using System;
 using Scripts.Core.Characters;
 using Scripts.UI.Events;
 using UnityEngine;
@@ -23,6 +24,8 @@ public class Player : MonoBehaviour
     public Rigidbody RigidBody => _rigidbody;
     public bool IsCrashed => _isCrashed;
     public bool Cheats => _cheats;
+
+    public event Action OnPlayerCrashed;
 
 
     private void Awake()
@@ -52,6 +55,7 @@ public class Player : MonoBehaviour
             if (other.CompareTag(OBSTACLE_TAG))
             {
                 _isCrashed = true;
+                OnPlayerCrashed?.Invoke();
                 GameplayEvents.OnEndRunning?.Invoke();
             }
         }

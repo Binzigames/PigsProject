@@ -934,6 +934,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 896441335}
   m_SourcePrefab: {fileID: 100100000, guid: 53b8fe34af5c01746b02a50ca910a2ac, type: 3}
+--- !u!1 &751822800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6516355118313734729, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
+  m_PrefabInstance: {fileID: 2641436850812347128}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &896441332 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2944902418247633950, guid: 53b8fe34af5c01746b02a50ca910a2ac, type: 3}
@@ -2249,12 +2254,34 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 84277247975866899, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
   m_PrefabInstance: {fileID: 2641436850812347128}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 751822800}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
+--- !u!114 &2129269910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751822800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b46b9b7ba16413aa05f458d2597977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShake
+  _camera: {fileID: 2129269913}
+  _duration: 0.5
+  _strength: 1
+  _vibrato: 20
+  _randomness: 90
+--- !u!20 &2129269913 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1058931448986993488, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
+  m_PrefabInstance: {fileID: 2641436850812347128}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1879617016968430834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2352,6 +2379,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 831025880638291724, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 209.29126
+      objectReference: {fileID: 0}
     - target: {fileID: 1860317452402528234, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
       propertyPath: m_Name
       value: Camera
@@ -2396,10 +2427,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9172611519352230249, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 209.29126
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6516355118313734729, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2129269910}
   m_SourcePrefab: {fileID: 100100000, guid: 2b14bfd1ef5494c4c810cdf6d312ea69, type: 3}
 --- !u!1001 &4084811879406093626
 PrefabInstance:
