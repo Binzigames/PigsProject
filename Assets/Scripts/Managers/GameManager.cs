@@ -4,11 +4,14 @@ using Zenject;
 
 public class GameManager : MonoBehaviour
 {
+    private const int LEVEL_SPEED_UP_INTERVAL = 30; //every 30 seconds
+
     private ICurrencyManager _currencyManager;
     private IScoreManager _scoreManager;
     private IUnityLifecycleEventListener _lifecycleListener;
     private ISaveProcessor<SaveData> _saveProcessor;
     private SaveData _saveData;
+    private GameSpeedTimer _gameSpeedTimer;
 
     private GameStateMachine _gameStateMachine;
     private GameStateFactory _gameStateFactory;
@@ -16,6 +19,7 @@ public class GameManager : MonoBehaviour
     public SaveData SaveData => _saveData;
     public GameStateMachine GameStateMachine => _gameStateMachine;
     public GameStateFactory GameStateFactory => _gameStateFactory;
+    public GameSpeedTimer GameSpeedTimer => _gameSpeedTimer;
 
     [Inject]
     public void Construct(IScoreManager scoreManager, ISaveProcessor<SaveData> saveProcessor, IUnityLifecycleEventListener lifecycleListener, ICurrencyManager currencyManager)
@@ -37,12 +41,18 @@ public class GameManager : MonoBehaviour
         UnsubFromEvents();
     }
 
+    private void Update()
+    {
+        _gameStateMachine.Execute();
+    }
+
     private void Init()
     {
         Load();
 
+        _gameSpeedTimer = new GameSpeedTimer(LEVEL_SPEED_UP_INTERVAL);
         _gameStateMachine = new GameStateMachine();
-        _gameStateFactory = new GameStateFactory(this, _scoreManager, _currencyManager);
+        _gameStateFactory = new GameStateFactory(this, _scoreManager, _currencyManager, _gameSpeedTimer);
 
         var menuState = _gameStateFactory.ResolveGameState<MenuState>();
         _gameStateMachine.Initialize(menuState);

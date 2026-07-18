@@ -1,6 +1,6 @@
 namespace DevConfigs.GameStateMachine
 {
-    public class MenuState : IGameState
+    public class MenuState : GameState
     {
         
         private readonly IScoreManager _scoreManager;
@@ -12,16 +12,12 @@ namespace DevConfigs.GameStateMachine
             _currencyManager = currencyManager;
         }
 
-        public void Enter()
+        public override void Enter()
         {
             _scoreManager.ResetScore();
             _currencyManager.ResetCurrency();
         }
         
-        public void Exit()
-        {
-
-        }
 
     }
 }

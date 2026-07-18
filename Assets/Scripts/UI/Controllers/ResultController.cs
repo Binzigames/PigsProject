@@ -33,7 +33,7 @@ public class ResultController : MonoBehaviour
         ResultScreenEvents.OnContinueButtonPressed -= ContinueGame;
     }
 
-    private void SummurizeResults(IGameState gameState)
+    private void SummurizeResults(GameState gameState)
     {
         if (gameState is ResultGameState)
         {

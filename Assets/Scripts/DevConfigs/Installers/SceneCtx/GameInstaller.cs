@@ -5,8 +5,7 @@ using Unity.Cinemachine;
 
 public class GameInstaller : MonoInstaller
 {
-    [Header("Player")]
-    [SerializeField]
+    [Header("Player")][SerializeField]
     private Player _playerPrefab;
 
     [SerializeField]
@@ -16,8 +15,7 @@ public class GameInstaller : MonoInstaller
     [SerializeField] private SoundService _soundService;
     [SerializeField] private MusicService _musicService;
 
-    [Header("Other")]
-    [SerializeField]
+    [Header("Other")][SerializeField]
     private CinemachineCamera _cinemachineCamera;
 
     public override void InstallBindings()

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01b982b40987c2a4b83d69474ed60072, type: 3}
-  m_Name: LevelEase
+  m_Name: Medium 2
   m_EditorClassIdentifier: Assembly-CSharp::LevelDifficultyData
-  _difficultyType: 0
-  _moveSpeed: 8
+  _difficultyType: 1
+  _moveSpeed: 19

@@ -20,10 +20,23 @@ public class SegmentManager : MonoBehaviour
         _gameManager = gameManager;
     }
 
+    private void Awake()
+    {
+        SetLevelSpeedUp(LevelDifficultyType.Ease);
+        _gameManager.GameSpeedTimer.OnTimeReached += SwitchToNextLevelSpeedUp;
+    }
+
+    private void OnDestroy()
+    {
+        _gameManager.GameSpeedTimer.OnTimeReached -= SwitchToNextLevelSpeedUp;
+    }
+
     private void FixedUpdate()
     {
         if (_gameManager.GameStateMachine.CurrentState is RunningState)
+        {
             MoveSegmentsIfActive();
+        }
     }
 
     private void MoveSegmentsIfActive()
@@ -42,6 +55,24 @@ public class SegmentManager : MonoBehaviour
         segment.transform.position += _moveSpeed * Time.fixedDeltaTime * Vector3.back;
     }
 
+    private void SetLevelSpeedUp(LevelDifficultyType type)
+    {
+        var difficultyData = _levelDifficultyDataContainer.GetLevelDifficulty(type);
+        _moveSpeed = difficultyData.MoveSpeed;
+        Debug.Log($"{difficultyData}, {_moveSpeed}");
+    }
+
+    private void SwitchToNextLevelSpeedUp()
+    {
+        var difficultyData = _levelDifficultyDataContainer.GetNextDifficulty();
+
+        if (difficultyData != null)
+        {
+            _moveSpeed = difficultyData.MoveSpeed;
+            Debug.Log($"{difficultyData}, {_moveSpeed}");
+        }
+    }
+
     public void GetSegmentFromPool()
     {
         var pooledSegment = _objectPool.GetObjectFromPool();
@@ -53,10 +84,4 @@ public class SegmentManager : MonoBehaviour
         _objectPool.ReleaseObjectToPool(gameObject);
     }
 
-    public void ChangeDifficulty(LevelDifficultyType type)
-    {
-        var difficultyData = _levelDifficultyDataContainer.GetLevelDifficulty(type);
-
-        _moveSpeed = difficultyData.MoveSpeed;
-    }
 }

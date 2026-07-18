@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DevConfigs.GameStateMachine
 {
-    public class ResultGameState : IGameState
+    public class ResultGameState : GameState
     {
         private SaveData _saveData;
         private IScoreManager _scoreManager;
@@ -15,14 +15,11 @@ namespace DevConfigs.GameStateMachine
             _currencyManager = currencyManager;
         }
 
-        public void Enter()
+        public override void Enter()
         {
             _saveData.Money += _currencyManager.TotalCurrency;
             _saveData.BestScore = Mathf.Max(_scoreManager.CurrentScore, _saveData.BestScore);
         }
         
-        public void Exit()
-        {
-        }
     }
 }
