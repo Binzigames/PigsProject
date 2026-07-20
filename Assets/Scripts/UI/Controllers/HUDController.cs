@@ -3,16 +3,24 @@ using Zenject;
 
 public class HUDController : MonoBehaviour
 {
+    private AudioClip _buttonAudioClip;
+
     private GameManager _gameManager;
     private ICurrencyManager _currencyManager;
     private IScoreManager _scoreManager;
+    private ISoundService _soundService;
+    private AudioDataContainer _audioDataContainer;
 
     [Inject]
-    public void Costruct(GameManager gameManager, ICurrencyManager currencyManager, IScoreManager scoreManager)
+    public void Costruct(
+        GameManager gameManager, ICurrencyManager currencyManager,
+            IScoreManager scoreManager, ISoundService soundService, IStaticDataProvider dataProvider)
     {
         _gameManager = gameManager;
         _currencyManager = currencyManager;
         _scoreManager = scoreManager;
+        _soundService = soundService;
+        _audioDataContainer = dataProvider.GetDataContainer<AudioDataContainer>();
     }
 
     private void OnEnable()
@@ -21,6 +29,8 @@ public class HUDController : MonoBehaviour
 
         _currencyManager.OnCollectedCurrency += HandleCurrencyLabel;
         _scoreManager.OnScoreChanged += HandleScoreLabel;
+
+        _buttonAudioClip = _buttonAudioClip != null ? _buttonAudioClip : _audioDataContainer.Button;
     }
 
     private void OnDisable()
@@ -45,5 +55,7 @@ public class HUDController : MonoBehaviour
     {
         var pauseCommand = new PauseGameCommand(_gameManager);
         pauseCommand.Execute();
+
+        _soundService.PlayClip(_buttonAudioClip);
     }
 }
