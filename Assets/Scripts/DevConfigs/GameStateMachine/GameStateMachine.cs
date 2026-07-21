@@ -14,8 +14,6 @@ namespace DevConfigs.GameStateMachine
             CurrentState = gameState;
             gameState.Enter();
             OnChangeState?.Invoke(gameState);
-
-            Debug.Log(CurrentState);
         }
         public void TransitionTo(GameState gameState)
         {
@@ -27,7 +25,7 @@ namespace DevConfigs.GameStateMachine
             gameState.Enter();
             OnChangeState?.Invoke(gameState);
 
-            Debug.Log(CurrentState);
+            //Debug.Log(CurrentState);
         }
         public void Execute()
         {

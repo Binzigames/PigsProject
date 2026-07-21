@@ -59,7 +59,6 @@ public class SegmentManager : MonoBehaviour
     {
         var difficultyData = _levelDifficultyDataContainer.GetLevelDifficulty(type);
         _moveSpeed = difficultyData.MoveSpeed;
-        Debug.Log($"{difficultyData}, {_moveSpeed}");
     }
 
     private void SwitchToNextLevelSpeedUp()

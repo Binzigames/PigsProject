@@ -6,13 +6,16 @@ public class SettingsController : MonoBehaviour
     private AudioClip _toggleAudioClip;
     private AudioClip _buttonAudioClip;
 
+    private IMusicService _musicService;
     private ISoundService _soundService;
     private AudioDataContainer _audioDataContainer;
 
     [Inject]
-    public void Construct(ISoundService soundService, IStaticDataProvider dataProvider)
+    public void Construct(ISoundService soundService, IMusicService musicService, IStaticDataProvider dataProvider)
     {
         _soundService = soundService;
+        _musicService = musicService;
+        
         _audioDataContainer = dataProvider.GetDataContainer<AudioDataContainer>();
     }
 
@@ -37,12 +40,16 @@ public class SettingsController : MonoBehaviour
 
     private void OnSoundTogglePressed(bool active)
     {
-        _soundService.PlayClip(_toggleAudioClip);
+        _soundService.ToggleSound(active);
+
+        _soundService.PlayClip(_toggleAudioClip); //play button sfx
     }
 
     private void OnMusicTogglePressed(bool active)
     {
-        _soundService.PlayClip(_toggleAudioClip);
+        _musicService.ToggleMusic(active);
+
+        _soundService.PlayClip(_toggleAudioClip); //play button sfx
     }
 
     private void OnHapticTogglePressed(bool active)

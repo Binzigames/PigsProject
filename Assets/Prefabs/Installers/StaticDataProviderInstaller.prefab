@@ -45,4 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StaticDataProviderInstaller
   _dataContainerList:
-  - {fileID: 11400000, guid: e4c2cd8e150bf414fa403a5b61c05d12, type: 2}
+  - {fileID: 11400000, guid: 122524be8a89f604f90f044ba30729c7, type: 2}
+  - {fileID: 11400000, guid: c9c066fae60d2f143901d699bfb46fe2, type: 2}
+  - {fileID: 11400000, guid: 0102ebbcae0674333877106034a52e5c, type: 2}

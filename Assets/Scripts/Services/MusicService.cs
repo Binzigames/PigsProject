@@ -41,4 +41,14 @@ public class MusicService : MonoBehaviour, IMusicService
         _currentMusic = _musicSource.clip;
     }
 
+    public void ToggleMusic(bool isActive)
+    {
+        if (_currentMusic != null)
+        {
+            _musicSource.Stop();
+        }
+
+        _isMusicOn = isActive;
+        _musicSource.mute = isActive;
+    }
 }

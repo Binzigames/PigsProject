@@ -48,4 +48,9 @@ public class SoundService : MonoBehaviour, ISoundService
             }
         }
     }
+
+    public void ToggleSound(bool isActive)
+    {
+        _isSoundOn = isActive;
+    }
 }

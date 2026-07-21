@@ -29,7 +29,6 @@ public class LoadSceneService : ILoadSceneService
 
             while (!asyncOperation.isDone)
             {
-                Debug.Log(asyncOperation.progress);
                 await UniTask.Yield();
             }
             await UniTask.Delay(TWO_SECONDS_DELAY, cancellationToken: _cts.Token);
