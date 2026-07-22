@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class MaterialWarp : MonoBehaviour
@@ -12,35 +11,36 @@ public class MaterialWarp : MonoBehaviour
     [SerializeField]
     [Range(-0.001f, 0.001f)]
     private float _sidewaysBend = 0f;
-    private float _currentSideBend;
 
     [SerializeField]
     [Range(-0.001f, 0.001f)]
     private float _backBend = 0f;
+
+    private float _currentSideBend;
     private float _currentBackBend;
 
     private void Awake()
     {
-        BendAllMaterials();
+        BendAllMaterials(_sidewaysBend, _backBend);
     }
 
     private void Update()
     {
         if (IsBendValueWasChanged())
         {
-            BendAllMaterials();
+            BendAllMaterials(_sidewaysBend, _backBend);
         }
     }
 
-    private void BendAllMaterials()
+    private void BendAllMaterials(float sideBend, float backBend)
     {
         for (int i = 0; i < _warpMaterials.Length; i++)
-            {
-                _warpMaterials[i].SetFloat(_sideBendID, _sidewaysBend);
-                _warpMaterials[i].SetFloat(_backBendID, _backBend);
-            }
-            _currentSideBend = _sidewaysBend;
-            _currentBackBend = _backBend;
+        {
+            _warpMaterials[i].SetFloat(_sideBendID, sideBend);
+            _warpMaterials[i].SetFloat(_backBendID, backBend);
+        }
+        _currentSideBend = sideBend;
+        _currentBackBend = backBend;
     }
 
     private bool IsBendValueWasChanged()

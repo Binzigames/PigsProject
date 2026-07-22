@@ -322,8 +322,12 @@ PrefabInstance:
       value: MaterialWarpManager
       objectReference: {fileID: 0}
     - target: {fileID: 8169314672274790794, guid: 182a2cb8e4fee4cf98acb65f184b01a6, type: 3}
+      propertyPath: _backBend
+      value: -0.00066
+      objectReference: {fileID: 0}
+    - target: {fileID: 8169314672274790794, guid: 182a2cb8e4fee4cf98acb65f184b01a6, type: 3}
       propertyPath: _sidewaysBend
-      value: 0
+      value: -0.00075
       objectReference: {fileID: 0}
     - target: {fileID: 8169314672274790794, guid: 182a2cb8e4fee4cf98acb65f184b01a6, type: 3}
       propertyPath: _warpMaterials.Array.size
