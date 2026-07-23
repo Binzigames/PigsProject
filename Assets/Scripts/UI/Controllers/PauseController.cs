@@ -9,7 +9,7 @@ public class PauseController : MonoBehaviour
     private ILoadSceneService _sceneLoadService;
     private ISoundService _soundService;
     private IMusicService _musicService;
-    private AudioDataContainer _audioDataContainer;
+    private SoundDataContainer _soundDataContainer;
 
     [Inject]
     public void Construct(GameManager gameManager, ILoadSceneService sceneLoadService,
@@ -18,7 +18,7 @@ public class PauseController : MonoBehaviour
         _gameManager = gameManager;
         _sceneLoadService = sceneLoadService;
         _soundService = soundService;
-        _audioDataContainer = dataProvider.GetDataContainer<AudioDataContainer>();
+        _soundDataContainer = dataProvider.GetDataContainer<SoundDataContainer>();
     }
 
     private void OnEnable()
@@ -26,7 +26,7 @@ public class PauseController : MonoBehaviour
         PauseEvents.OnResumeButtonPressed += ResumeGame;
         PauseEvents.OnEndRunButtonPressed += EndRun;
 
-        _buttonAudioClip = _buttonAudioClip != null ? _buttonAudioClip : _audioDataContainer.Button;
+        _buttonAudioClip = _buttonAudioClip != null ? _buttonAudioClip : _soundDataContainer.Button;
     }
 
     private void OnDisable()

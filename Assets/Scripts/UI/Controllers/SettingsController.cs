@@ -8,7 +8,7 @@ public class SettingsController : MonoBehaviour
 
     private IMusicService _musicService;
     private ISoundService _soundService;
-    private AudioDataContainer _audioDataContainer;
+    private SoundDataContainer _soundDataContainer;
 
     [Inject]
     public void Construct(ISoundService soundService, IMusicService musicService, IStaticDataProvider dataProvider)
@@ -16,7 +16,7 @@ public class SettingsController : MonoBehaviour
         _soundService = soundService;
         _musicService = musicService;
         
-        _audioDataContainer = dataProvider.GetDataContainer<AudioDataContainer>();
+        _soundDataContainer = dataProvider.GetDataContainer<SoundDataContainer>();
     }
 
     private void OnEnable()
@@ -26,8 +26,8 @@ public class SettingsController : MonoBehaviour
         SettingsEvents.OnHapticToggle += OnHapticTogglePressed;
         SettingsEvents.OnExitSettingsButton += OnExitButtonPressed;
 
-        _toggleAudioClip = _toggleAudioClip != null ? _toggleAudioClip : _audioDataContainer.Toggle;
-        _buttonAudioClip = _buttonAudioClip != null ? _buttonAudioClip : _audioDataContainer.Button;
+        _toggleAudioClip = _toggleAudioClip != null ? _toggleAudioClip : _soundDataContainer.Toggle;
+        _buttonAudioClip = _buttonAudioClip != null ? _buttonAudioClip : _soundDataContainer.Button;
     }
 
     private void OnDisable()

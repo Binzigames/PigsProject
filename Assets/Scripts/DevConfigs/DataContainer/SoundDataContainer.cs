@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = nameof(AudioDataContainer), menuName = "ScriptableObject/DataContainer/" + nameof(AudioDataContainer))]
-public class AudioDataContainer : BaseStaticDataContainer
+[CreateAssetMenu(fileName = nameof(SoundDataContainer), menuName = "ScriptableObject/DataContainer/" + nameof(SoundDataContainer))]
+public class SoundDataContainer : BaseStaticDataContainer
 {
     [Header("UI")]
     [SerializeField]

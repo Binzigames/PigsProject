@@ -8,25 +8,38 @@ namespace DevConfigs.GameStateMachine
         private readonly GameSpeedTimer _gameSpeedTimer;
         private readonly GameManager _gameManager;
         private readonly IScoreManager _scoreService;
+        private readonly IMusicService _musicService;
+        private readonly MusicDataContainer _musicDataContainer;
 
-        public RunningState(GameManager gameManager, IScoreManager scoreService, GameSpeedTimer gameSpeedTimer)
+        public RunningState(
+            GameManager gameManager, IScoreManager scoreService,
+                GameSpeedTimer gameSpeedTimer, IMusicService musicService, IStaticDataProvider dataProvider)
         {
             _gameManager = gameManager;
             _scoreService = scoreService;
             _gameSpeedTimer = gameSpeedTimer;
+            _musicService = musicService;
+            _musicDataContainer = dataProvider.GetDataContainer<MusicDataContainer>();
         }
         public override void Enter()
         {
+            GameplayEvents.OnEndRunning += TransitionToResultState;
+            
             _scoreService.StartRun();
 
-            GameplayEvents.OnEndRunning += TransitionToResultState;
+            var runningMusic = _musicDataContainer.GetMusicByType(MusicType.Running);
+            if (runningMusic != null)
+            {
+                _musicService.PlayMusic(runningMusic);
+            }
+
         }
 
         public override void Exit()
         {
-            _scoreService.StopRun();
-
             GameplayEvents.OnEndRunning -= TransitionToResultState;
+
+            _scoreService.StopRun();
         }
 
         public override void Execute()

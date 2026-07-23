@@ -9,7 +9,7 @@ public class HUDController : MonoBehaviour
     private ICurrencyManager _currencyManager;
     private IScoreManager _scoreManager;
     private ISoundService _soundService;
-    private AudioDataContainer _audioDataContainer;
+    private SoundDataContainer _soundDataContainer;
 
     [Inject]
     public void Costruct(
@@ -20,7 +20,7 @@ public class HUDController : MonoBehaviour
         _currencyManager = currencyManager;
         _scoreManager = scoreManager;
         _soundService = soundService;
-        _audioDataContainer = dataProvider.GetDataContainer<AudioDataContainer>();
+        _soundDataContainer = dataProvider.GetDataContainer<SoundDataContainer>();
     }
 
     private void OnEnable()
@@ -30,7 +30,7 @@ public class HUDController : MonoBehaviour
         _currencyManager.OnCollectedCurrency += HandleCurrencyLabel;
         _scoreManager.OnScoreChanged += HandleScoreLabel;
 
-        _buttonAudioClip = _buttonAudioClip != null ? _buttonAudioClip : _audioDataContainer.Button;
+        _buttonAudioClip = _buttonAudioClip != null ? _buttonAudioClip : _soundDataContainer.Button;
     }
 
     private void OnDisable()

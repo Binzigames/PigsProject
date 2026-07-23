@@ -9,7 +9,7 @@ public class MainMenuController : MonoBehaviour
     private Player _player;
     private GameManager _gameManager;
     private ISoundService _soundService;
-    private AudioDataContainer _audioDataContainer;
+    private SoundDataContainer _soundDataContainer;
 
     [Inject]
     public void Construct(
@@ -19,7 +19,7 @@ public class MainMenuController : MonoBehaviour
         _player = player;
         _gameManager = gameManager;
         _soundService = soundService;
-        _audioDataContainer = dataProvider.GetDataContainer<AudioDataContainer>();
+        _soundDataContainer = dataProvider.GetDataContainer<SoundDataContainer>();
     }
 
     private void OnEnable()
@@ -30,7 +30,7 @@ public class MainMenuController : MonoBehaviour
         SetBestScore();
         SetTotalMoney();
 
-        _buttonAudioClip = _audioDataContainer.Button;
+        _buttonAudioClip = _soundDataContainer.Button;
     }
 
     private void OnDisable()

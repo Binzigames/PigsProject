@@ -12,7 +12,7 @@ public class ResultController : MonoBehaviour
     private IScoreManager _scoreManager;
     private ILoadSceneService _sceneLoadService;
     private ISoundService _soundService;
-    private AudioDataContainer _audioDataContainer;
+    private SoundDataContainer _soundDataContainer;
 
     [Inject]
     public void Construct(
@@ -25,7 +25,7 @@ public class ResultController : MonoBehaviour
         _scoreManager = scoreManager;
         _sceneLoadService = sceneLoadService;
         _soundService = soundService;
-        _audioDataContainer = dataProvider.GetDataContainer<AudioDataContainer>();
+        _soundDataContainer = dataProvider.GetDataContainer<SoundDataContainer>();
     }
 
     private void OnEnable()
@@ -33,7 +33,7 @@ public class ResultController : MonoBehaviour
         _gameManager.GameStateMachine.OnChangeState += SummurizeResults;
         ResultScreenEvents.OnContinueButtonPressed += ContinueGame;
 
-        _buttonAudioClip = _buttonAudioClip != null ? _buttonAudioClip : _audioDataContainer.Button;
+        _buttonAudioClip = _buttonAudioClip != null ? _buttonAudioClip : _soundDataContainer.Button;
     }
 
     private void OnDisable()
