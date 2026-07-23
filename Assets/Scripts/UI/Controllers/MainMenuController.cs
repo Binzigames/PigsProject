@@ -4,27 +4,39 @@ using Zenject;
 
 public class MainMenuController : MonoBehaviour
 {
+    private AudioClip _buttonAudioClip;
+
     private Player _player;
     private GameManager _gameManager;
+    private ISoundService _soundService;
+    private SoundDataContainer _soundDataContainer;
 
     [Inject]
-    public void Construct(Player player, GameManager gameManager)
+    public void Construct(
+        Player player, GameManager gameManager,
+            ISoundService soundService, IStaticDataProvider dataProvider)
     {
         _player = player;
         _gameManager = gameManager;
+        _soundService = soundService;
+        _soundDataContainer = dataProvider.GetDataContainer<SoundDataContainer>();
     }
 
     private void OnEnable()
     {
         MainMenuEvents.OnPlayButtonPressed += StartGame;
+        MainMenuEvents.OnSettingButtonPressed += OnSettingButton;
 
         SetBestScore();
         SetTotalMoney();
+
+        _buttonAudioClip = _soundDataContainer.Button;
     }
-    
+
     private void OnDisable()
     {
         MainMenuEvents.OnPlayButtonPressed -= StartGame;
+        MainMenuEvents.OnSettingButtonPressed -= OnSettingButton;
     }
 
     private void SetBestScore()
@@ -43,5 +55,10 @@ public class MainMenuController : MonoBehaviour
     {
         var startGameCommand = new StartGameCommand(_player, _gameManager);
         startGameCommand.Execute();
+    }
+
+    private void OnSettingButton()
+    {
+        _soundService.PlayClip(_buttonAudioClip);
     }
 }

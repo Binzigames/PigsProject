@@ -1,23 +1,20 @@
 using System;
-using UnityEngine;
 
 namespace DevConfigs.GameStateMachine
 {
     public class GameStateMachine
     {
-        public IGameState CurrentState { get; private set; }
-        public event Action<IGameState> OnChangeState;
+        public GameState CurrentState { get; private set; }
+        public event Action<GameState> OnChangeState;
 
 
-        public void Initialize(IGameState gameState)
+        public void Initialize(GameState gameState)
         {
             CurrentState = gameState;
             gameState.Enter();
             OnChangeState?.Invoke(gameState);
-
-            Debug.Log(CurrentState);
         }
-        public void TransitionTo(IGameState gameState)
+        public void TransitionTo(GameState gameState)
         {
             if (CurrentState == gameState)
                 return;
@@ -27,7 +24,11 @@ namespace DevConfigs.GameStateMachine
             gameState.Enter();
             OnChangeState?.Invoke(gameState);
 
-            Debug.Log(CurrentState);
+            //Debug.Log(CurrentState);
+        }
+        public void Execute()
+        {
+            CurrentState?.Execute();
         }
     }
 }

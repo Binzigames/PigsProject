@@ -27,7 +27,7 @@ public class GameUIManager : MonoBehaviour
         _gameManager.GameStateMachine.OnChangeState -= HandleUserInterface;
     }
 
-    private void HandleUserInterface(IGameState gameState)
+    private void HandleUserInterface(GameState gameState)
     {
         switch (gameState)
         {

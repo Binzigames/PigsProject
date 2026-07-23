@@ -8,15 +8,20 @@ namespace DevConfigs.GameStateMachine
         private readonly PauseState _pauseState;
         private readonly ResultGameState _resultState;
 
-        public GameStateFactory(GameManager gameManager, IScoreManager scoreManager, ICurrencyManager currencyManager)
+        public GameStateFactory(
+            GameManager gameManager, IScoreManager scoreManager,
+                ICurrencyManager currencyManager, GameSpeedTimer gameSpeedTimer,
+                    IMusicService musicService, IStaticDataProvider dataProvider)
         {
-            _menuState = new MenuState(scoreManager, currencyManager);
-            _runningState = new RunningState(gameManager, scoreManager);
-            _pauseState = new PauseState();
-            _resultState = new ResultGameState(scoreManager, currencyManager, gameManager);
+            _menuState = new MenuState(scoreManager, currencyManager, musicService, dataProvider);
+            _runningState = 
+                new RunningState(gameManager, scoreManager, gameSpeedTimer, musicService, dataProvider);
+
+            _pauseState = new PauseState(musicService);
+            _resultState = new ResultGameState(scoreManager, currencyManager, gameManager, musicService);
         }
 
-        public IGameState ResolveGameState<T>() where T : IGameState
+        public GameState ResolveGameState<T>() where T : GameState
         {
             return typeof(T) switch
             {

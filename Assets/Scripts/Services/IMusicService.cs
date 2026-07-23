@@ -6,4 +6,5 @@ public interface IMusicService
     public void Pause();
     public void Stop();
     public void PlayMusic(AudioClip music);
+    public void ToggleMusic(bool isActive);
 }

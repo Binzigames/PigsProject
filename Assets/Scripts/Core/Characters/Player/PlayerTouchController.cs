@@ -54,7 +54,6 @@ public class PlayerTouchController : MonoBehaviour
         var swipeDirection = _endTouchPosition - _startTouchPosition;
         if (swipeDirection.magnitude < _minSwipeDistance)
         {
-            Debug.Log("Too short swipe");
             return;
         }
 

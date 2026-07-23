@@ -177,6 +177,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleGravity()
     {
+        if (_player.Cheats)
+            return;
+
         if (!_player.IsGrounded())
         {
             _player.RigidBody.linearVelocity -=

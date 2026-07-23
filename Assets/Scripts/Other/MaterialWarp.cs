@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class MaterialWarp : MonoBehaviour
@@ -10,34 +9,43 @@ public class MaterialWarp : MonoBehaviour
     private Material[] _warpMaterials;
 
     [SerializeField]
-    [Range(-1, 1)]
+    [Range(-0.001f, 0.001f)]
     private float _sidewaysBend = 0f;
-    private float _currentSideBend;
 
     [SerializeField]
-    [Range(-1, 1)]
+    [Range(-0.001f, 0.001f)]
     private float _backBend = 0f;
+
+    private float _currentSideBend;
     private float _currentBackBend;
+
+    private void Awake()
+    {
+        BendAllMaterials(_sidewaysBend, _backBend);
+    }
 
     private void Update()
     {
         if (IsBendValueWasChanged())
         {
-            Debug.Log("is changed");
-            for (int i = 0; i < _warpMaterials.Length; i++)
-            {
-                _warpMaterials[i].SetFloat(_sideBendID, _sidewaysBend * 0.01f);
-                _warpMaterials[i].SetFloat(_backBendID, _backBend * 0.01f);
-            }
-            _currentSideBend = _sidewaysBend;
-            _currentBackBend = _backBend;
+            BendAllMaterials(_sidewaysBend, _backBend);
         }
+    }
+
+    private void BendAllMaterials(float sideBend, float backBend)
+    {
+        for (int i = 0; i < _warpMaterials.Length; i++)
+        {
+            _warpMaterials[i].SetFloat(_sideBendID, sideBend);
+            _warpMaterials[i].SetFloat(_backBendID, backBend);
+        }
+        _currentSideBend = sideBend;
+        _currentBackBend = backBend;
     }
 
     private bool IsBendValueWasChanged()
     {
-        return _currentSideBend != _sidewaysBend ||
-                        _currentBackBend != _backBend;
+        return _currentSideBend != _sidewaysBend || _currentBackBend != _backBend;
     }
 
 }

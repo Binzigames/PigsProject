@@ -1,7 +1,7 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Sheets/ResultStyleSheet.uss?fileID=7433441132597879392&amp;guid=92995abdad22844878a840c971e1082d&amp;type=3#ResultStyleSheet"/>
     <ui:VisualElement style="flex-grow: 1; align-content: center; align-self: stretch; justify-content: center; align-items: stretch;">
-        <ui:VisualElement name="result__background-panel" class="result__background-panel" style="position: relative; flex-shrink: 0; display: flex; height: 2222px; width: 1599px;"/>
+        <ui:VisualElement name="result__background-panel" class="result__background-panel" style="position: relative; flex-shrink: 0; display: flex; height: 2619px; width: 1599px;"/>
         <ui:VisualElement name="result-panel" class="result-panel">
             <ui:Button text="Continue" name="result__menu-button" class="result__continue-button"/>
             <ui:Label text="RUN RESULT" name="Label" style="height: 163px; -unity-text-align: middle-center; -unity-font-definition: url(&quot;project://database/Assets/Visuals/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=7bf66073856ae40a1875549e19ef7770&amp;type=3#LilitaOne-Regular&quot;); font-size: 60px; color: rgb(255, 255, 255); text-shadow: 0 8.5px 0 rgb(0, 0, 0); background-image: url(&quot;project://database/Assets/Visuals/UI/Slide%2016_9%20-%201%20(5).png?fileID=-551857921&amp;guid=e376f57c569ef4439a67fc68500f6401&amp;type=3#Slide 16_9 - 1 (5)_0&quot;); width: 871px; white-space: nowrap; position: absolute; align-self: center; top: 38px;"/>

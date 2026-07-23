@@ -8,6 +8,10 @@ public class ProjectInstaller : MonoInstaller
     [SerializeField] private CurrencyManager _currencyManager;
     [SerializeField] private ScoreManager _scoreManager;
 
+    [Header("Services")]
+    [SerializeField] private MusicService _musicService;
+    [SerializeField] private SoundService _soundService;
+
     [Header("Other")]
     [SerializeField] private UnityLifecycleEventListener _lifecycleListener;
     [SerializeField] private GameObject _loadingScreen;
@@ -20,6 +24,7 @@ public class ProjectInstaller : MonoInstaller
         BindLifecycleEventListener();
         BindManagers();
         BindLoaders();
+        BindAudioServices();
     }
 
     private void BindManagers()
@@ -47,5 +52,11 @@ public class ProjectInstaller : MonoInstaller
     {
         Container.Bind<LoadingView>().FromComponentInNewPrefab(_loadingScreen).AsSingle().NonLazy();
         Container.Bind<ILoadSceneService>().To<LoadSceneService>().AsSingle();
+    }
+
+    private void BindAudioServices()
+    {
+        Container.Bind<ISoundService>().To<SoundService>().FromComponentInNewPrefab(_soundService).AsSingle().NonLazy();
+        Container.Bind<IMusicService>().To<MusicService>().FromComponentInNewPrefab(_musicService).AsSingle().NonLazy();
     }
 }

@@ -278,9 +278,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1626050746974138621}
-  - component: {fileID: 522969559057086832}
   - component: {fileID: -102421915051226603}
   - component: {fileID: -2472287318497976348}
+  - component: {fileID: 2288909928556703721}
   m_Layer: 0
   m_Name: Template_1 (Dynamic)
   m_TagString: Segment
@@ -311,18 +311,6 @@ Transform:
   - {fileID: 3174644699289526421}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &522969559057086832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6202936411612714271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96ac1cbfd80666841891619f3d809d7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Segment
 --- !u!65 &-102421915051226603
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -371,6 +359,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2288909928556703721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202936411612714271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5800c4ac9d2dc48a69c681b1ad93621c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SegmentDynamic
+  _currencyItemList: []
+  _dynamicObstaclesList: []
 --- !u!1 &6947772534009976730
 GameObject:
   m_ObjectHideFlags: 0

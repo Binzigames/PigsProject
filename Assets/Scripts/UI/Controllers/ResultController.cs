@@ -5,35 +5,44 @@ using Zenject;
 
 public class ResultController : MonoBehaviour
 {
+    private AudioClip _buttonAudioClip;
+
     private GameManager _gameManager;
     private ICurrencyManager _currencyManager;
     private IScoreManager _scoreManager;
     private ILoadSceneService _sceneLoadService;
+    private ISoundService _soundService;
+    private SoundDataContainer _soundDataContainer;
 
     [Inject]
-    public void Construct(GameManager gameManager, ICurrencyManager currencyManager, IScoreManager scoreManager, ILoadSceneService sceneLoadService)
+    public void Construct(
+        GameManager gameManager, ICurrencyManager currencyManager, 
+            IScoreManager scoreManager, ILoadSceneService sceneLoadService,
+                ISoundService soundService, IStaticDataProvider dataProvider)
     {
         _gameManager = gameManager;
         _currencyManager = currencyManager;
         _scoreManager = scoreManager;
         _sceneLoadService = sceneLoadService;
+        _soundService = soundService;
+        _soundDataContainer = dataProvider.GetDataContainer<SoundDataContainer>();
     }
 
     private void OnEnable()
     {
         _gameManager.GameStateMachine.OnChangeState += SummurizeResults;
-
         ResultScreenEvents.OnContinueButtonPressed += ContinueGame;
+
+        _buttonAudioClip = _buttonAudioClip != null ? _buttonAudioClip : _soundDataContainer.Button;
     }
 
     private void OnDisable()
     {
         _gameManager.GameStateMachine.OnChangeState += SummurizeResults;
-        
         ResultScreenEvents.OnContinueButtonPressed -= ContinueGame;
     }
 
-    private void SummurizeResults(IGameState gameState)
+    private void SummurizeResults(GameState gameState)
     {
         if (gameState is ResultGameState)
         {
@@ -61,5 +70,7 @@ public class ResultController : MonoBehaviour
     {
         var menuCommand = new MenuGameCommand(_gameManager, _sceneLoadService);
         menuCommand.Execute();
+
+        _soundService.PlayClip(_buttonAudioClip);
     }
 }

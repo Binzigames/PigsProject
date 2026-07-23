@@ -5,26 +5,19 @@ using Unity.Cinemachine;
 
 public class GameInstaller : MonoInstaller
 {
-    [Header("Player")]
-    [SerializeField]
+    [Header("Player")][SerializeField]
     private Player _playerPrefab;
 
     [SerializeField]
     private Vector3 _playerInitPos;
 
-    [Header("Service")]
-    [SerializeField] private SoundService _soundService;
-    [SerializeField] private MusicService _musicService;
-
-    [Header("Other")]
-    [SerializeField]
+    [Header("Other")][SerializeField]
     private CinemachineCamera _cinemachineCamera;
 
     public override void InstallBindings()
     {
         BindSegments();
         BindPlayer();
-        BindAudioServices();
     }
 
     private void BindSegments()
@@ -48,12 +41,6 @@ public class GameInstaller : MonoInstaller
         {
             _cinemachineCamera.Follow = player.transform;
         }
-    }
-
-    private void BindAudioServices()
-    {
-        Container.Bind<ISoundService>().To<SoundService>().FromComponentInNewPrefab(_soundService).AsSingle().NonLazy();
-        Container.Bind<IMusicService>().To<MusicService>().FromComponentInNewPrefab(_musicService).AsSingle().NonLazy();
     }
 
 }

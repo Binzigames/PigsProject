@@ -15,4 +15,8 @@ MonoBehaviour:
   _levelDifficultyData:
   - {fileID: 11400000, guid: 74879aecefe229d4f9181ae41f47d8c4, type: 2}
   - {fileID: 11400000, guid: cd0488401b1659343bc84699adc8e8d4, type: 2}
+  - {fileID: 11400000, guid: e933dd8e45be840f180ecf58ac824951, type: 2}
+  - {fileID: 11400000, guid: 6de9b2db5f76941d0bde328ae35c18ce, type: 2}
   - {fileID: 11400000, guid: 74e23e1569785cb478bd26af956c027c, type: 2}
+  - {fileID: 11400000, guid: bedd7731f68404fbfad3515fec280fec, type: 2}
+  - {fileID: 11400000, guid: 3a7fd95f21fd4407492e833ffc9f9103, type: 2}
