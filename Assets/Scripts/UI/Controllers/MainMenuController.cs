@@ -22,18 +22,18 @@ public class MainMenuController : MonoBehaviour
         _soundDataContainer = dataProvider.GetDataContainer<SoundDataContainer>();
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        MainMenuEvents.OnPlayButtonPressed += StartGame;
-        MainMenuEvents.OnSettingButtonPressed += OnSettingButton;
-
         SetBestScore();
         SetTotalMoney();
+
+        MainMenuEvents.OnPlayButtonPressed += StartGame;
+        MainMenuEvents.OnSettingButtonPressed += OnSettingButton;
 
         _buttonAudioClip = _soundDataContainer.Button;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         MainMenuEvents.OnPlayButtonPressed -= StartGame;
         MainMenuEvents.OnSettingButtonPressed -= OnSettingButton;

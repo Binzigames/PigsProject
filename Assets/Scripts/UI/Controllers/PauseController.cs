@@ -8,7 +8,6 @@ public class PauseController : MonoBehaviour
     private GameManager _gameManager;
     private ILoadSceneService _sceneLoadService;
     private ISoundService _soundService;
-    private IMusicService _musicService;
     private SoundDataContainer _soundDataContainer;
 
     [Inject]
@@ -45,8 +44,8 @@ public class PauseController : MonoBehaviour
 
     private void EndRun()
     {
-        var endGameCommand = new MenuGameCommand(_gameManager, _sceneLoadService);
-        endGameCommand.Execute();
+        var loadMenuCommand = new LoadMenuCommand(_gameManager, _sceneLoadService);
+        loadMenuCommand.Execute();
 
         _soundService.PlayClip(_buttonAudioClip);
     }

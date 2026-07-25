@@ -68,7 +68,7 @@ public class ResultController : MonoBehaviour
 
     private void ContinueGame()
     {
-        var menuCommand = new MenuGameCommand(_gameManager, _sceneLoadService);
+        var menuCommand = new LoadMenuCommand(_gameManager, _sceneLoadService);
         menuCommand.Execute();
 
         _soundService.PlayClip(_buttonAudioClip);

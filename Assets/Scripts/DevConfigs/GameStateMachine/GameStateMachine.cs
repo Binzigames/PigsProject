@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace DevConfigs.GameStateMachine
 {
@@ -24,7 +25,7 @@ namespace DevConfigs.GameStateMachine
             gameState.Enter();
             OnChangeState?.Invoke(gameState);
 
-            //Debug.Log(CurrentState);
+            Debug.Log(CurrentState);
         }
         public void Execute()
         {

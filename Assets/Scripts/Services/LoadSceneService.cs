@@ -1,13 +1,14 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LoadSceneService : ILoadSceneService
 {
     private const int TWO_SECONDS_DELAY = 2000;
     private CancellationTokenSource _cts;
+    private bool _isLoading = false;
+    public bool IsLoading => _isLoading;
 
     public void LoadSceneAsync(string sceneName)
     {
@@ -16,6 +17,7 @@ public class LoadSceneService : ILoadSceneService
 
     public async UniTask LoadSceneAsyncWithLoading(string sceneName)
     {
+        _isLoading = true;
         LoadingEvents.OnShowLoadingScreen?.Invoke();
 
         _cts?.Cancel();
@@ -39,6 +41,7 @@ public class LoadSceneService : ILoadSceneService
         }
         finally
         {
+            _isLoading = false;
             LoadingEvents.OnHideLoadingScreen?.Invoke();
         }
     }

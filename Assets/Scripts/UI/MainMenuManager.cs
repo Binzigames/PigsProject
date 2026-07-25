@@ -14,6 +14,8 @@ public class MainMenuManager : MonoBehaviour
 
     private readonly List<UIView> _viewList = new();
 
+    public UIView MainMenuView => _mainMenuView;
+
     private void OnEnable()
     {
         _document = GetComponent<UIDocument>();
@@ -70,4 +72,5 @@ public class MainMenuManager : MonoBehaviour
     {
         await _settingsView.HideOnDelay(ONE_SECOND_DELAY);
     }
+
 }

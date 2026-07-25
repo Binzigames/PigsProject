@@ -31,18 +31,23 @@ public class GameUIManager : MonoBehaviour
     {
         switch (gameState)
         {
-            case MenuState :
-            _mainMenuManager.gameObject.SetActive(true);
-            _hUDManager.gameObject.SetActive(false);
-            break;
+            case LoadingState:
+                _mainMenuManager.MainMenuView.Hide();
+                _hUDManager.HUDView.Hide();
+                break;
 
-            case RunningState :
-            _mainMenuManager.gameObject.SetActive(false);
-            _hUDManager.gameObject.SetActive(true);
-            break;
+            case MenuState:
+                _mainMenuManager.MainMenuView.Show();
+                _hUDManager.HUDView.Hide();
+                break;
+
+            case RunningState:
+                _mainMenuManager.MainMenuView.Hide();
+                _hUDManager.HUDView.Show();
+                break;
 
             default:
-            break;
+                break;
         }
     }
 

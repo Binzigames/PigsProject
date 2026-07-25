@@ -4,4 +4,5 @@ public interface ILoadSceneService
 {
     public void LoadSceneAsync(string sceneName);
     public UniTask LoadSceneAsyncWithLoading(string sceneName);
+    public bool IsLoading { get; }
 }

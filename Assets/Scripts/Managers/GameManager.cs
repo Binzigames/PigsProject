@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private ISaveProcessor<SaveData> _saveProcessor;
     private IStaticDataProvider _dataProvider;
     private IMusicService _musicService;
+    private ILoadSceneService _loadSceneService;
     private SaveData _saveData;
     private GameSpeedTimer _gameSpeedTimer;
 
@@ -27,7 +28,8 @@ public class GameManager : MonoBehaviour
     public void Construct(
         IScoreManager scoreManager, ISaveProcessor<SaveData> saveProcessor, 
             IUnityLifecycleEventListener lifecycleListener, ICurrencyManager currencyManager,
-                IStaticDataProvider dataProvider, IMusicService musicService)
+                IStaticDataProvider dataProvider, IMusicService musicService,
+                    ILoadSceneService loadSceneService)
     {
         _currencyManager = currencyManager;
         _scoreManager = scoreManager;
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
         _lifecycleListener = lifecycleListener;
         _dataProvider = dataProvider;
         _musicService = musicService;
+        _loadSceneService = loadSceneService;
     }
 
     private void Awake()
@@ -60,7 +63,7 @@ public class GameManager : MonoBehaviour
         _gameSpeedTimer = new GameSpeedTimer(LEVEL_SPEED_UP_INTERVAL);
         _gameStateMachine = new GameStateMachine();
         _gameStateFactory = 
-            new GameStateFactory(this, _scoreManager, _currencyManager, _gameSpeedTimer, _musicService, _dataProvider);
+            new GameStateFactory(this, _scoreManager, _currencyManager, _gameSpeedTimer, _musicService, _dataProvider, _loadSceneService);
 
         var menuState = _gameStateFactory.ResolveGameState<MenuState>();
         _gameStateMachine.Initialize(menuState);

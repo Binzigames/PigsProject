@@ -7,11 +7,13 @@ namespace DevConfigs.GameStateMachine
         private readonly RunningState _runningState;
         private readonly PauseState _pauseState;
         private readonly ResultGameState _resultState;
+        private readonly LoadingState _loadingState;
 
         public GameStateFactory(
             GameManager gameManager, IScoreManager scoreManager,
                 ICurrencyManager currencyManager, GameSpeedTimer gameSpeedTimer,
-                    IMusicService musicService, IStaticDataProvider dataProvider)
+                    IMusicService musicService, IStaticDataProvider dataProvider,
+                        ILoadSceneService loadSceneService)
         {
             _menuState = new MenuState(scoreManager, currencyManager, musicService, dataProvider);
             _runningState = 
@@ -19,6 +21,7 @@ namespace DevConfigs.GameStateMachine
 
             _pauseState = new PauseState(musicService);
             _resultState = new ResultGameState(scoreManager, currencyManager, gameManager, musicService);
+            _loadingState = new LoadingState(gameManager, loadSceneService);
         }
 
         public GameState ResolveGameState<T>() where T : GameState
@@ -29,6 +32,7 @@ namespace DevConfigs.GameStateMachine
                 var t when t == typeof(RunningState) => _runningState,
                 var t when t == typeof(PauseState) => _pauseState,
                 var t when t == typeof(ResultGameState) => _resultState,
+                var t when t == typeof(LoadingState) => _loadingState,
                 _ => throw new System.NotImplementedException()
             };
         }

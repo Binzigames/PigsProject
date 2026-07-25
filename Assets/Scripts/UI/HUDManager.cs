@@ -18,6 +18,8 @@ public class HUDManager : MonoBehaviour
     private UIView _resultView;
 
     private VisualElement _hudViewElements;
+    
+    public UIView HUDView => _hudView;
 
     private readonly List<UIView> _viewList = new();
 
@@ -42,7 +44,7 @@ public class HUDManager : MonoBehaviour
     private void SubscribeToEvents()
     {
         HUDEvents.OnPausePressed += ShowPausePanel;
-        PauseEvents.OnResumeButtonPressed += ShowHUDElements;
+        PauseEvents.OnResumeButtonPressed += ShowHUDElementsOnResume;
 
         GameplayEvents.OnEndRunning += ShowResultScreen;
     }
@@ -50,7 +52,7 @@ public class HUDManager : MonoBehaviour
     private void UnsubscribeFromEvents()
     {
         HUDEvents.OnPausePressed -= ShowPausePanel;
-        PauseEvents.OnResumeButtonPressed -= ShowHUDElements;
+        PauseEvents.OnResumeButtonPressed -= ShowHUDElementsOnResume;
 
         GameplayEvents.OnEndRunning -= ShowResultScreen;
     }
@@ -81,7 +83,7 @@ public class HUDManager : MonoBehaviour
         _hudViewElements.style.display = DisplayStyle.None;
     }
 
-    private void ShowHUDElements()
+    private void ShowHUDElementsOnResume()
     {
         _pauseView.Hide();
         _hudViewElements.style.display = DisplayStyle.Flex;
