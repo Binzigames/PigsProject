@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerAnimation), typeof(PlayerMovement))]
 public class Player : MonoBehaviour
 {
+    private const int COLLIDER_DIRECTION_Y_IDX = 1;
+    private const int COLLIDER_DIRECTION_Z_IDX = 2;
     private const string OBSTACLE_TAG = "Obstacle";
 
     private bool _isCrashed = false;
@@ -13,8 +15,7 @@ public class Player : MonoBehaviour
     private PlayerAnimation _playerAnimation;
 
     [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private CapsuleCollider _mainCollider;
-    [SerializeField] private BoxCollider _slideCollider;
+    [SerializeField] private CapsuleCollider _collider;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _groundCheckDistance = 1f;
     [SerializeField] private bool _cheats = false;
@@ -31,10 +32,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _playerAnimation = _playerAnimation != null ? _playerAnimation : GetComponent<PlayerAnimation>();
-        _mainCollider = _mainCollider != null ? _mainCollider : GetComponent<CapsuleCollider>();
-        _slideCollider = _slideCollider != null ? _slideCollider : GetComponent<BoxCollider>();
-        _slideCollider.enabled = false;
-
+        _collider = _collider != null ? _collider : GetComponent<CapsuleCollider>();
 
         _playerStateMachine = new PlayerStateMachine(this, _playerAnimation);
         _playerStateMachine.Initialize(_playerStateMachine.IdleState);
@@ -63,8 +61,7 @@ public class Player : MonoBehaviour
 
     private void EnableCheats()
     {
-        _mainCollider.isTrigger = true;
-        _slideCollider.isTrigger = true;
+        _collider.isTrigger = true;
         _rigidbody.isKinematic = true;
     }
 
@@ -74,16 +71,14 @@ public class Player : MonoBehaviour
                                     Vector3.down, _groundCheckDistance, _groundLayer);
     }
 
-    public void SwapColliders()
+    public void SwitchColliderDirection()
     {
-        _mainCollider.enabled = !_mainCollider.enabled;
-        _slideCollider.enabled = !_slideCollider.enabled;
+        _collider.direction = COLLIDER_DIRECTION_Z_IDX;
     }
 
-    public void ResetColliders()
+    public void ResetColliderDirection()
     {
-        _mainCollider.enabled = true;
-        _slideCollider.enabled = false;
+        _collider.direction = COLLIDER_DIRECTION_Y_IDX;
     }
 
 }

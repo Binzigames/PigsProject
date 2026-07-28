@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Ease
   m_EditorClassIdentifier: Assembly-CSharp::LevelDifficultyData
   _difficultyType: 0
-  _moveSpeed: 10
+  _moveSpeed: 17

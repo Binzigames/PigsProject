@@ -6,7 +6,7 @@ using Zenject;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private const int STARTED_LANE = 0;
+    private const int MIDDLE_LANE = 0;
     private const int SECOND_IN_MILLISECONDS = 1000;
 
     private CancellationTokenSource _slideCts;
@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Subscribe();
 
-        _currentLane = STARTED_LANE;
+        _currentLane = MIDDLE_LANE;
         _defaultGravityMultiplier = _gravityMultiplier;
     }
 
@@ -149,21 +149,21 @@ public class PlayerMovement : MonoBehaviour
             _isSliding = true;
 
             _slideCts?.Cancel(); // if active - cancel
+            _slideCts?.Dispose();
             _slideCts = new CancellationTokenSource();
 
             try
             {
-                _player.SwapColliders();
+                _player.SwitchColliderDirection();
                 await UniTask.Delay(_slideDuration * SECOND_IN_MILLISECONDS, cancellationToken: _slideCts.Token);
-
-                _player.SwapColliders();
             }
             catch (OperationCanceledException)
             {
-                _player.ResetColliders();
+                _player.ResetColliderDirection();
             }
             finally
             {
+                _player.ResetColliderDirection();
                 _isSliding = false;
             }
         }

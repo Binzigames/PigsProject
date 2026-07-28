@@ -175,10 +175,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3350898832030642160}
     - target: {fileID: 3039529129547806561, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
-      propertyPath: _slideCollider
-      value: 
-      objectReference: {fileID: -6297923111386590459}
-    - target: {fileID: 3039529129547806561, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       propertyPath: _groundLayer.m_Bits
       value: 8
       objectReference: {fileID: 0}
@@ -247,6 +243,10 @@ PrefabInstance:
       value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 6935007740141660936, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
+      propertyPath: _slideDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935007740141660936, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       propertyPath: _gravityMultiplier
       value: 10
       objectReference: {fileID: 0}
@@ -283,15 +283,12 @@ PrefabInstance:
       addedObject: {fileID: 3350898832030642160}
     - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       insertIndex: 2
-      addedObject: {fileID: -6297923111386590459}
-    - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
-      insertIndex: 3
       addedObject: {fileID: 4798199436841825025}
     - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
-      insertIndex: 4
+      insertIndex: 3
       addedObject: {fileID: 4108913177334439907}
     - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
-      insertIndex: 5
+      insertIndex: 4
       addedObject: {fileID: -4100194757489723097}
     - targetCorrespondingSourceObject: {fileID: 8840974363321809568, guid: d0036125ca9559042ba54aad55f44a27, type: 3}
       insertIndex: -1
@@ -330,27 +327,6 @@ CapsuleCollider:
   m_Height: 3.2838972
   m_Direction: 1
   m_Center: {x: -0.1, y: 1.1419486, z: -0.240345}
---- !u!65 &-6297923111386590459
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8491667860976784895}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: -0.1, y: 0, z: -0.240345}
 --- !u!54 &4798199436841825025
 Rigidbody:
   m_ObjectHideFlags: 0

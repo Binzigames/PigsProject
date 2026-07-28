@@ -53,18 +53,15 @@ namespace Assets.Scripts.Patterns.ObjectPool
         public GameObject GetObjectFromPool()
         {
             var nextPooledObject = GetNextPooledObject();
+            Debug.Log("Get Segment");
 
             if (!nextPooledObject.activeInHierarchy)
             {
                 nextPooledObject.SetActive(true);
                 return nextPooledObject;
             }
-            else
-            {
-                CreateInstance(out GameObject newInstance);
-                newInstance.SetActive(true);
-                return newInstance;
-            }
+
+            return null;
         }
 
         private GameObject GetNextPooledObject()

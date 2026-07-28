@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Hard 2
   m_EditorClassIdentifier: Assembly-CSharp::LevelDifficultyData
   _difficultyType: 2
-  _moveSpeed: 28
+  _moveSpeed: 32

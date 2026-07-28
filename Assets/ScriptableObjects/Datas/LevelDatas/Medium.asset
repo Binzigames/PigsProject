@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Medium
   m_EditorClassIdentifier: Assembly-CSharp::LevelDifficultyData
   _difficultyType: 1
-  _moveSpeed: 13
+  _moveSpeed: 20
