@@ -154,16 +154,16 @@ public class PlayerMovement : MonoBehaviour
 
             try
             {
-                _player.SwitchColliderDirection();
+                _player.OmitCollider();
                 await UniTask.Delay(_slideDuration * SECOND_IN_MILLISECONDS, cancellationToken: _slideCts.Token);
             }
             catch (OperationCanceledException)
             {
-                _player.ResetColliderDirection();
+                _player.ResetCollider();
             }
             finally
             {
-                _player.ResetColliderDirection();
+                _player.ResetCollider();
                 _isSliding = false;
             }
         }

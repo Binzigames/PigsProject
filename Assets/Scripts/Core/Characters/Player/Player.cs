@@ -6,8 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerAnimation), typeof(PlayerMovement))]
 public class Player : MonoBehaviour
 {
-    private const int COLLIDER_DIRECTION_Y_IDX = 1;
-    private const int COLLIDER_DIRECTION_Z_IDX = 2;
+    private const float OMITTED_CENTER_Y = 0.5f;
+    private const float OMITTED_COLLIDER_HEIGHT = 2f;
     private const string OBSTACLE_TAG = "Obstacle";
 
     private bool _isCrashed = false;
@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _groundCheckDistance = 1f;
     [SerializeField] private bool _cheats = false;
+
+    private Vector3 _colliderCenter;
+    private float _colliderHeight;
 
 
     public PlayerStateMachine PlayerStateMachine => _playerStateMachine;
@@ -36,6 +39,9 @@ public class Player : MonoBehaviour
 
         _playerStateMachine = new PlayerStateMachine(this, _playerAnimation);
         _playerStateMachine.Initialize(_playerStateMachine.IdleState);
+
+        _colliderHeight = _collider.height;
+        _colliderCenter = _collider.center;
 
         if (_cheats)
             EnableCheats();
@@ -71,14 +77,16 @@ public class Player : MonoBehaviour
                                     Vector3.down, _groundCheckDistance, _groundLayer);
     }
 
-    public void SwitchColliderDirection()
+    public void OmitCollider()
     {
-        _collider.direction = COLLIDER_DIRECTION_Z_IDX;
+        _collider.center = new Vector3(_collider.center.x, OMITTED_CENTER_Y, _collider.center.z);
+        _collider.height = OMITTED_COLLIDER_HEIGHT;
     }
 
-    public void ResetColliderDirection()
+    public void ResetCollider()
     {
-        _collider.direction = COLLIDER_DIRECTION_Y_IDX;
+        _collider.center = _colliderCenter;
+        _collider.height = _colliderHeight;
     }
 
 }
