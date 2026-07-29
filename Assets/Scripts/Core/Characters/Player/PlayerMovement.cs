@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
     {
         ChangeLane(-1);
     }
-    
+
     private void MoveRight()
     {
         ChangeLane(1);
@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
         _currentLane = targetLane;
         _targetPosition = new Vector3(targetLane, 0, 0);
     }
-    
+
     private void Jump()
     {
         _isJumping = true;
@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
     {
         await HandleSlide();
     }
-    
+
     private void HandleJump()
     {
         if (_player.IsGrounded() && _isJumping)
@@ -146,31 +146,41 @@ public class PlayerMovement : MonoBehaviour
 
         if (_player.IsGrounded())
         {
-            _isSliding = true;
-
-            _slideCts?.Cancel(); // if active - cancel
-            _slideCts?.Dispose();
-            _slideCts = new CancellationTokenSource();
-
-            try
-            {
-                _player.OmitCollider();
-                await UniTask.Delay(_slideDuration * SECOND_IN_MILLISECONDS, cancellationToken: _slideCts.Token);
-            }
-            catch (OperationCanceledException)
-            {
-                _player.ResetCollider();
-            }
-            finally
-            {
-                _player.ResetCollider();
-                _isSliding = false;
-            }
+            await SlideCoroutine();
         }
 
         else
         {
             _gravityMultiplier *= _gravityMultiplierOnSlide;
+            while (!_player.IsGrounded())
+            {
+                await UniTask.Yield();
+            }
+            await SlideCoroutine();
+            _isSliding = false;
+        }
+    }
+
+    private async UniTask SlideCoroutine()
+    {
+        _isSliding = true;
+
+        _slideCts?.Cancel(); // if active - cancel
+        _slideCts?.Dispose();
+        _slideCts = new CancellationTokenSource();
+
+        try
+        {
+            _player.OmitCollider();
+            await UniTask.Delay(_slideDuration * SECOND_IN_MILLISECONDS, cancellationToken: _slideCts.Token);
+        }
+        catch (OperationCanceledException)
+        {
+            _player.ResetCollider();
+        }
+        finally
+        {
+            _player.ResetCollider();
             _isSliding = false;
         }
     }
