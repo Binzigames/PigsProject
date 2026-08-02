@@ -31,6 +31,7 @@ public class ProjectInstaller : MonoInstaller
     {
         Container.Bind<ICurrencyManager>().To<CurrencyManager>().FromComponentInNewPrefab(_currencyManager).AsSingle().NonLazy();
         Container.Bind<IScoreManager>().To<ScoreManager>().FromComponentInNewPrefab(_scoreManager).AsSingle().NonLazy();
+        Container.Bind<IInputActionProvider>().To<InputManager>().AsSingle();
     }
 
     private void BindSaveProcessor()

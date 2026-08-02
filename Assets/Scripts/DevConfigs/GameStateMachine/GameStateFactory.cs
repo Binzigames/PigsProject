@@ -13,15 +13,15 @@ namespace DevConfigs.GameStateMachine
             GameManager gameManager, IScoreManager scoreManager,
                 ICurrencyManager currencyManager, GameSpeedTimer gameSpeedTimer,
                     IMusicService musicService, IStaticDataProvider dataProvider,
-                        ILoadSceneService loadSceneService)
+                        ILoadSceneService loadSceneService, IInputActionProvider inputActionProvider)
         {
             _menuState = new MenuState(scoreManager, currencyManager, musicService, dataProvider);
             _runningState = 
-                new RunningState(gameManager, scoreManager, gameSpeedTimer, musicService, dataProvider);
+                new RunningState(gameManager, scoreManager, gameSpeedTimer, musicService, dataProvider, inputActionProvider);
 
             _pauseState = new PauseState(musicService);
             _resultState = new ResultGameState(scoreManager, currencyManager, gameManager, musicService);
-            _loadingState = new LoadingState(gameManager, loadSceneService);
+            _loadingState = new LoadingState(gameManager, loadSceneService, inputActionProvider);
         }
 
         public GameState ResolveGameState<T>() where T : GameState

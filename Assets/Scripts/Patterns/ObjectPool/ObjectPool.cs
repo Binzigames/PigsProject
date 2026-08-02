@@ -53,7 +53,6 @@ namespace Assets.Scripts.Patterns.ObjectPool
         public GameObject GetObjectFromPool()
         {
             var nextPooledObject = GetNextPooledObject();
-            Debug.Log("Get Segment");
 
             if (!nextPooledObject.activeInHierarchy)
             {

@@ -1,15 +1,17 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
-
-[RequireComponent(typeof(PlayerInput))]
 public class PlayerTouchController : MonoBehaviour
 {
     private const string TOUCH_ACTION_NAME = "TouchScreenPress";
-    [SerializeField] private float _minSwipeDistance = 50f;
 
-    [SerializeField] private PlayerInput _playerInput;
+    [Inject] 
+    private readonly IInputActionProvider _inputActionProvider;
+
+    [SerializeField]
+    private float _minSwipeDistance = 50f;
 
     private Vector2 _startTouchPosition;
     private Vector2 _endTouchPosition;
@@ -23,9 +25,7 @@ public class PlayerTouchController : MonoBehaviour
 
     private void Awake()
     {
-        _playerInput = _playerInput != null ? _playerInput : GetComponent<PlayerInput>();
-
-        _touchAction = _playerInput.actions[TOUCH_ACTION_NAME];
+        _touchAction = _inputActionProvider.GetInputAction(TOUCH_ACTION_NAME);
         
         _touchAction.started += OnTouchPress;
         _touchAction.canceled += OnTouchPress;

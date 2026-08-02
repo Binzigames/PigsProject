@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private ILoadSceneService _loadSceneService;
     private SaveData _saveData;
     private GameSpeedTimer _gameSpeedTimer;
+    private IInputActionProvider _inputActionProvider;
 
     private GameStateMachine _gameStateMachine;
     private GameStateFactory _gameStateFactory;
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour
         IScoreManager scoreManager, ISaveProcessor<SaveData> saveProcessor, 
             IUnityLifecycleEventListener lifecycleListener, ICurrencyManager currencyManager,
                 IStaticDataProvider dataProvider, IMusicService musicService,
-                    ILoadSceneService loadSceneService)
+                    ILoadSceneService loadSceneService, IInputActionProvider inputActionProvider)
     {
         _currencyManager = currencyManager;
         _scoreManager = scoreManager;
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
         _dataProvider = dataProvider;
         _musicService = musicService;
         _loadSceneService = loadSceneService;
+        _inputActionProvider = inputActionProvider;
     }
 
     private void Awake()
@@ -63,7 +65,8 @@ public class GameManager : MonoBehaviour
         _gameSpeedTimer = new GameSpeedTimer(LEVEL_SPEED_UP_INTERVAL);
         _gameStateMachine = new GameStateMachine();
         _gameStateFactory = 
-            new GameStateFactory(this, _scoreManager, _currencyManager, _gameSpeedTimer, _musicService, _dataProvider, _loadSceneService);
+            new GameStateFactory(this, _scoreManager, _currencyManager, _gameSpeedTimer,
+                                     _musicService, _dataProvider, _loadSceneService, _inputActionProvider);
 
         var menuState = _gameStateFactory.ResolveGameState<MenuState>();
         _gameStateMachine.Initialize(menuState);
